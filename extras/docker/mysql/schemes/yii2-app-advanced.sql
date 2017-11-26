@@ -1,0 +1,1 @@
+CREATE DATABASE `yii2-app-advanced` DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
