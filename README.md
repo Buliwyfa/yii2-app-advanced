@@ -36,8 +36,8 @@ If you have installed docker and docker compose, you have ready to use commands 
 Use the following commands:
 
 ```
-make docker-compose-start
 make config-env-development
+make docker-compose-start
 make migrate-db
 ```
 
