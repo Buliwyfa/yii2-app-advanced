@@ -34,17 +34,17 @@ docker-compose-stop:
 	    WWW_DIR=$(ROOT_DIR) docker-compose down
 
 config-env-development:
-	docker exec docker_php-fpm_1 make clear
-	docker exec docker_php-fpm_1 php init --env=Development --overwrite=All
+	docker exec y2aa_php_fpm make clear
+	docker exec y2aa_php_fpm php init --env=Development --overwrite=All
 
 config-env-production:
-	docker exec docker_php-fpm_1 make clear
-	docker exec docker_php-fpm_1 php init --env=Production --overwrite=All
+	docker exec y2aa_php_fpm make clear
+	docker exec y2aa_php_fpm php init --env=Production --overwrite=All
 
 migrate-db:
-	docker exec docker_php-fpm_1 php yii migrate --migrationPath=@common/migrations --interactive=0
-	docker exec docker_php-fpm_1 php yii migrate --migrationPath=@backend/migrations --interactive=0
-	docker exec docker_php-fpm_1 php yii migrate --migrationPath=@frontend/migrations --interactive=0
+	docker exec y2aa_php_fpm php yii migrate --migrationPath=@common/migrations --interactive=0
+	docker exec y2aa_php_fpm php yii migrate --migrationPath=@backend/migrations --interactive=0
+	docker exec y2aa_php_fpm php yii migrate --migrationPath=@frontend/migrations --interactive=0
 
 nginx-reload:
-	docker exec docker_nginx_1 service nginx reload
+	docker exec y2aa_nginx service nginx reload

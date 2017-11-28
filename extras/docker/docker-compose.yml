@@ -2,6 +2,7 @@ version: '3'
 services:
   # database
   mysql:
+    container_name: y2aa_mysql
     image: mysql:5.7.16
     ports:
       - "3306:3306"
@@ -14,12 +15,14 @@ services:
 
   # memcached
   memcached:
+    container_name: y2aa_memcached
     image: memcached:1.5.3
     ports:
       - "11211:11211"
 
   # php-fpm
   php-fpm:
+    container_name: y2aa_php_fpm
     build: ./php-fpm
     working_dir: /usr/share/nginx/html
     ports:
@@ -34,6 +37,7 @@ services:
 
   # web server
   nginx:
+    container_name: y2aa_nginx
     image: nginx:latest
     ports:
       - "80:80"

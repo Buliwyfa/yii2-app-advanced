@@ -44,13 +44,13 @@ make migrate-db
 All commands inside make use the docker names, like "docker_php-fpm_1". So you can execute "php" or "composer" like this:
 
 ```
-docker exec -it docker_php-fpm_1 php yii
+docker exec -it y2aa_php_fpm php yii
 ``` 
 
 or 
 
 ```
-docker exec -it docker_php-fpm_1 composer install
+docker exec -it y2aa_php_fpm composer install
 ``` 
 
 With docker you dont need install on your machine MAMP, XAMP or something like this. Docker is everything :p
