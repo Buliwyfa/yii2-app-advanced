@@ -2,7 +2,8 @@
 
 namespace backend\controllers;
 
-use vova07\imperavi\actions\GetAction;
+use vova07\imperavi\actions\GetImagesAction;
+use vova07\imperavi\actions\UploadFileAction;
 use Yii;
 use yii\helpers\Url;
 
@@ -22,16 +23,15 @@ class ContentController extends CRUDController
     {
         return [
             'get-images' => [
-                'class' => GetAction::className(),
+                'class' => GetImagesAction::className(),
                 'url' => Url::to('/uploads/general'),
                 'path' => Yii::getAlias('@root/uploads/general'),
-                'type' => GetAction::TYPE_IMAGES,
                 'options' => [
                     'only' => ['*.jpg', '*.png', '*.jpeg']
                 ]
             ],
             'upload-image' => [
-                'class' => 'vova07\imperavi\actions\UploadAction',
+                'class' => UploadFileAction::className(),
                 'url' => Url::to('/uploads/general'),
                 'path' => Yii::getAlias('@root/uploads/general'),
             ],

@@ -183,6 +183,8 @@ class User extends ActiveRecord implements IdentityInterface
             'avatar' => Yii::t('common', 'Model.Avatar'),
             'avatar_path' => Yii::t('common', 'Model.Avatar'),
             'avatar_url' => Yii::t('common', 'Model.Avatar'),
+            'password' => Yii::t('common', 'Model.Password'),
+            'repeat_password' => Yii::t('common', 'Model.RepeatPassword'),
 
             'id' => Yii::t('common', 'Model.Id'),
             'created_at' => Yii::t('common', 'Model.CreatedAt'),

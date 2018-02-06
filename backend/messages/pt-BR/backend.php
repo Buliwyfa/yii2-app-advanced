@@ -146,8 +146,8 @@ return [
     'Permission.Gallery.Update' => 'Alterar galeria',
     'Permission.Gallery.View' => 'Ver galeria',
     'Permission.Gallery.Delete' => 'Remover galeria',
-    'Permission.Gallery.GalleryItemUpload' => 'Upload de item para a galeria',
-    'Permission.Gallery.GalleryItemDelete' => 'Apagar item da galeria',
+    'Permission.Gallery.ItemUpload' => 'Upload de item para a galeria',
+    'Permission.Gallery.ItemDelete' => 'Apagar item da galeria',
 
     'Permission.Reports.UserReport.Index' => 'Relatório de usuários',
     'Permission.Reports.CustomerReport.Index' => 'Relatório de clientes',

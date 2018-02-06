@@ -74,6 +74,7 @@ class Permission extends ActiveRecord
         return [
             'description' => Yii::t('common', 'Model.Description'),
             'action' => Yii::t('common', 'Model.Action'),
+            'action_group' => Yii::t('common', 'Model.ActionGroup'),
             'status' => Yii::t('common', 'Model.Status'),
 
             'id' => Yii::t('common', 'Model.Id'),
