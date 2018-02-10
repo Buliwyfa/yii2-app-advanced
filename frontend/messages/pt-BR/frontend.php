@@ -29,7 +29,7 @@ return [
     'RequestPasswordResetToken.TitleHint' => 'Por favor, informe seu e-mail. Um link será enviado para o processo de troca de senha.',
     'ResetPassword.TitleHint' => 'Por favor, informe a sua nova senha:',
 
-    'Site.Error.Message' => 'Este erro ocorreu enquanto o servidor processava sua requisição.\nPor favor, entre em contato se o erro persistir. Obrigado.',
+    'Site.Error.Message' => 'Este erro ocorreu enquanto o servidor processava sua requisição.<br />Por favor, entre em contato se o erro persistir. Obrigado.',
     'Site.Menu.Home' => 'Home',
     'Site.Menu.AboutUs' => 'Quem somos',
     'Site.Menu.TermsOfUse' => 'Termos de uso',

@@ -29,7 +29,7 @@ return [
     'RequestPasswordResetToken.TitleHint' => 'Please fill out your email. A link to reset password will be sent there.',
     'ResetPassword.TitleHint' => 'Please choose your new password:',
 
-    'Site.Error.Message' => 'The above error occurred while the Web server was processing your request.\nPlease contact us if you think this is a server error. Thank you.',
+    'Site.Error.Message' => 'The above error occurred while the Web server was processing your request.<br />Please contact us if you think this is a server error. Thank you.',
     'Site.Menu.Home' => 'Home',
     'Site.Menu.AboutUs' => 'About us',
     'Site.Menu.TermsOfUse' => 'Terms of use',

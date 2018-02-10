@@ -1,10 +1,27 @@
 ROOT_DIR = $(shell pwd)
 
+PHP_CMD_PREFIX = 
+NGINX_CMD_PREFIX = 
+
+PREFIX_DOCKER_PHP_FPM = docker exec y2aa_php_fpm
+PREFIX_DOCKER_NGINX = docker exec y2aa_php_fpm
+
+USE_DOCKER = 0
+
 .DEFAULT_GOAL := help
+
+ifeq ($(docker), 1)
+	PHP_CMD_PREFIX = $(PREFIX_DOCKER_PHP_FPM)
+	NGINX_CMD_PREFIX = $(PREFIX_DOCKER_NGINX)
+	USE_DOCKER = 1
+endif
 
 # general
 help:
-	@echo "Type: make [rule]. Available options are:"
+	@echo "Type: make [rule]."
+	@echo "Hint: Add parameter 'docker=1' at last to execute on Docker."
+	@echo ""
+	@echo "Available options are:"
 	@echo ""
 	@echo "- help"
 	@echo "- clear"
@@ -41,25 +58,25 @@ docker-compose-stop:
 	    WWW_DIR=$(ROOT_DIR) docker-compose down
 
 config-env-development:
-	docker exec y2aa_php_fpm make clear
-	docker exec y2aa_php_fpm php init --env=Development --overwrite=All
-	docker exec y2aa_php_fpm mkdir -p uploads/general
+	$(PHP_CMD_PREFIX) make clear
+	$(PHP_CMD_PREFIX) php init --env=Development --overwrite=All
+	$(PHP_CMD_PREFIX) mkdir -p uploads/general
 
 config-env-production:
-	docker exec y2aa_php_fpm make clear
-	docker exec y2aa_php_fpm php init --env=Production --overwrite=All
-	docker exec y2aa_php_fpm mkdir -p uploads/general
+	$(PHP_CMD_PREFIX) make clear
+	$(PHP_CMD_PREFIX) php init --env=Production --overwrite=All
+	$(PHP_CMD_PREFIX) mkdir -p uploads/general
 
 migrate-db:
-	docker exec y2aa_php_fpm php yii migrate --migrationPath=@common/migrations --interactive=0
-	docker exec y2aa_php_fpm php yii migrate --migrationPath=@backend/migrations --interactive=0
-	docker exec y2aa_php_fpm php yii migrate --migrationPath=@frontend/migrations --interactive=0
+	$(PHP_CMD_PREFIX) php yii migrate --migrationPath=@common/migrations --interactive=0
+	$(PHP_CMD_PREFIX) php yii migrate --migrationPath=@backend/migrations --interactive=0
+	$(PHP_CMD_PREFIX) php yii migrate --migrationPath=@frontend/migrations --interactive=0
 
 nginx-reload:
-	docker exec y2aa_nginx service nginx reload
+	$(NGINX_CMD_PREFIX) service nginx reload
 
 composer-install:
-	docker exec y2aa_php_fpm composer install
+	$(PHP_CMD_PREFIX) composer install
 
 composer-update:
-	docker exec y2aa_php_fpm composer update
+	$(PHP_CMD_PREFIX) composer update

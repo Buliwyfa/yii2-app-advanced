@@ -23,11 +23,11 @@ $containerClass = (Yii::$app->user->isGuest ? 'site-error-layout-base' : 'site-e
 		</div>
 
 		<p>
-            <?= Yii::t('backend', 'Site.Error.MessageLine1') ?>
+            <?= nl2br(Yii::t('backend', 'Site.Error.MessageLine1')) ?>
 		</p>
 
 		<p>
-            <?= Yii::t('backend', 'Site.Error.MessageLine2') ?>
+            <?= nl2br(Yii::t('backend', 'Site.Error.MessageLine2')) ?>
 		</p>
 
 	<?php $this->endContent(); ?>
