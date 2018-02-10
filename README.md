@@ -31,6 +31,11 @@ If you type "make" in your terminal, you get all options:
 - nginx-reload
 ```
 
+If you want execute the commands with Docker support, add the parameter "docker=1" at the end of command. Ex:  
+```
+make migrate-db docker=1
+```
+
 If you have installed docker and docker compose, you have ready to use commands to start.
 
 Use the following commands:
@@ -59,6 +64,67 @@ All project configurations is using "yii2-app-advanced.local" as hosts (nginx an
 
 ```
 127.0.0.1 yii2-app-advanced.local
+```
+
+## Apache2
+
+If you use Apache2, you need add a virtual host, example:
+
+```
+<VirtualHost *:80>
+    ServerName yii2-app-advanced.local
+
+    #ErrorLog /var/log/apache2/advanced.local.error.log
+    #CustomLog /var/log/apache2/advanced.local.access.log combined
+    AddDefaultCharset UTF-8
+
+    Options FollowSymLinks
+    DirectoryIndex index.php index.html
+    RewriteEngine on
+
+    RewriteRule /\. - [L,F]
+
+    DocumentRoot /Users/paulo/Developer/www/yii2-app-advanced/frontend/web
+    <Directory /Users/paulo/Developer/www/yii2-app-advanced/frontend/web>
+        AllowOverride none
+        <IfVersion < 2.4>
+          Order Allow,Deny
+          Allow from all
+        </IfVersion>
+        <IfVersion >= 2.4>
+          Require all granted
+        </IfVersion>
+
+        # if a directory or a file exists, use the request directly
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteCond %{REQUEST_FILENAME} !-d
+        # otherwise forward the request to index.php
+        RewriteRule ^ index.php [L]
+    </Directory>
+
+    # redirect to the URL without a trailing slash (uncomment if necessary)
+    #RewriteRule ^/admin/$ /admin [L,R=301]
+
+    Alias /admin /Users/paulo/Developer/www/yii2-app-advanced/backend/web
+    # prevent the directory redirect to the URL with a trailing slash
+    RewriteRule ^/admin$ /admin/ [L,PT]
+    <Directory /Users/paulo/Developer/www/yii2-app-advanced/backend/web>
+        AllowOverride none
+        <IfVersion < 2.4>
+            Order Allow,Deny
+            Allow from all
+        </IfVersion>
+        <IfVersion >= 2.4>
+            Require all granted
+        </IfVersion>
+
+        # if a directory or a file exists, use the request directly
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteCond %{REQUEST_FILENAME} !-d
+        # otherwise forward the request to index.php
+        RewriteRule ^ index.php [L]
+    </Directory>
+</VirtualHost>
 ```
 
 ## Contact
