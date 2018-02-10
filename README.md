@@ -84,8 +84,8 @@ If you use Apache2, you need add a virtual host, example:
 
     RewriteRule /\. - [L,F]
 
-    DocumentRoot /Users/paulo/Developer/www/yii2-app-advanced/frontend/web
-    <Directory /Users/paulo/Developer/www/yii2-app-advanced/frontend/web>
+    DocumentRoot /var/www/yii2-app-advanced/frontend/web
+    <Directory /var/www/yii2-app-advanced/frontend/web>
         AllowOverride none
         <IfVersion < 2.4>
           Order Allow,Deny
@@ -105,10 +105,10 @@ If you use Apache2, you need add a virtual host, example:
     # redirect to the URL without a trailing slash (uncomment if necessary)
     #RewriteRule ^/admin/$ /admin [L,R=301]
 
-    Alias /admin /Users/paulo/Developer/www/yii2-app-advanced/backend/web
+    Alias /admin /var/www/yii2-app-advanced/backend/web
     # prevent the directory redirect to the URL with a trailing slash
     RewriteRule ^/admin$ /admin/ [L,PT]
-    <Directory /Users/paulo/Developer/www/yii2-app-advanced/backend/web>
+    <Directory /var/www/yii2-app-advanced/backend/web>
         AllowOverride none
         <IfVersion < 2.4>
             Order Allow,Deny
