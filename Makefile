@@ -28,12 +28,15 @@ help:
 	@echo "- docker-compose-start"
 	@echo "- docker-compose-stop"
 	@echo "- docker-compose-start-console"
+	@echo "- docker-compose-rebuild"
 	@echo "- config-env-development"
 	@echo "- config-env-production"
 	@echo "- migrate-db"
 	@echo "- nginx-reload"
 	@echo "- composer-install"
 	@echo "- composer-update"
+	@echo "- composer-outdated"
+	@echo "- composer-show"
 	@echo ""
 
 clear:
@@ -56,6 +59,10 @@ docker-compose-start-console:
 docker-compose-stop:
 	cd extras/docker && \
 	    WWW_DIR=$(ROOT_DIR) docker-compose down
+
+docker-compose-rebuild:
+	cd extras/docker && \
+	    WWW_DIR=$(ROOT_DIR) docker-compose build --force-rm
 
 config-env-development:
 	$(PHP_CMD_PREFIX) make clear
@@ -80,3 +87,9 @@ composer-install:
 
 composer-update:
 	$(PHP_CMD_PREFIX) composer update
+
+composer-outdated:
+	$(PHP_CMD_PREFIX) composer outdated
+
+composer-show:
+	$(PHP_CMD_PREFIX) composer show -l
