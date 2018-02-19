@@ -53,7 +53,7 @@ class CRUDController extends BaseController
     {
         return array_merge(parent::behaviors(), [
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'index' => ['get'],
                     'view' => ['get'],

@@ -20,7 +20,7 @@ return [
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
             'loginUrl' => ['site/login'],
-            'as afterLogin' => common\behaviors\LoginTimestampBehavior::className()
+            'as afterLogin' => common\behaviors\LoginTimestampBehavior::class
         ],
         'session' => [
             // this is the name of the session cookie used for login on the frontend

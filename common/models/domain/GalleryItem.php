@@ -39,7 +39,7 @@ class GalleryItem extends ActiveRecord
     {
         return [
             [
-                'class' => TimestampBehavior::className(),
+                'class' => TimestampBehavior::class,
                 'updatedAtAttribute' => false
             ]
         ];
@@ -102,7 +102,7 @@ class GalleryItem extends ActiveRecord
      */
     public function getGallery()
     {
-        return $this->hasOne(Gallery::className(), ['id' => 'gallery_id']);
+        return $this->hasOne(Gallery::class, ['id' => 'gallery_id']);
     }
 
     /**

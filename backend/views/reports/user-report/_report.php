@@ -21,7 +21,7 @@ $columns = [
     'username',
     'email',
     [
-        'class' => EnumColumn::className(),
+        'class' => EnumColumn::class,
         'attribute' => 'status',
         'enum' => User::getStatusList(),
     ],

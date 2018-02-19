@@ -39,7 +39,7 @@ class Group extends ActiveRecord
     public function behaviors()
     {
         return [
-            TimestampBehavior::className(),
+            TimestampBehavior::class,
         ];
     }
 
@@ -109,7 +109,7 @@ class Group extends ActiveRecord
      */
     public function getPermissions()
     {
-        return $this->hasMany(Permission::className(), ['id' => 'permission_id'])->viaTable(GroupPermission::tableName(), ['group_id' => 'id']);
+        return $this->hasMany(Permission::class, ['id' => 'permission_id'])->viaTable(GroupPermission::tableName(), ['group_id' => 'id']);
     }
 
     /**
@@ -118,7 +118,7 @@ class Group extends ActiveRecord
      */
     public function getUsers()
     {
-        return $this->hasMany(User::className(), ['id' => 'user_id'])->viaTable(UserGroup::tableName(), ['group_id' => 'id']);
+        return $this->hasMany(User::class, ['id' => 'user_id'])->viaTable(UserGroup::tableName(), ['group_id' => 'id']);
     }
 
     /**

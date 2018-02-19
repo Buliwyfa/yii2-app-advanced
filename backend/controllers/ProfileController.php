@@ -18,7 +18,7 @@ class ProfileController extends BaseController
     {
         return array_merge(parent::behaviors(), [
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'index' => ['get', 'post'],
                 ],
@@ -30,7 +30,7 @@ class ProfileController extends BaseController
     {
         return [
             'avatar-upload' => [
-                'class' => UploadAction::className(),
+                'class' => UploadAction::class,
                 'deleteRoute' => 'avatar-delete',
                 'fileStorage' => 'userProfileFileStorage',
                 'on afterSave' => function ($event) {
@@ -41,7 +41,7 @@ class ProfileController extends BaseController
                 }
             ],
             'avatar-delete' => [
-                'class' => DeleteAction::className(),
+                'class' => DeleteAction::class,
                 'fileStorage' => 'userProfileFileStorage',
             ]
         ];

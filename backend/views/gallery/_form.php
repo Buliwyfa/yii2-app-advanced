@@ -45,7 +45,7 @@ use yii\helpers\Html;
 
 		<div class="tab-pane" id="tab_2">
 
-            <?= $form->field($model, 'items')->widget(Upload::classname(), [
+            <?= $form->field($model, 'items')->widget(Upload::class, [
                 'url' => ['item-upload'],
                 'sortable' => true,
                 'maxFileSize' => 50000000, // 50 MiB

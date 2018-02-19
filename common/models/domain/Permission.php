@@ -38,7 +38,7 @@ class Permission extends ActiveRecord
     public function behaviors()
     {
         return [
-            TimestampBehavior::className(),
+            TimestampBehavior::class,
         ];
     }
 

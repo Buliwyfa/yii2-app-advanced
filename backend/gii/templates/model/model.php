@@ -51,7 +51,7 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . 
 	public function behaviors()
 	{
 	    return [
-	        TimestampBehavior::className(),
+	        TimestampBehavior::class,
 	    ];
 	}
 <?php if ($generator->db !== 'db'): ?>

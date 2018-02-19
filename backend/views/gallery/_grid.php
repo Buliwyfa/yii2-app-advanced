@@ -23,7 +23,7 @@ echo GridView::widget([
         'id',
         'title',
         [
-            'class' => EnumColumn::className(),
+            'class' => EnumColumn::class,
             'attribute' => 'tag',
             'enum' => Gallery::getTagList(),
         ],
@@ -33,7 +33,7 @@ echo GridView::widget([
             'filter' => Html::activeDropDownList($filterModel, 'language_id', ArrayHelper::map(Language::find()->onlyAllowedLanguage()->asArray()->all(), 'id', 'name'), ['class' => 'form-control', 'prompt' => '']),
         ],
         [
-            'class' => EnumColumn::className(),
+            'class' => EnumColumn::class,
             'attribute' => 'status',
             'enum' => Gallery::getStatusList(),
         ],

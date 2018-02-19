@@ -48,9 +48,9 @@ class Gallery extends ActiveRecord
     public function behaviors()
     {
         return [
-            TimestampBehavior::className(),
+            TimestampBehavior::class,
             [
-                'class' => UploadBehavior::className(),
+                'class' => UploadBehavior::class,
                 'attribute' => 'items',
                 'filesStorage' => 'galleryFileStorage',
                 'multiple' => true,
@@ -123,7 +123,7 @@ class Gallery extends ActiveRecord
      */
     public function getLanguage()
     {
-        return $this->hasOne(Language::className(), ['id' => 'language_id']);
+        return $this->hasOne(Language::class, ['id' => 'language_id']);
     }
 
     /**
@@ -152,7 +152,7 @@ class Gallery extends ActiveRecord
      */
     public function getGalleryItems()
     {
-        return $this->hasMany(GalleryItem::className(), ['gallery_id' => 'id']);
+        return $this->hasMany(GalleryItem::class, ['gallery_id' => 'id']);
     }
 
     /**

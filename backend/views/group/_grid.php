@@ -26,7 +26,7 @@ echo GridView::widget([
             }
         ],
         [
-            'class' => EnumColumn::className(),
+            'class' => EnumColumn::class,
             'attribute' => 'status',
             'enum' => Group::getStatusList(),
         ],

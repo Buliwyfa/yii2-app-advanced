@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'avatar')->widget(Upload::classname(), [
+    <?= $form->field($model, 'avatar')->widget(Upload::class, [
         'url' => ['avatar-upload']
     ]) ?>
 

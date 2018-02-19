@@ -23,7 +23,7 @@ class GalleryController extends CRUDController
     {
         return [
             'item-upload' => [
-                'class' => UploadAction::className(),
+                'class' => UploadAction::class,
                 'deleteRoute' => 'item-delete',
                 'fileStorage' => 'galleryFileStorage',
                 'on afterSave' => function ($event) {
@@ -38,7 +38,7 @@ class GalleryController extends CRUDController
                 }
             ],
             'item-delete' => [
-                'class' => DeleteAction::className(),
+                'class' => DeleteAction::class,
                 'fileStorage' => 'galleryFileStorage',
             ]
         ];

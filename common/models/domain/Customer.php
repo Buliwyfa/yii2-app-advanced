@@ -71,16 +71,16 @@ class Customer extends ActiveRecord implements IdentityInterface
     public function behaviors()
     {
         return [
-            TimestampBehavior::className(),
+            TimestampBehavior::class,
             'auth_key' => [
-                'class' => AttributeBehavior::className(),
+                'class' => AttributeBehavior::class,
                 'attributes' => [
                     ActiveRecord::EVENT_BEFORE_INSERT => 'auth_key'
                 ],
                 'value' => Yii::$app->getSecurity()->generateRandomString()
             ],
             'password_reset_token' => [
-                'class' => AttributeBehavior::className(),
+                'class' => AttributeBehavior::class,
                 'attributes' => [
                     ActiveRecord::EVENT_BEFORE_INSERT => 'password_reset_token'
                 ],
@@ -89,7 +89,7 @@ class Customer extends ActiveRecord implements IdentityInterface
                 }
             ],
             [
-                'class' => UploadBehavior::className(),
+                'class' => UploadBehavior::class,
                 'attribute' => 'avatar',
                 'pathAttribute' => 'avatar_path',
                 'baseUrlAttribute' => 'avatar_base_url',
@@ -359,7 +359,7 @@ class Customer extends ActiveRecord implements IdentityInterface
      */
     public function getLanguage()
     {
-        return $this->hasOne(Language::className(), ['id' => 'language_id']);
+        return $this->hasOne(Language::class, ['id' => 'language_id']);
     }
 
     /**

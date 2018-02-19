@@ -43,7 +43,7 @@ class Content extends ActiveRecord
 	public function behaviors()
 	{
 	    return [
-	        TimestampBehavior::className(),
+	        TimestampBehavior::class,
 	    ];
 	}
 
@@ -115,7 +115,7 @@ class Content extends ActiveRecord
      */
     public function getLanguage()
     {
-        return $this->hasOne(Language::className(), ['id' => 'language_id']);
+        return $this->hasOne(Language::class, ['id' => 'language_id']);
     }
 
     /**

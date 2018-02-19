@@ -23,7 +23,7 @@ class ContentController extends CRUDController
     {
         return [
             'get-images' => [
-                'class' => GetImagesAction::className(),
+                'class' => GetImagesAction::class,
                 'url' => Url::to('/uploads/general'),
                 'path' => Yii::getAlias('@root/uploads/general'),
                 'options' => [
@@ -31,7 +31,7 @@ class ContentController extends CRUDController
                 ]
             ],
             'upload-image' => [
-                'class' => UploadFileAction::className(),
+                'class' => UploadFileAction::class,
                 'url' => Url::to('/uploads/general'),
                 'path' => Yii::getAlias('@root/uploads/general'),
             ],

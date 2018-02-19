@@ -25,7 +25,7 @@ class CustomerController extends Controller
     {
         return [
             'access' => [
-                'class' => AccessControl::className(),
+                'class' => AccessControl::class,
                 'only' => ['login', 'logout', 'signup'],
                 'rules' => [
                     [

@@ -22,7 +22,7 @@ class BaseController extends Controller
     {
         return array_merge(parent::behaviors(), [
             'access' => [
-                'class' => AccessControl::className(),
+                'class' => AccessControl::class,
                 'except' => $this->accessControlExceptActions,
                 'only' => $this->accessControlOnlyActions,
                 'rules' => $this->accessControlRules,

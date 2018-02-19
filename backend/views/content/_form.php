@@ -27,7 +27,7 @@ use yii\helpers\Url;
 	<?= $form->field($model, 'tag')->dropDownList(SimpleArrayHelper::map(Content::getTagList())) ?>
 
     <?= $form->field($model, 'content')->widget(
-	    Widget::className(),
+	    Widget::class,
 	    [
 	    	'settings' => [
                 'plugins' => ['imagemanager', 'fullscreen', 'fontcolor', 'video'],
