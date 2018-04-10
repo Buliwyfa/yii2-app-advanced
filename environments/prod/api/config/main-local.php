@@ -3,8 +3,8 @@ return [
     'components' => [
         'components' => [
             'jwt' => [
-                'class' => 'sizeg\jwt\Jwt',
-                'key' => '@@[CHANGE-IT-HERE]@@',
+                'class' => 'common\components\jwt\JWT',
+                'key' => '@@[[CHANGE-THE-KEY-HERE]]@@',
             ],
         ],
     ],
