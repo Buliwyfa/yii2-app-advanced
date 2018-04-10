@@ -34,7 +34,8 @@
 		"kartik-v/yii2-widget-datepicker": "1.4.3",
 		"kartik-v/yii2-datecontrol": "1.9.6",
 		"drmonty/ekko-lightbox": "5.3.0",
-		"ausi/slug-generator": "1.0.1"
+		"ausi/slug-generator": "1.0.1",
+		"sizeg/yii2-jwt": "1.0.4"
 	},
 	"require-dev": {
 		"yiisoft/yii2-debug": "2.0.13",
