@@ -4,7 +4,7 @@ PHP_CMD_PREFIX =
 NGINX_CMD_PREFIX = 
 
 PREFIX_DOCKER_PHP_FPM = docker exec y2aa_php_fpm
-PREFIX_DOCKER_NGINX = docker exec y2aa_php_fpm
+PREFIX_DOCKER_NGINX = docker exec y2aa_nginx
 
 USE_DOCKER = 0
 
@@ -46,6 +46,7 @@ clear:
 	rm -rf backend/runtime/*
 	rm -rf frontend/runtime/*
 	rm -rf common/runtime/*
+	rm -rf api/runtime/*
 
 	rm -rf backend/web/assets/*
 	rm -rf frontend/web/assets/*
@@ -81,6 +82,7 @@ migrate-db:
 	$(PHP_CMD_PREFIX) php yii migrate --migrationPath=@common/migrations --interactive=0
 	$(PHP_CMD_PREFIX) php yii migrate --migrationPath=@backend/migrations --interactive=0
 	$(PHP_CMD_PREFIX) php yii migrate --migrationPath=@frontend/migrations --interactive=0
+	$(PHP_CMD_PREFIX) php yii migrate --migrationPath=@api/migrations --interactive=0
 
 nginx-reload:
 	$(NGINX_CMD_PREFIX) service nginx reload
