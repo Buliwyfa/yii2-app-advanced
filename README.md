@@ -5,6 +5,7 @@ This is a simple web system made with Yii2 with advanced features. The project h
 - Frontend with Boostrap 3
 - Administration panel with AdminLTE
 - Secure permission control for backend
+- Secure permission control for API (using JWT)
 - Simple CMS
 - Customer areas (login, signup, recovery password, contact)
 - Docker-compose configurations (nginx, mysql, php-fpm, memcached)
