@@ -36,7 +36,6 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'customer/login' => 'customer/login'
             ],
         ],
         'i18n' => [

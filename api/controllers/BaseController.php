@@ -2,7 +2,7 @@
 
 namespace api\controllers;
 
-use yii\filters\AccessControl;
+use common\components\jwt\JWTHttpBearerAuth;
 use yii\web\Controller;
 
 /**
@@ -20,10 +20,9 @@ class BaseController extends Controller
      */
     public function behaviors()
     {
-        return [];
         return array_merge(parent::behaviors(), [
             'access' => [
-                'class' => AccessControl::class,
+                'class' => JWTHttpBearerAuth::class,
                 'except' => $this->accessControlExceptActions,
                 'only' => $this->accessControlOnlyActions,
                 'rules' => $this->accessControlRules,

@@ -34,7 +34,7 @@
 		"kartik-v/yii2-widget-datepicker": "1.4.3",
 		"kartik-v/yii2-datecontrol": "1.9.6",
 		"ausi/slug-generator": "1.0.1",
-		"sizeg/yii2-jwt": "1.0.4"
+		"lcobucci/jwt": "3.2.2"
 	},
 	"require-dev": {
 		"yiisoft/yii2-debug": "2.0.13",

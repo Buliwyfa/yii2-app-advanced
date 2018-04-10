@@ -2,13 +2,15 @@
 
 namespace api\controllers;
 
-use yii\web\Controller;
-
 /**
  * Customer controller
  */
-class CustomerController extends Controller
+class CustomerController extends BaseController
 {
+
+    protected $accessControlExceptActions = [
+        'login'
+    ];
 
     public function actionLogin()
     {
