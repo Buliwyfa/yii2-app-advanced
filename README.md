@@ -47,7 +47,7 @@ make config-env-development
 make migrate-db
 ```
 
-All commands inside make use the docker names, like "docker_php-fpm_1". So you can execute "php" or "composer" like this:
+All commands inside make use the docker names, like "y2aa_php_fpm". So you can execute "php" or "composer" like this:
 
 ```
 docker exec -it y2aa_php_fpm php yii

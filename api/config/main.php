@@ -14,6 +14,7 @@ return [
     'components' => [
         'request' => array(
             'enableCsrfValidation' => false,
+            'enableCookieValidation' => false,
         ),
         'user' => [
             'identityClass' => 'common\models\domain\Customer',
@@ -34,9 +35,7 @@ return [
         ],
         'urlManager' => [
             'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-            ],
+            'showScriptName' => false
         ],
         'i18n' => [
             'translations' => [
@@ -50,7 +49,6 @@ return [
     ],
     'params' => $params,
     'bootstrap' => [
-        'log',
         [
             'class' => 'backend\components\LanguageSelector',
             'supportedLanguages' => $params['supportedLanguages'],

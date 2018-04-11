@@ -75,7 +75,6 @@ return [
     ],
     'params' => $params,
     'bootstrap' => [
-        'log',
         [
             'class' => 'backend\components\LanguageSelector',
             'supportedLanguages' => $params['supportedLanguages'],
