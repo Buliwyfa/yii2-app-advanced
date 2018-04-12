@@ -38,7 +38,7 @@ services:
   # web server
   nginx:
     container_name: y2aa_nginx
-    image: nginx:latest
+    image: nginx:1.13.12
     ports:
       - "80:80"
       - "443:443"

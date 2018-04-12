@@ -42,9 +42,7 @@ return [
         ],
         'urlManager' => [
             'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-            ],
+            'showScriptName' => false
         ],
         'i18n' => [
             'translations' => [

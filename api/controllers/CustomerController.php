@@ -14,6 +14,7 @@ class CustomerController extends BaseController
 
     public function actionLogin()
     {
+        exit;
         return 'OK';
     }
 
