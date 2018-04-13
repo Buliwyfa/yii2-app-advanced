@@ -13,7 +13,7 @@ return [
     'controllerNamespace' => 'api\controllers',
     'components' => [
         'request' => array(
-            'baseUrl' => '/ws',
+            'baseUrl' => '/api',
             'enableCsrfValidation' => false,
             'enableCookieValidation' => false,
         ),
