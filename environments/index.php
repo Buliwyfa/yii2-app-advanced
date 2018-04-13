@@ -36,7 +36,7 @@ return [
             'backend/web/assets',
             'frontend/runtime',
             'frontend/web/assets',
-            'api/runtime',
+            'ws/runtime',
             'uploads',
         ],
         'setExecutable' => [
@@ -55,7 +55,7 @@ return [
             'backend/web/assets',
             'frontend/runtime',
             'frontend/web/assets',
-            'api/runtime',
+            'ws/runtime',
             'uploads',
         ],
         'setExecutable' => [

@@ -29,7 +29,7 @@ class PasswordResetRequestForm extends Model
             ['email', 'exist',
                 'targetClass' => '\common\models\domain\Customer',
                 'filter' => ['status' => Customer::STATUS_ACTIVE],
-                'message' => Yii::t('frontend', 'PasswordResetRequestForm.EmailNotExists')
+                'message' => Yii::t('common', 'PasswordResetRequestForm.ErrorEmailNotExists')
             ],
         ];
     }
@@ -38,6 +38,7 @@ class PasswordResetRequestForm extends Model
      * Sends an email with a link, for resetting the password.
      *
      * @return bool whether the email was send
+     * @throws \yii\base\Exception
      */
     public function sendEmail()
     {
@@ -66,7 +67,7 @@ class PasswordResetRequestForm extends Model
             )
             ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' robot'])
             ->setTo($this->email)
-            ->setSubject(Yii::t('frontend', Yii::t('frontend', 'Mail.PasswordResetRequest.Subject')))
+            ->setSubject(Yii::t('common', 'Mail.PasswordResetRequest.Subject'))
             ->send();
     }
 }

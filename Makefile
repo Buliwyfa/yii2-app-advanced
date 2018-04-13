@@ -46,7 +46,7 @@ clear:
 	rm -rf backend/runtime/*
 	rm -rf frontend/runtime/*
 	rm -rf common/runtime/*
-	rm -rf api/runtime/*
+	rm -rf ws/runtime/*
 
 	rm -rf backend/web/assets/*
 	rm -rf frontend/web/assets/*

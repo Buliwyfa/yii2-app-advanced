@@ -7,10 +7,10 @@ $params = array_merge(
 );
 
 return [
-    'id' => 'app-api',
+    'id' => 'app-ws',
     'name' => 'Y2AA',
     'basePath' => dirname(__DIR__),
-    'controllerNamespace' => 'api\controllers',
+    'controllerNamespace' => 'ws\controllers',
     'components' => [
         'request' => array(
             'baseUrl' => '/api',
@@ -40,10 +40,10 @@ return [
         ],
         'i18n' => [
             'translations' => [
-                'api*' => [
+                'ws*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'forceTranslation' => true,
-                    'basePath' => '@api/messages',
+                    'basePath' => '@ws/messages',
                 ],
             ],
         ],

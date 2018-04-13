@@ -18,6 +18,10 @@ class TestMailController extends BaseController
         ],
     ];
 
+    /**
+     * @throws \Throwable
+     * @throws \yii\base\ExitException
+     */
     public function actionContact()
     {
         $to = Yii::$app->request->get('to');

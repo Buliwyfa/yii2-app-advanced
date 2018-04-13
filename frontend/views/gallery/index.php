@@ -6,8 +6,11 @@
 
 /* @var $pagination yii\data\Pagination */
 
+use frontend\assets\Lightbox2Asset;
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
+
+Lightbox2Asset::register($this);
 
 $formatter = Yii::$app->formatter;
 ?>
@@ -30,7 +33,7 @@ $formatter = Yii::$app->formatter;
             <?php foreach ($galleryImageList as $galleryImage) { ?>
 
                 <div class="gallery-item col-lg-4 col-md-4 col-sm-4 col-xs-6">
-                    <?= Html::a(Html::img($galleryImage->getUrl(true), ['class' => 'img-responsive']), $galleryImage->getUrl(true), ['data-toggle' => 'lightbox', 'data-gallery' => 'gallery']) ?>
+                    <?= Html::a(Html::img($galleryImage->getUrl(true), ['class' => 'img-responsive']), $galleryImage->getUrl(true), ['data-lightbox' => 'gallery']) ?>
                 </div>
 
             <?php } ?>

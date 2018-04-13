@@ -1,6 +1,6 @@
 <?php
 return [
-    'id' => 'app-api-tests',
+    'id' => 'app-ws-tests',
     'components' => [
         'urlManager' => [
             'showScriptName' => true,

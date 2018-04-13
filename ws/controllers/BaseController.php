@@ -1,6 +1,6 @@
 <?php
 
-namespace api\controllers;
+namespace ws\controllers;
 
 use common\components\jwt\JWTHttpBearerAuth;
 use yii\web\Controller;
@@ -25,7 +25,6 @@ class BaseController extends Controller
                 'class' => JWTHttpBearerAuth::class,
                 'except' => $this->accessControlExceptActions,
                 'only' => $this->accessControlOnlyActions,
-                'rules' => $this->accessControlRules,
             ],
         ]);
     }

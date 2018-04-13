@@ -3,6 +3,7 @@
 namespace common\models\domain;
 
 use common\models\query\CustomerQuery;
+use Lcobucci\JWT\Signer\Hmac\Sha512;
 use trntv\filekit\behaviors\UploadBehavior;
 use Yii;
 use yii\base\NotSupportedException;
@@ -180,6 +181,7 @@ class Customer extends ActiveRecord implements IdentityInterface
 
     /**
      * @inheritdoc
+     * @throws NotSupportedException
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
@@ -271,6 +273,7 @@ class Customer extends ActiveRecord implements IdentityInterface
      * Generates password hash from password and sets it to the model
      *
      * @param string $password
+     * @throws \yii\base\Exception
      */
     public function setPassword($password)
     {
@@ -279,6 +282,7 @@ class Customer extends ActiveRecord implements IdentityInterface
 
     /**
      * Generates "remember me" authentication key
+     * @throws \yii\base\Exception
      */
     public function generateAuthKey()
     {
@@ -287,6 +291,7 @@ class Customer extends ActiveRecord implements IdentityInterface
 
     /**
      * Generates new password reset token
+     * @throws \yii\base\Exception
      */
     public function generatePasswordResetToken()
     {
@@ -364,6 +369,7 @@ class Customer extends ActiveRecord implements IdentityInterface
 
     /**
      * @param null $default
+     * @param bool $scheme
      * @return bool|null|string
      */
     public function getAvatar($default = null, $scheme = false)
@@ -380,6 +386,25 @@ class Customer extends ActiveRecord implements IdentityInterface
     public static function find()
     {
         return new CustomerQuery(get_called_class());
+    }
+
+    /**
+     * Get a token for login with customer data
+     * @return mixed
+     */
+    public function getTokenForLogin()
+    {
+        $signer = new Sha512();
+
+        $token = Yii::$app->jwt->getBuilder()
+            ->setIssuedAt(time())
+            ->set('uid', $this->id)
+            ->set('name', $this->getFullName())
+            ->set('email', $this->email)
+            ->sign($signer, Yii::$app->jwt->key)
+            ->getToken();
+
+        return $token;
     }
 
 }

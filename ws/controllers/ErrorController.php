@@ -1,6 +1,6 @@
 <?php
 
-namespace api\controllers;
+namespace ws\controllers;
 
 use yii\web\Controller;
 
@@ -9,16 +9,6 @@ use yii\web\Controller;
  */
 class ErrorController extends Controller
 {
-
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-
-        ];
-    }
 
     /**
      * @inheritdoc

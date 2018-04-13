@@ -63,4 +63,28 @@ return [
     'Content.Tag.AboutUs' => 'About us',
     'Content.Tag.PrivacyPolicy' => 'Privacy policy',
     'Content.Tag.TermsOfUse' => 'Terms of use',
+
+    'LoginForm.Email' => 'E-mail',
+    'LoginForm.Password' => 'Password',
+    'LoginForm.RememberMe' => 'Remember me',
+    'LoginForm.ErrorIncorrectUsernamePassword' => 'E-mail or password is invalid.',
+
+    'SignupForm.FirstName' => 'First name',
+    'SignupForm.LastName' => 'Last name',
+    'SignupForm.Email' => 'E-mail',
+    'SignupForm.Password' => 'Password',
+    'SignupForm.LanguageId' => 'Language',
+    'SignupForm.ErrorEmailAlreadyUsed' => 'This email address has already been taken.',
+
+    'ResetPassword.Success' => 'New password saved.',
+
+    'RequestPasswordReset.Success' => 'Check your email for further instructions.',
+    'RequestPasswordReset.Error' => 'Sorry, we are unable to reset password for the provided email address.',
+
+    'Contact.Error' => 'There was an error sending your message.',
+
+    'PasswordResetRequestForm.ErrorEmailNotExists' => 'This e-mail is invalid or not exists.',
+
+    'Mail.Contact.Subject' => 'Contact e-mail from website',
+    'Mail.PasswordResetRequest.Subject' => 'Password reset for: {{name}}',
 ];
