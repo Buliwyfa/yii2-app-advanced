@@ -14,6 +14,7 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'components' => [
         'request' => [
+            'baseUrl' => '/admin',
             'csrfParam' => '_csrf-backend',
         ],
         'user' => [
