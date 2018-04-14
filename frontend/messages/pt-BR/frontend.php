@@ -1,32 +1,22 @@
 <?php
 
 return [
-    'LoginForm.Email' => 'Email',
-    'LoginForm.Password' => 'Senha',
-    'LoginForm.RememberMe' => 'Lembrar-me',
-    'LoginForm.ButtonConfirm' => 'Login',
-    'LoginForm.ErrorIncorrectUsernamePassword' => 'E-mail ou senha inválido.',
-    'LoginForm.NotRegisteredHint' => 'Para se cadastrar no site, por favor, clique no botão abaixo e siga as instruções:',
-    'LoginForm.ButtonSignup' => 'Me cadastrar',
     'LoginForm.TitleHint' => 'Se você já é cadastrado, por favor, informe os dados abaixo para efetuar login:',
+    'LoginForm.NotRegisteredHint' => 'Para se cadastrar no site, por favor, clique no botão abaixo e siga as instruções:',
+    'LoginForm.ButtonConfirm' => 'Login',
+    'LoginForm.ButtonSignup' => 'Me cadastrar',
     'LoginForm.ForgotPasswordHint' => 'Caso tenha esquecido sua senha, você pode trocá-la:',
     'LoginForm.ButtonResetPassword' => 'Trocar senha',
 
-    'PasswordResetRequestForm.EmailNotExists' => 'Este e-mail é inválido ou inexistente.',
-
-    'SignupForm.FirstName' => 'Nome',
-    'SignupForm.LastName' => 'Sobrenome',
-    'SignupForm.Email' => 'E-mail',
-    'SignupForm.Password' => 'Senha',
+    'SignupForm.TitleHint' => 'Por favor, informe os dados solicitados para realizar seu cadastro:',
     'SignupForm.ButtonConfirm' => 'Cadastrar',
-    'SignupForm.LanguageId' => 'Idioma',
     'SignupForm.AlreadyRegisteredHint' => 'Se você já se cadastrou, por favor, clique no botão abaixo para fazer login:',
     'SignupForm.ButtonLogin' => 'Login',
-    'SignupForm.TitleHint' => 'Por favor, informe os dados solicitados para realizar seu cadastro:',
 
-    'Contact.Index.Hint' => 'Se você tiver algum problema, sugestão ou perguntas, por favor, nos informe através do formulário abaixo. Obrigado.',
+    'Contact.Index.TitleHint' => 'Se você tiver algum problema, sugestão ou perguntas, por favor, nos informe através do formulário abaixo. Obrigado.',
+    'Contact.Success.Message' => 'Sua mensagem foi enviada com sucesso.',
 
-    'RequestPasswordResetToken.TitleHint' => 'Por favor, informe seu e-mail. Um link será enviado para o processo de troca de senha.',
+    'RequestPasswordReset.TitleHint' => 'Por favor, informe seu e-mail. Um link será enviado para o processo de troca de senha.',
     'ResetPassword.TitleHint' => 'Por favor, informe a sua nova senha:',
 
     'Site.Error.Message' => 'Este erro ocorreu enquanto o servidor processava sua requisição.<br />Por favor, entre em contato se o erro persistir. Obrigado.',
@@ -44,9 +34,6 @@ return [
 
     'Gallery.List.EmptyMessage' => 'Não há nenhuma galeria cadastrada!',
     'Gallery.ImageList.EmptyMessage' => 'Não há nenhuma imagem cadastrada!',
-
-    'Mail.Contact.Subject' => 'E-mail de contato do website',
-    'Mail.PasswordResetRequest.Subject' => 'Troca de senha para: {{name}}',
 
     'Button.Back' => 'Voltar',
 ];

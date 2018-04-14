@@ -18,10 +18,10 @@ return [
     'Model.Avatar' => 'Avatar',
     'Model.Title' => 'Title',
     'Model.Content' => 'Content',
-    'Model.Name'=> 'Name',
-    'Model.NativeName'=> 'Native name',
-    'Model.Code-ISO-639-1'=> 'Code ISO-639-1',
-    'Model.Code-ISO-Language'=> 'Code ISO-Language',
+    'Model.Name' => 'Name',
+    'Model.NativeName' => 'Native name',
+    'Model.Code-ISO-639-1' => 'Code ISO-639-1',
+    'Model.Code-ISO-Language' => 'Code ISO-Language',
     'Model.Description' => 'Description',
     'Model.Action' => 'Action',
     'Model.ActionGroup' => 'Action group',
@@ -44,6 +44,7 @@ return [
     'Model.Gallery.Items' => 'Images',
     'Model.Body' => 'Message',
     'Model.VerifyCode' => 'Verify code',
+    'Model.Token' => 'Token',
 
     'Gender.Male' => 'Male',
     'Gender.Female' => 'Female',
@@ -63,4 +64,39 @@ return [
     'Content.Tag.AboutUs' => 'About us',
     'Content.Tag.PrivacyPolicy' => 'Privacy policy',
     'Content.Tag.TermsOfUse' => 'Terms of use',
+
+    'LoginForm.Email' => 'E-mail',
+    'LoginForm.Password' => 'Password',
+    'LoginForm.RememberMe' => 'Remember me',
+    'LoginForm.ErrorIncorrectUsernamePassword' => 'E-mail or password is invalid.',
+
+    'SignupForm.FirstName' => 'First name',
+    'SignupForm.LastName' => 'Last name',
+    'SignupForm.Email' => 'E-mail',
+    'SignupForm.Password' => 'Password',
+    'SignupForm.LanguageId' => 'Language',
+    'SignupForm.ErrorEmailAlreadyUsed' => 'This email address has already been taken.',
+
+    'ResetPassword.Success' => 'New password saved.',
+
+    'RequestPasswordReset.Success' => 'Check your email for further instructions.',
+    'RequestPasswordReset.Error' => 'Sorry, we are unable to reset password for the provided email address.',
+
+    'Contact.Error' => 'There was an error sending your message.',
+
+    'PasswordResetRequestForm.ErrorEmailNotExists' => 'This e-mail is invalid or not exists.',
+
+    'Mail.PasswordResetRequest.Subject' => 'Password reset for: {name}',
+    'Mail.PasswordResetRequest.Body.Html' => '
+        <p>Hello {name},</p>
+        <p>Follow the link below to reset your password:</p>
+        <p>{link}</p>
+    ',
+    'Mail.PasswordResetRequest.Body.Text' => "
+        Hello {name},\n\n
+        Follow the link below to reset your password:\n\n
+        {link}
+    ",
+
+    'Mail.Contact.Subject' => 'Contact e-mail from website',
 ];

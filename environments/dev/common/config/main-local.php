@@ -1,8 +1,8 @@
 <?php
 return [
     'components' => [
-        'db'=>[
-            'class'=>'\yii\db\Connection',
+        'db' => [
+            'class' => '\yii\db\Connection',
             'dsn' => 'mysql:host=mysql;dbname=yii2-app-advanced',
             'username' => 'root',
             'password' => 'root',
@@ -30,6 +30,10 @@ return [
                 'class' => 'common\components\filesystem\LocalFlysystemBuilder',
                 'path' => '@root/uploads/gallery'
             ],
+        ],
+        'jwt' => [
+            'class' => 'common\components\jwt\JWT',
+            'key' => '@@[[CHANGE-THE-KEY-HERE]]@@',
         ],
     ],
     'modules' => [

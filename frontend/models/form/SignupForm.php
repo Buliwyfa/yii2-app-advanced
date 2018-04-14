@@ -17,6 +17,7 @@ class SignupForm extends Model
     public $email;
     public $password;
     public $languageId;
+    public $gender;
 
     /**
      * @inheritdoc
@@ -29,12 +30,14 @@ class SignupForm extends Model
 
             [['firstName', 'lastName'], 'string', 'max' => 50],
 
-            ['email', 'validateOnlyAllowedEmail'],
+            ['gender', 'default', 'value' => null],
+            ['gender', 'in', 'range' => [Customer::GENDER_MALE, Customer::GENDER_FEMALE]],
+
             ['email', 'trim'],
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
-            ['email', 'unique', 'targetClass' => '\common\models\domain\Customer', 'message' => 'This email address has already been taken.'],
+            ['email', 'unique', 'targetClass' => '\common\models\domain\Customer', 'message' => Yii::t('common', 'SignupForm.ErrorEmailAlreadyUsed')],
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
@@ -47,11 +50,11 @@ class SignupForm extends Model
     public function attributeLabels()
     {
         return [
-            'firstName' => Yii::t('frontend', 'SignupForm.FirstName'),
-            'lastName' => Yii::t('frontend', 'SignupForm.LastName'),
-            'email' => Yii::t('frontend', 'SignupForm.Email'),
-            'password' => Yii::t('frontend', 'SignupForm.Password'),
-            'languageId' => Yii::t('frontend', 'SignupForm.LanguageId'),
+            'firstName' => Yii::t('common', 'SignupForm.FirstName'),
+            'lastName' => Yii::t('common', 'SignupForm.LastName'),
+            'email' => Yii::t('common', 'SignupForm.Email'),
+            'password' => Yii::t('common', 'SignupForm.Password'),
+            'languageId' => Yii::t('common', 'SignupForm.LanguageId'),
         ];
     }
 
@@ -59,6 +62,7 @@ class SignupForm extends Model
      * Signs user up.
      *
      * @return Customer|null the saved model or null if saving fails
+     * @throws \yii\base\Exception
      */
     public function signup()
     {
@@ -71,28 +75,12 @@ class SignupForm extends Model
         $customer->last_name = $this->lastName;
         $customer->email = $this->email;
         $customer->language_id = $this->languageId;
+        $customer->gender = $this->gender;
 
         $customer->setPassword($this->password);
         $customer->generateAuthKey();
 
         return $customer->save() ? $customer : null;
-    }
-
-    public function validateOnlyAllowedEmail($attribute, $params, $validator)
-    {
-        $email = $this->$attribute;
-        $valid = false;
-        $allowedDomains = ['modec', 'sofec'];
-
-        foreach ($allowedDomains as $domain) {
-            if (strpos($email, '@' . $domain) > -1) {
-                $valid = true;
-            }
-        }
-
-        if (!$valid) {
-            $this->addError($attribute, 'Your email need be @modec or @sofec.');
-        }
     }
 
 }

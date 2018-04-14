@@ -18,7 +18,7 @@ use yii\helpers\Url;
 <body>
 <?php $this->beginBody() ?>
 
-<?= Html::img(Url::to('@web/images/logo-email.png', true)) ?>
+<?= Html::img(Yii::$app->urlManager->createAbsoluteUrl('/images/logo-email.png', true)) ?>
 <br/>
 <?= $content ?>
 

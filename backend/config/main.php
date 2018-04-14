@@ -14,6 +14,7 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'components' => [
         'request' => [
+            'baseUrl' => '/admin',
             'csrfParam' => '_csrf-backend',
         ],
         'user' => [
@@ -42,9 +43,7 @@ return [
         ],
         'urlManager' => [
             'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-            ],
+            'showScriptName' => false
         ],
         'i18n' => [
             'translations' => [
@@ -64,6 +63,7 @@ return [
     'defaultRoute' => 'site/login',
     'params' => $params,
     'bootstrap' => [
+        'log',
         [
             'class' => 'backend\components\LanguageSelector',
             'supportedLanguages' => $params['supportedLanguages'],

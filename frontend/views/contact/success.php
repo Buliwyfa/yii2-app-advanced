@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::img('@web/images/ico-success.png', ['style' => 'width: 128px;']) ?>
         <br />
         <br />
-        You message was sent with success.
+        <?= Yii::t('frontend', 'Contact.Success.Message') ?>
     </p>
 
 </div>

@@ -2,7 +2,7 @@
 # See: https://hub.docker.com/_/php/
 ######
 
-FROM php:7.1.11-fpm
+FROM php:7.2.4-fpm
 MAINTAINER Paulo Coutinho <paulo@prsolucoes.com>
 
 ######
@@ -21,7 +21,7 @@ RUN apt-get install -y build-essential
 RUN apt-get install -y libfreetype6-dev
 RUN apt-get install -y libjpeg62-turbo-dev
 RUN apt-get install -y libmcrypt-dev
-RUN apt-get install -y libpng12-dev
+RUN apt-get install -y libpng-dev
 RUN apt-get install -y curl
 RUN apt-get install -y libcurl3
 RUN apt-get install -y libcurl3-dev
@@ -48,6 +48,10 @@ RUN cd /tmp \
     && echo "extension=memcache.so" > /usr/local/etc/php/conf.d/ext-memcache.ini \
     && rm -rf /tmp/pecl-memcache-php7 memcache-php7.zip
 
+# mcrypt
+RUN pecl install mcrypt-1.0.1
+RUN docker-php-ext-enable mcrypt
+
 # install, configure and enable all php packages
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
 RUN docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd
@@ -59,13 +63,19 @@ RUN docker-php-ext-install -j$(nproc) mysqli
 RUN docker-php-ext-install -j$(nproc) pdo
 RUN docker-php-ext-install -j$(nproc) gd
 RUN docker-php-ext-install -j$(nproc) intl
-RUN docker-php-ext-install -j$(nproc) curl
-RUN docker-php-ext-install -j$(nproc) iconv
-RUN docker-php-ext-install -j$(nproc) mcrypt
 
 # install xdebug
 RUN pecl install xdebug
 RUN docker-php-ext-enable xdebug
+
+RUN echo "xdebug.remote_enable=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+RUN echo "xdebug.remote_autostart=0" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+RUN echo "xdebug.default_enable=0" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+RUN echo "xdebug.remote_host=host.docker.internal" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+RUN echo "xdebug.remote_port=9000" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+RUN echo "xdebug.remote_connect_back=0" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+RUN echo "xdebug.profiler_enable=0" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+RUN echo "xdebug.remote_log=\"/tmp/xdebug.log\"" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 # install imagick
 RUN pecl install imagick

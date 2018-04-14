@@ -47,6 +47,7 @@ class ContactController extends Controller
      * Displays contact page.
      *
      * @return mixed
+     * @throws \Throwable
      */
     public function actionIndex()
     {
@@ -56,7 +57,7 @@ class ContactController extends Controller
             if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
                 return $this->redirect('/contact/success');
             } else {
-                Yii::$app->session->setFlash('error', 'There was an error sending your message.');
+                Yii::$app->session->setFlash('error', Yii::t('common', 'Contact.Error'));
             }
 
             return $this->refresh();

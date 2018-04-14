@@ -5,6 +5,7 @@ This is a simple web system made with Yii2 with advanced features. The project h
 - Frontend with Boostrap 3
 - Administration panel with AdminLTE
 - Secure permission control for backend
+- Secure permission control for API (using JWT)
 - Simple CMS
 - Customer areas (login, signup, recovery password, contact)
 - Docker-compose configurations (nginx, mysql, php-fpm, memcached)
@@ -13,6 +14,7 @@ This is a simple web system made with Yii2 with advanced features. The project h
 - Upload for single file or multiple files configured
 - Backend with specific report controller
 - Configurations for development and production environment
+- Ready implemented APIs : ping, login, signup, check token, request reset password, reset password, avatar  
 
 This project is used in many other projects. It is ready to make a new website.
 
@@ -46,7 +48,7 @@ make config-env-development
 make migrate-db
 ```
 
-All commands inside make use the docker names, like "docker_php-fpm_1". So you can execute "php" or "composer" like this:
+All commands inside make use the docker names, like "y2aa_php_fpm". So you can execute "php" or "composer" like this:
 
 ```
 docker exec -it y2aa_php_fpm php yii

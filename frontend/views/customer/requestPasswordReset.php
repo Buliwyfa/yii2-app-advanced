@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Yii::t('frontend', 'RequestPasswordResetToken.TitleHint') ?>
+        <?= Yii::t('frontend', 'RequestPasswordReset.TitleHint') ?>
     </p>
 
     <div class="row">

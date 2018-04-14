@@ -46,6 +46,7 @@ class ContactForm extends Model
      *
      * @param string $email the target email address
      * @return bool whether the email was sent
+     * @throws \Throwable
      */
     public function sendEmail($email)
     {
@@ -54,7 +55,7 @@ class ContactForm extends Model
         return Yii::$app->mailer->compose(['html' => 'contact-html'], ['customer' => $customer, 'body' => $this->body])
             ->setTo($email)
             ->setFrom($email)
-            ->setSubject(Yii::t('frontend', 'Mail.Contact.Subject'))
+            ->setSubject(Yii::t('common', 'Mail.Contact.Subject'))
             ->send();
     }
 }

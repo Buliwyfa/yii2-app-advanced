@@ -3,9 +3,9 @@
 namespace common\models\domain;
 
 use common\models\query\CustomerQuery;
+use Lcobucci\JWT\Signer\Hmac\Sha512;
 use trntv\filekit\behaviors\UploadBehavior;
 use Yii;
-use yii\base\NotSupportedException;
 use yii\behaviors\AttributeBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
@@ -107,6 +107,7 @@ class Customer extends ActiveRecord implements IdentityInterface
         $scenarios['create'] = ['first_name', 'last_name', 'email', 'password', 'gender', 'status', 'repeatPassword', 'language_id'];
         $scenarios['update'] = ['first_name', 'last_name', 'email', 'password', 'gender', 'status', 'repeatPassword', 'language_id'];
         $scenarios['update-profile'] = ['first_name', 'last_name', 'email', 'password', 'gender', 'repeatPassword', 'avatar'];
+        $scenarios['check'] = ['id', 'first_name', 'last_name', 'email', 'gender', 'avatar', 'language_id', 'created_at'];
         return $scenarios;
     }
 
@@ -134,7 +135,7 @@ class Customer extends ActiveRecord implements IdentityInterface
                 }
             ],
             ['gender', 'default', 'value' => null],
-            ['gender', 'in', 'range' => [User::GENDER_MALE, User::GENDER_FEMALE]],
+            ['gender', 'in', 'range' => [Customer::GENDER_MALE, Customer::GENDER_FEMALE]],
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE]],
             [['language_id'], 'integer'],
@@ -183,7 +184,8 @@ class Customer extends ActiveRecord implements IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
+        $id = (int)$token->getClaim('id', 0);
+        return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
     }
 
     /**
@@ -271,6 +273,7 @@ class Customer extends ActiveRecord implements IdentityInterface
      * Generates password hash from password and sets it to the model
      *
      * @param string $password
+     * @throws \yii\base\Exception
      */
     public function setPassword($password)
     {
@@ -279,6 +282,7 @@ class Customer extends ActiveRecord implements IdentityInterface
 
     /**
      * Generates "remember me" authentication key
+     * @throws \yii\base\Exception
      */
     public function generateAuthKey()
     {
@@ -287,6 +291,7 @@ class Customer extends ActiveRecord implements IdentityInterface
 
     /**
      * Generates new password reset token
+     * @throws \yii\base\Exception
      */
     public function generatePasswordResetToken()
     {
@@ -364,6 +369,7 @@ class Customer extends ActiveRecord implements IdentityInterface
 
     /**
      * @param null $default
+     * @param bool $scheme
      * @return bool|null|string
      */
     public function getAvatar($default = null, $scheme = false)
@@ -380,6 +386,30 @@ class Customer extends ActiveRecord implements IdentityInterface
     public static function find()
     {
         return new CustomerQuery(get_called_class());
+    }
+
+    /**
+     * Get a token for login with customer data
+     * @return mixed
+     */
+    public function getTokenForLogin()
+    {
+        $signer = new Sha512();
+
+        $token = Yii::$app->jwt->getBuilder()
+            ->setIssuedAt(time())
+            ->set('id', $this->id)
+            ->set('name', $this->getFullName())
+            ->set('first_name', $this->first_name)
+            ->set('last_name', $this->last_name)
+            ->set('email', $this->email)
+            ->set('gender', $this->gender)
+            ->set('language_id', $this->language_id)
+            ->set('created_at', $this->created_at)
+            ->sign($signer, Yii::$app->jwt->key)
+            ->getToken();
+
+        return $token;
     }
 
 }

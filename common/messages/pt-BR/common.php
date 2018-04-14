@@ -44,6 +44,7 @@ return [
     'Model.Gallery.Items' => 'Imagens',
     'Model.Body' => 'Mensagem',
     'Model.VerifyCode' => 'Código de verificação',
+    'Model.Token' => 'Token',
 
     'Gender.Male' => 'Masculino',
     'Gender.Female' => 'Feminino',
@@ -63,4 +64,39 @@ return [
     'Content.Tag.AboutUs' => 'Sobre nós',
     'Content.Tag.PrivacyPolicy' => 'Política de privacidade',
     'Content.Tag.TermsOfUse' => 'Termos de uso',
+
+    'LoginForm.Email' => 'Email',
+    'LoginForm.Password' => 'Senha',
+    'LoginForm.RememberMe' => 'Lembrar-me',
+    'LoginForm.ErrorIncorrectUsernamePassword' => 'E-mail ou senha inválido.',
+
+    'SignupForm.FirstName' => 'Nome',
+    'SignupForm.LastName' => 'Sobrenome',
+    'SignupForm.Email' => 'E-mail',
+    'SignupForm.Password' => 'Senha',
+    'SignupForm.LanguageId' => 'Idioma',
+    'SignupForm.ErrorEmailAlreadyUsed' => 'Este e-mail já está sendo usado.',
+
+    'ResetPassword.Success' => 'A nova senha foi definida.',
+
+    'RequestPasswordReset.Success' => 'Verifique seu e-mail para as demais instruções.',
+    'RequestPasswordReset.Error' => 'Desculpe, não conseguimos redefinir sua senha com o e-mail informado.',
+
+    'Contact.Error' => 'Ocorreu um erro ao enviar sua mensagem.',
+
+    'PasswordResetRequestForm.ErrorEmailNotExists' => 'Este e-mail é inválido ou inexistente.',
+
+    'Mail.PasswordResetRequest.Subject' => 'Troca de senha para: {name}',
+    'Mail.PasswordResetRequest.Body.Html' => '
+        <p>Olá {name},</p>
+        <p>Acesse o link abaixo para redefinir sua senha:</p>
+        <p>{link}</p>
+    ',
+    'Mail.PasswordResetRequest.Body.Text' => "
+        Olá {name},\n\n
+        Acesse o link abaixo para redefinir sua senha:\n\n
+        {link}
+    ",
+
+    'Mail.Contact.Subject' => 'E-mail de contato do website',
 ];

@@ -41,6 +41,10 @@ return [
                 'path' => '@root/uploads/gallery'
             ],
         ],
+        'jwt' => [
+            'class' => 'common\components\jwt\JWT',
+            'key' => '@@[[CHANGE-THE-KEY-HERE]]@@',
+        ],
     ],
     'bootstrap' => [
         'log',

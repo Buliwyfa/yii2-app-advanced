@@ -12,6 +12,11 @@ use yii\db\ActiveQuery;
 class CustomerQuery extends ActiveQuery
 {
 
+    public function id($id)
+    {
+        return $this->andWhere('[[id]] = :id', ['id' => $id]);
+    }
+
     /**
      * @inheritdoc
      * @return \common\models\domain\Customer[]|array
