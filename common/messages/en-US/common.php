@@ -44,6 +44,7 @@ return [
     'Model.Gallery.Items' => 'Images',
     'Model.Body' => 'Message',
     'Model.VerifyCode' => 'Verify code',
+    'Model.Token' => 'Token',
 
     'Gender.Male' => 'Male',
     'Gender.Female' => 'Female',

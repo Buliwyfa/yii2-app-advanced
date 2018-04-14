@@ -6,7 +6,6 @@ use common\models\query\CustomerQuery;
 use Lcobucci\JWT\Signer\Hmac\Sha512;
 use trntv\filekit\behaviors\UploadBehavior;
 use Yii;
-use yii\base\NotSupportedException;
 use yii\behaviors\AttributeBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
@@ -108,6 +107,7 @@ class Customer extends ActiveRecord implements IdentityInterface
         $scenarios['create'] = ['first_name', 'last_name', 'email', 'password', 'gender', 'status', 'repeatPassword', 'language_id'];
         $scenarios['update'] = ['first_name', 'last_name', 'email', 'password', 'gender', 'status', 'repeatPassword', 'language_id'];
         $scenarios['update-profile'] = ['first_name', 'last_name', 'email', 'password', 'gender', 'repeatPassword', 'avatar'];
+        $scenarios['check'] = ['id', 'first_name', 'last_name', 'email', 'gender', 'avatar', 'language_id', 'created_at'];
         return $scenarios;
     }
 
@@ -181,11 +181,11 @@ class Customer extends ActiveRecord implements IdentityInterface
 
     /**
      * @inheritdoc
-     * @throws NotSupportedException
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
+        $id = (int)$token->getClaim('id', 0);
+        return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
     }
 
     /**
@@ -398,7 +398,7 @@ class Customer extends ActiveRecord implements IdentityInterface
 
         $token = Yii::$app->jwt->getBuilder()
             ->setIssuedAt(time())
-            ->set('uid', $this->id)
+            ->set('id', $this->id)
             ->set('name', $this->getFullName())
             ->set('first_name', $this->first_name)
             ->set('last_name', $this->last_name)

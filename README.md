@@ -14,6 +14,7 @@ This is a simple web system made with Yii2 with advanced features. The project h
 - Upload for single file or multiple files configured
 - Backend with specific report controller
 - Configurations for development and production environment
+- Ready implemented APIs : ping, login, signup, check token, request reset password, reset password, avatar  
 
 This project is used in many other projects. It is ready to make a new website.
 

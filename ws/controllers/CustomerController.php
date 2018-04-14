@@ -127,8 +127,30 @@ class CustomerController extends BaseController
         }
 
         $response = new Response();
-        $response->setSuccess(true);
+        $response->setSuccess(false);
         $response->setMessage('reset-password-fail');
+        return $response;
+    }
+
+    public function actionCheck()
+    {
+        $user = Yii::$app->user;
+
+        if (!$user->isGuest) {
+            $customer = $user->getIdentity();
+            $customer->setScenario('check');
+            $customer->avatar = Yii::$app->urlManager->createAbsoluteUrl($customer->getAvatar(Yii::getAlias('/images/profile-default.png')), true);
+
+            $response = new Response();
+            $response->setSuccess(true);
+            $response->setMessage('check-ok');
+            $response->addData('user', $customer->getAttributes($customer->safeAttributes()));
+            return $response;
+        }
+
+        $response = new Response();
+        $response->setSuccess(false);
+        $response->setMessage('check-fail');
         return $response;
     }
 
