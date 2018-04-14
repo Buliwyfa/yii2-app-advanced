@@ -9,7 +9,7 @@ return [
     'Model.AuthKey' => 'Authorization key',
     'Model.PasswordHash' => 'Password hash',
     'Model.PasswordResetToken' => 'Password reset token',
-    'Model.Email' => 'E-mail',
+    'Model.Email' => 'Email',
     'Model.Gender' => 'Gender',
     'Model.Status' => 'Status',
     'Model.Root' => 'Root',
@@ -65,14 +65,14 @@ return [
     'Content.Tag.PrivacyPolicy' => 'Privacy policy',
     'Content.Tag.TermsOfUse' => 'Terms of use',
 
-    'LoginForm.Email' => 'E-mail',
+    'LoginForm.Email' => 'Email',
     'LoginForm.Password' => 'Password',
     'LoginForm.RememberMe' => 'Remember me',
-    'LoginForm.ErrorIncorrectUsernamePassword' => 'E-mail or password is invalid.',
+    'LoginForm.ErrorIncorrectUsernamePassword' => 'Email or password is invalid.',
 
     'SignupForm.FirstName' => 'First name',
     'SignupForm.LastName' => 'Last name',
-    'SignupForm.Email' => 'E-mail',
+    'SignupForm.Email' => 'Email',
     'SignupForm.Password' => 'Password',
     'SignupForm.LanguageId' => 'Language',
     'SignupForm.ErrorEmailAlreadyUsed' => 'This email address has already been taken.',
@@ -84,7 +84,7 @@ return [
 
     'Contact.Error' => 'There was an error sending your message.',
 
-    'PasswordResetRequestForm.ErrorEmailNotExists' => 'This e-mail is invalid or not exists.',
+    'PasswordResetRequestForm.ErrorEmailNotExists' => 'This email is invalid or not exists.',
 
     'Mail.PasswordResetRequest.Subject' => 'Password reset for: {name}',
     'Mail.PasswordResetRequest.Body.Html' => '
@@ -98,5 +98,5 @@ return [
         {link}
     ",
 
-    'Mail.Contact.Subject' => 'Contact e-mail from website',
+    'Mail.Contact.Subject' => 'Contact email from website',
 ];

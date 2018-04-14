@@ -9,7 +9,7 @@ return [
     'Model.AuthKey' => 'Chave de autorização',
     'Model.PasswordHash' => 'Hash da senha',
     'Model.PasswordResetToken' => 'Token de recuperação da senha',
-    'Model.Email' => 'E-mail',
+    'Model.Email' => 'Email',
     'Model.Gender' => 'Sexo',
     'Model.Status' => 'Status',
     'Model.Root' => 'Root',
@@ -56,8 +56,8 @@ return [
     'Root.No' => 'Não',
 
     'User.UsernameTaken' => 'Este usuário já está sendo utilizado.',
-    'User.EmailTaken' => 'Este e-mail já está sendo utilizado.',
-    'Customer.EmailTaken' => 'Este e-mail já está sendo utilizado.',
+    'User.EmailTaken' => 'Este email já está sendo utilizado.',
+    'Customer.EmailTaken' => 'Este email já está sendo utilizado.',
 
     'Gallery.Tag.Frontend' => 'Frontend',
 
@@ -68,23 +68,23 @@ return [
     'LoginForm.Email' => 'Email',
     'LoginForm.Password' => 'Senha',
     'LoginForm.RememberMe' => 'Lembrar-me',
-    'LoginForm.ErrorIncorrectUsernamePassword' => 'E-mail ou senha inválido.',
+    'LoginForm.ErrorIncorrectUsernamePassword' => 'Email ou senha inválido.',
 
     'SignupForm.FirstName' => 'Nome',
     'SignupForm.LastName' => 'Sobrenome',
-    'SignupForm.Email' => 'E-mail',
+    'SignupForm.Email' => 'Email',
     'SignupForm.Password' => 'Senha',
     'SignupForm.LanguageId' => 'Idioma',
-    'SignupForm.ErrorEmailAlreadyUsed' => 'Este e-mail já está sendo usado.',
+    'SignupForm.ErrorEmailAlreadyUsed' => 'Este email já está sendo usado.',
 
     'ResetPassword.Success' => 'A nova senha foi definida.',
 
-    'RequestPasswordReset.Success' => 'Verifique seu e-mail para as demais instruções.',
-    'RequestPasswordReset.Error' => 'Desculpe, não conseguimos redefinir sua senha com o e-mail informado.',
+    'RequestPasswordReset.Success' => 'Verifique seu email para as demais instruções.',
+    'RequestPasswordReset.Error' => 'Desculpe, não conseguimos redefinir sua senha com o email informado.',
 
     'Contact.Error' => 'Ocorreu um erro ao enviar sua mensagem.',
 
-    'PasswordResetRequestForm.ErrorEmailNotExists' => 'Este e-mail é inválido ou inexistente.',
+    'PasswordResetRequestForm.ErrorEmailNotExists' => 'Este email é inválido ou inexistente.',
 
     'Mail.PasswordResetRequest.Subject' => 'Troca de senha para: {name}',
     'Mail.PasswordResetRequest.Body.Html' => '
@@ -98,5 +98,5 @@ return [
         {link}
     ",
 
-    'Mail.Contact.Subject' => 'E-mail de contato do website',
+    'Mail.Contact.Subject' => 'Email de contato do website',
 ];
