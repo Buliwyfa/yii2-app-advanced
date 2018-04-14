@@ -9,7 +9,7 @@ use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 use yii\helpers\Url;
 
-$this->title = 'Contact';
+$this->title = Yii::t('frontend', 'Contact.Success.Title');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="contact-success">

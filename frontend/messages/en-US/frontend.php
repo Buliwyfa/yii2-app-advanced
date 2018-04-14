@@ -4,6 +4,7 @@ return [
     'Login.Title' => 'Login',
     'Signup.Title' => 'Signup',
     'Contact.Title' => 'Contact',
+    'Contact.Success.Title' => 'Contact',
     'RequestPasswordReset.Title' => 'Reset password',
     'ResetPassword.Title' => 'New password',
 

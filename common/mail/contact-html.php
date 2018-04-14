@@ -10,11 +10,16 @@ use yii\helpers\Html;
 	<h1>New message from contact form</h1>
 
     <?php if ($customer) { ?>
-		<h3>Sender data:</h3>
+		<h3>Logged sender data:</h3>
 
 		<p>Name: <?= $customer->getFullName() ?></p>
 		<p>E-mail: <?= $customer->email ?></p>
     <?php } ?>
+
+    <h3>Form data:</h3>
+
+    <p>Name: <?= $name ?></p>
+    <p>E-mail: <?= $email ?></p>
 
 	<h3>Message:</h3>
 

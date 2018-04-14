@@ -36,6 +36,8 @@ class ContactForm extends Model
     public function attributeLabels()
     {
         return [
+            'name' => Yii::t('common', 'Model.Name'),
+            'email' => Yii::t('common', 'Model.Email'),
             'body' => Yii::t('common', 'Model.Body'),
             'verifyCode' => Yii::t('common', 'Model.VerifyCode'),
         ];
@@ -52,7 +54,14 @@ class ContactForm extends Model
     {
         $customer = Yii::$app->user->isGuest ? null : Yii::$app->user->getIdentity();
 
-        return Yii::$app->mailer->compose(['html' => 'contact-html'], ['customer' => $customer, 'body' => $this->body])
+        $data = [
+            'customer' => $customer,
+            'name' => $this->name,
+            'email' => $this->email,
+            'body' => $this->body
+        ];
+
+        return Yii::$app->mailer->compose(['html' => 'contact-html'], $data)
             ->setTo($email)
             ->setFrom($email)
             ->setSubject(Yii::t('common', 'Mail.Contact.Subject'))

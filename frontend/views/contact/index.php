@@ -22,6 +22,10 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-lg-5">
             <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
 
+                <?= $form->field($model, 'name')->textInput() ?>
+
+                <?= $form->field($model, 'email')->textInput() ?>
+
                 <?= $form->field($model, 'body')->textarea(['rows' => 6]) ?>
 
                 <?= $form->field($model, 'verifyCode')->widget(Captcha::class, [
