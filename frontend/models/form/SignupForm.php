@@ -17,6 +17,7 @@ class SignupForm extends Model
     public $email;
     public $password;
     public $languageId;
+    public $gender;
 
     /**
      * @inheritdoc
@@ -28,6 +29,9 @@ class SignupForm extends Model
             ['languageId', 'required'],
 
             [['firstName', 'lastName'], 'string', 'max' => 50],
+
+            ['gender', 'default', 'value' => null],
+            ['gender', 'in', 'range' => [Customer::GENDER_MALE, Customer::GENDER_FEMALE]],
 
             ['email', 'trim'],
             ['email', 'required'],
@@ -71,6 +75,7 @@ class SignupForm extends Model
         $customer->last_name = $this->lastName;
         $customer->email = $this->email;
         $customer->language_id = $this->languageId;
+        $customer->gender = $this->gender;
 
         $customer->setPassword($this->password);
         $customer->generateAuthKey();

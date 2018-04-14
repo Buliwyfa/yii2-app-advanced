@@ -16,7 +16,8 @@ class CustomerController extends BaseController
 {
 
     protected $accessControlExceptActions = [
-        'login'
+        'login',
+        'signup'
     ];
 
     public function actionLogin()
@@ -38,7 +39,7 @@ class CustomerController extends BaseController
         $response = new Response();
         $response->setSuccess(false);
         $response->setMessage('auth-fail');
-        $response->mergeModelErrors($model);
+        $response->merge($model);
 
         return $response;
     }
@@ -66,7 +67,7 @@ class CustomerController extends BaseController
         $response = new Response();
         $response->setSuccess(false);
         $response->setMessage('signup-fail');
-        $response->mergeModelErrors($model);
+        $response->merge($model);
 
         return $response;
     }

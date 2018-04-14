@@ -135,7 +135,7 @@ class Customer extends ActiveRecord implements IdentityInterface
                 }
             ],
             ['gender', 'default', 'value' => null],
-            ['gender', 'in', 'range' => [User::GENDER_MALE, User::GENDER_FEMALE]],
+            ['gender', 'in', 'range' => [Customer::GENDER_MALE, Customer::GENDER_FEMALE]],
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE]],
             [['language_id'], 'integer'],
@@ -400,7 +400,12 @@ class Customer extends ActiveRecord implements IdentityInterface
             ->setIssuedAt(time())
             ->set('uid', $this->id)
             ->set('name', $this->getFullName())
+            ->set('first_name', $this->first_name)
+            ->set('last_name', $this->last_name)
             ->set('email', $this->email)
+            ->set('gender', $this->gender)
+            ->set('language_id', $this->language_id)
+            ->set('created_at', $this->created_at)
             ->sign($signer, Yii::$app->jwt->key)
             ->getToken();
 

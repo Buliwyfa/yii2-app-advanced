@@ -2,47 +2,39 @@
 
 namespace common\models\web;
 
-use yii\base\Exception;
-
 class Response
 {
 
-    const RESPONSE_TYPE_JSON = 'json';
-    const RESPONSE_TYPE_XML = 'xml';
-
-    public $responseType;
-    public $response;
+    private $success = false;
+    private $message = null;
+    private $data = null;
 
     /**
-     * Response constructor.
-     * @param string $responseType
-     */
-    function __construct($responseType = self::RESPONSE_TYPE_JSON)
-    {
-        $this->responseType = $responseType;
-        $this->response = $this->createResponseAsArray();
-    }
-
-    /**
+     * Merge model errors into data -> errors
      * @param $model
      * @param string $message
      */
-    public function mergeModelErrors($model, $message = 'validate')
+    public function merge($model, $message = 'validate')
     {
         if ($model) {
             if ($model->getErrors()) {
-                $errorList = array();
-
-                foreach ($model->getErrors() as $key => $value) {
-                    $errorList[] = array($key, $value);
+                if (!isset($this->data['errors'])) {
+                    $this->data['errors'] = [];
                 }
 
-                if (!isset($this->response['errors'])) {
-                    $this->response['data']['errors'] = array();
+                foreach ($model->getErrors() as $key => $errors) {
+                    if (!isset($this->data['errors'][$key])) {
+                        $this->data['errors'][$key] = [];
+                    }
+
+                    foreach ($errors as $error) {
+                        $this->data['errors'][$key][] = $error;
+                    }
                 }
 
-                $this->response['data']['errors'] = array_merge($this->response['data']['errors'], $errorList);
-                $this->response['message'] = $message;
+                if ($message) {
+                    $this->message = $message;
+                }
             }
         }
     }
@@ -52,126 +44,132 @@ class Response
      */
     public function setSuccess($value)
     {
-        $this->response['success'] = $value;
+        $this->success = $value;
     }
 
     /**
-     * @return mixed
+     * @return boolean
      */
     public function getSuccess()
     {
-        return $this->response['success'];
+        return $this->success;
     }
 
     /**
-     * @return mixed
+     * @return boolean
+     */
+    public function isSuccess()
+    {
+        return ($this->success === true);
+    }
+
+    /**
+     * @return string
      */
     public function getMessage()
     {
-        return $this->response['message'];
+        return $this->message;
     }
 
     /**
-     * @param $value
+     * @param string $value
      */
     public function setMessage($value)
     {
-        $this->response['message'] = $value;
+        $this->message = $value;
     }
 
     /**
-     * @param $value
+     * @param array $value
      */
     public function setData($value)
     {
-        $this->response['data'] = $value;
+        $this->data = $value;
     }
 
     /**
-     * @return mixed
+     * @return array mixed
      */
     public function getData()
     {
-        return $this->response['data'];
+        return $this->data;
     }
 
     /**
-     * @param $key
+     * Get a value from data attribute
+     * @param string $key
      * @param null $default
-     * @return null
+     * @return mixed
      */
     public function getDataValue($key, $default = null)
     {
-        if (is_array($this->response) && isset($this->response['data']) && isset($this->response['data'][$key])) {
-            return $this->response['data'][$key];
+        if (is_array($this->data) && isset($this->data[$key])) {
+            return $this->data[$key];
         }
 
         return $default;
     }
 
     /**
+     * Set error list overriding current possible errors
      * @param $value
      */
     public function setDataErrors($value)
     {
-        $this->response['data']['errors'] = $value;
+        $this->data['errors'] = $value;
     }
 
     /**
-     *
+     * Clear data attribute
      */
     public function clearData()
     {
-        $this->response['data'] = array();
+        $this->data = [];
     }
 
     /**
-     * @param $key
-     * @param $value
+     * Clear all attributes
+     */
+    public function clear()
+    {
+        $this->success = false;
+        $this->message = null;
+        $this->data = null;
+    }
+
+    /**
+     * @param string $key
+     * @param mixed $value
      */
     public function addData($key, $value)
     {
-        $this->response['data'][$key] = $value;
+        $this->data[$key] = $value;
     }
 
     /**
-     * @param $field
-     * @param $message
+     * @param string $key
+     * @param string $error
      */
-    public function addDataError($field, $message)
+    public function addDataError($key, $error)
     {
-        if (!isset($this->response['data']['errors'])) {
-            $this->response['data']['errors'] = array();
+        if (!isset($this->data['errors'])) {
+            $this->data['errors'] = [];
         }
 
-        $this->response['data']['errors'][] = array($field, $message);
+        if (!isset($this->data['errors'][$key])) {
+            $this->data['errors'][$key] = [];
+        }
+
+        $this->data['errors'][$key][] = $error;
     }
 
     /**
+     * Encode to JSON
      * @return string
-     * @throws Exception
      */
     public function __toString()
     {
-        if ($this->responseType == self::RESPONSE_TYPE_JSON) {
-            return json_encode($this->response);
-        }
-
-        throw new Exception('Response type (' . $this->responseType . ') not implemented.');
-    }
-
-    /**
-     * @return array
-     */
-    private function createResponseAsArray()
-    {
-        return array(
-            'success' => false,
-            'message' => null,
-            'data' => array(
-                'errors' => array(),
-            ),
-        );
+        return json_encode($this);
     }
 
 }

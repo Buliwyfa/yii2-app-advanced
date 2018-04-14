@@ -17,6 +17,21 @@ return [
             'enableCsrfValidation' => false,
             'enableCookieValidation' => false,
         ),
+        'response' => [
+            'class' => 'yii\web\Response',
+            'format' => 'json',
+            'on beforeSend' => function ($event) {
+                $response = $event->sender;
+
+                if ($response->data instanceof \common\models\web\Response) {
+                    $response->data = [
+                        'success' => $response->data->isSuccess(),
+                        'message' => $response->data->getMessage(),
+                        'data' => $response->data->getData(),
+                    ];
+                }
+            },
+        ],
         'user' => [
             'identityClass' => 'common\models\domain\Customer',
             'enableAutoLogin' => false,
