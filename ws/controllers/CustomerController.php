@@ -2,6 +2,7 @@
 
 namespace ws\controllers;
 
+use common\models\domain\Customer;
 use common\models\web\Response;
 use frontend\models\form\LoginForm;
 use frontend\models\form\PasswordResetRequestForm;
@@ -17,7 +18,10 @@ class CustomerController extends BaseController
 
     protected $accessControlExceptActions = [
         'login',
-        'signup'
+        'signup',
+        'avatar',
+        'request-password-reset',
+        'reset-password',
     ];
 
     public function actionLogin()
@@ -70,6 +74,18 @@ class CustomerController extends BaseController
         $response->merge($model);
 
         return $response;
+    }
+
+    public function actionAvatar()
+    {
+        $id = (int)Yii::$app->request->get('id');
+        $customer = Customer::find($id)->id($id)->one();
+
+        if ($customer) {
+            $this->redirect($customer->getAvatar(Yii::getAlias('/images/profile-default.png')));
+        } else {
+            $this->redirect(Yii::getAlias('/images/profile-default.png'));
+        }
     }
 
     public function actionRequestPasswordReset()

@@ -49,10 +49,6 @@ return [
         'errorHandler' => [
             'errorAction' => 'error/index',
         ],
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false
-        ],
         'i18n' => [
             'translations' => [
                 'ws*' => [
@@ -62,12 +58,19 @@ return [
                 ],
             ],
         ],
+        'urlManager' => [
+            'class' => 'yii\web\urlManager',
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'baseUrl' => '/',
+        ],
     ],
     'params' => $params,
     'bootstrap' => [
         [
             'class' => 'backend\components\LanguageSelector',
             'supportedLanguages' => $params['supportedLanguages'],
+            'createCookie' => false,
         ],
     ]
 ];

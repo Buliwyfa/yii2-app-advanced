@@ -18,10 +18,10 @@ return [
     'Model.Avatar' => 'Avatar',
     'Model.Title' => 'Title',
     'Model.Content' => 'Content',
-    'Model.Name'=> 'Name',
-    'Model.NativeName'=> 'Native name',
-    'Model.Code-ISO-639-1'=> 'Code ISO-639-1',
-    'Model.Code-ISO-Language'=> 'Code ISO-Language',
+    'Model.Name' => 'Name',
+    'Model.NativeName' => 'Native name',
+    'Model.Code-ISO-639-1' => 'Code ISO-639-1',
+    'Model.Code-ISO-Language' => 'Code ISO-Language',
     'Model.Description' => 'Description',
     'Model.Action' => 'Action',
     'Model.ActionGroup' => 'Action group',
@@ -85,6 +85,17 @@ return [
 
     'PasswordResetRequestForm.ErrorEmailNotExists' => 'This e-mail is invalid or not exists.',
 
+    'Mail.PasswordResetRequest.Subject' => 'Password reset for: {name}',
+    'Mail.PasswordResetRequest.Body.Html' => '
+        <p>Hello {name},</p>
+        <p>Follow the link below to reset your password:</p>
+        <p>{link}</p>
+    ',
+    'Mail.PasswordResetRequest.Body.Text' => "
+        Hello {name},\n\n
+        Follow the link below to reset your password:\n\n
+        {link}
+    ",
+
     'Mail.Contact.Subject' => 'Contact e-mail from website',
-    'Mail.PasswordResetRequest.Subject' => 'Password reset for: {{name}}',
 ];

@@ -10,6 +10,7 @@ class LanguageSelector implements BootstrapInterface
 {
 
     public $supportedLanguages = [];
+    public $createCookie = true;
 
     /**
      * @inheritdoc
@@ -20,7 +21,10 @@ class LanguageSelector implements BootstrapInterface
 
         if (!empty($preferredLanguage)) {
             Yii::$app->language = $preferredLanguage;
-            LanguageHelper::setLanguageCookie($preferredLanguage);
+
+            if ($this->createCookie === true) {
+                LanguageHelper::setLanguageCookie($preferredLanguage);
+            }
         }
     }
 

@@ -85,6 +85,17 @@ return [
 
     'PasswordResetRequestForm.ErrorEmailNotExists' => 'Este e-mail é inválido ou inexistente.',
 
+    'Mail.PasswordResetRequest.Subject' => 'Troca de senha para: {name}',
+    'Mail.PasswordResetRequest.Body.Html' => '
+        <p>Olá {name},</p>
+        <p>Acesse o link abaixo para redefinir sua senha:</p>
+        <p>{link}</p>
+    ',
+    'Mail.PasswordResetRequest.Body.Text' => "
+        Olá {name},\n\n
+        Acesse o link abaixo para redefinir sua senha:\n\n
+        {link}
+    ",
+
     'Mail.Contact.Subject' => 'E-mail de contato do website',
-    'Mail.PasswordResetRequest.Subject' => 'Troca de senha para: {{name}}',
 ];
