@@ -7,6 +7,7 @@ return [
     'Contact.Success.Title' => 'Contact',
     'RequestPasswordReset.Title' => 'Reset password',
     'ResetPassword.Title' => 'New password',
+    'Gallery.List.Title' => 'Gallery list',
 
     'Login.TitleHint' => 'If you have already been registered, please fill out the following fields to login:',
     'Signup.TitleHint' => 'Please fill out the following fields to signup:',

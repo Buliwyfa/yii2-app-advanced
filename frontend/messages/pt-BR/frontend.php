@@ -7,6 +7,7 @@ return [
     'Contact.Success.Title' => 'Contato',
     'RequestPasswordReset.Title' => 'Trocar senha',
     'ResetPassword.Title' => 'Nova senha',
+    'Gallery.List.Title' => 'Lista de galerias',
 
     'Login.TitleHint' => 'Se você já é cadastrado, por favor, informe os dados abaixo para efetuar login:',
     'Signup.TitleHint' => 'Por favor, informe os dados solicitados para realizar seu cadastro:',
