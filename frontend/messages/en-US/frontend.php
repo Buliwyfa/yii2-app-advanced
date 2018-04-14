@@ -3,14 +3,14 @@
 return [
     'Login.Title' => 'Login',
     'Signup.Title' => 'Signup',
-    'Contact.Title' => 'Contact',
+    'Contact.Index.Title' => 'Contact',
     'Contact.Success.Title' => 'Contact',
     'RequestPasswordReset.Title' => 'Reset password',
     'ResetPassword.Title' => 'New password',
 
     'Login.TitleHint' => 'If you have already been registered, please fill out the following fields to login:',
     'Signup.TitleHint' => 'Please fill out the following fields to signup:',
-    'Contact.TitleHint' => 'If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.',
+    'Contact.Index.TitleHint' => 'If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.',
     'RequestPasswordReset.TitleHint' => 'Please fill out your email. A link to reset password will be sent there.',
     'ResetPassword.TitleHint' => 'Please choose your new password:',
 

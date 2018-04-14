@@ -3,14 +3,14 @@
 return [
     'Login.Title' => 'Login',
     'Signup.Title' => 'Cadastro',
-    'Contact.Title' => 'Contato',
+    'Contact.Index.Title' => 'Contato',
     'Contact.Success.Title' => 'Contato',
     'RequestPasswordReset.Title' => 'Trocar senha',
     'ResetPassword.Title' => 'Nova senha',
 
     'Login.TitleHint' => 'Se você já é cadastrado, por favor, informe os dados abaixo para efetuar login:',
     'Signup.TitleHint' => 'Por favor, informe os dados solicitados para realizar seu cadastro:',
-    'Contact.TitleHint' => 'Se você tiver algum problema, sugestão ou perguntas, por favor, nos informe através do formulário abaixo. Obrigado.',
+    'Contact.Index.TitleHint' => 'Se você tiver algum problema, sugestão ou perguntas, por favor, nos informe através do formulário abaixo. Obrigado.',
     'RequestPasswordReset.TitleHint' => 'Por favor, informe seu e-mail. Um link será enviado para o processo de troca de senha.',
     'ResetPassword.TitleHint' => 'Por favor, informe a sua nova senha:',
 

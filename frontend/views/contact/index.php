@@ -8,14 +8,14 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
-$this->title = Yii::t('frontend', 'Contact.Title');
+$this->title = Yii::t('frontend', 'Contact.Index.Title');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="contact-index">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Yii::t('frontend', 'Contact.TitleHint') ?>
+        <?= Yii::t('frontend', 'Contact.Index.TitleHint') ?>
     </p>
 
     <div class="row">
