@@ -82,7 +82,7 @@ migrate-db:
 	$(PHP_CMD_PREFIX) php yii migrate --migrationPath=@common/migrations --interactive=0
 	$(PHP_CMD_PREFIX) php yii migrate --migrationPath=@backend/migrations --interactive=0
 	$(PHP_CMD_PREFIX) php yii migrate --migrationPath=@frontend/migrations --interactive=0
-	$(PHP_CMD_PREFIX) php yii migrate --migrationPath=@api/migrations --interactive=0
+	$(PHP_CMD_PREFIX) php yii migrate --migrationPath=@ws/migrations --interactive=0
 
 nginx-reload:
 	$(NGINX_CMD_PREFIX) service nginx reload
