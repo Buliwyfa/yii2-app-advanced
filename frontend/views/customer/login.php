@@ -8,14 +8,14 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
 
-$this->title = 'Login';
+$this->title = Yii::t('frontend', 'Login.Title');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="customer-login">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Yii::t('frontend', 'LoginForm.TitleHint') ?>
+        <?= Yii::t('frontend', 'Login.TitleHint') ?>
     </p>
 	
     <div class="row">

@@ -8,14 +8,14 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
-$this->title = 'Contact';
+$this->title = Yii::t('frontend', 'Contact.Title');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="contact-index">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Yii::t('frontend', 'Contact.Index.TitleHint') ?>
+        <?= Yii::t('frontend', 'Contact.TitleHint') ?>
     </p>
 
     <div class="row">
@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]) ?>
 
                 <div class="form-group">
-                    <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
+                    <?= Html::submitButton(Yii::t('frontend', 'ContactForm.ButtonSubmit'), ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
                 </div>
 
             <?php ActiveForm::end(); ?>

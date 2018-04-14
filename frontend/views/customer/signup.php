@@ -10,14 +10,14 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
 
-$this->title = 'Signup';
+$this->title = Yii::t('frontend', 'Signup.Title');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="customer-signup">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Yii::t('frontend', 'ResetPassword.TitleHint') ?>
+        <?= Yii::t('frontend', 'Signup.TitleHint') ?>
     </p>
 
     <div class="row">
