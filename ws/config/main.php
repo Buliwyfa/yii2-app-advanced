@@ -59,7 +59,7 @@ return [
             ],
         ],
         'urlManager' => [
-            'class' => 'yii\web\urlManager',
+            'class' => 'yii\web\UrlManager',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'baseUrl' => '/',
