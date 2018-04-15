@@ -34,7 +34,7 @@ class CustomerController extends BaseController
 
             $response = new Response();
             $response->setSuccess(true);
-            $response->setMessage('auth-ok');
+            $response->setMessage('login-ok');
             $response->addData('token', (string)$token);
 
             return $response;
@@ -42,7 +42,7 @@ class CustomerController extends BaseController
 
         $response = new Response();
         $response->setSuccess(false);
-        $response->setMessage('auth-fail');
+        $response->setMessage('login-fail');
         $response->merge($model);
 
         return $response;
