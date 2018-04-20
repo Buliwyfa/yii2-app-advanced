@@ -40,6 +40,7 @@ help:
 	@echo "- composer-update"
 	@echo "- composer-outdated"
 	@echo "- composer-show"
+	@echo "- composer-clear-cache"
 	@echo ""
 
 clear:
@@ -98,3 +99,6 @@ composer-outdated:
 
 composer-show:
 	$(PHP_CMD_PREFIX) composer show -l
+
+composer-clear-cache:
+	$(PHP_CMD_PREFIX) composer clear-cache
