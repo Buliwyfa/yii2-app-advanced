@@ -30,6 +30,7 @@ use yii\helpers\Url;
 	    Widget::class,
 	    [
 	    	'settings' => [
+				'lang' => 'pt_br',
                 'plugins' => ['imagemanager', 'fullscreen', 'fontcolor', 'video'],
                 'minHeight' => 200,
                 'imageUpload' => Yii::$app->urlManager->createUrl(['/content/upload-image']),

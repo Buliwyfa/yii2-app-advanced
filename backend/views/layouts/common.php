@@ -33,7 +33,7 @@ $bundle = BackendAsset::register($this);
     <?= $this->render('../_partial/sideMenu') ?>
 
 	<!-- Right side column - Content -->
-	<aside class="content-wrapper">
+	<div class="content-wrapper">
 
 		<!-- Header content  -->
 		<section class="content-header">
@@ -61,7 +61,7 @@ $bundle = BackendAsset::register($this);
             <?= $content ?>
 		</section>
 
-	</aside>
+	</div>
 </div>
 
 <?php $this->endContent(); ?>
