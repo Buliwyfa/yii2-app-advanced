@@ -25,12 +25,22 @@ If you type "make" in your terminal, you get all options:
 ```
 - help
 - clear
-- docker-compose-start
-- docker-compose-stop
-- config-env-development
-- config-env-production
 - migrate-db
 - nginx-reload
+
+- docker-compose-start
+- docker-compose-stop
+- docker-compose-start-console
+- docker-compose-rebuild
+
+- config-env-development
+- config-env-production
+
+- composer-install
+- composer-update
+- composer-outdated
+- composer-show
+- composer-clear-cache
 ```
 
 If you want execute the commands with Docker support, add the parameter "docker=1" at the end of command. Ex:  
