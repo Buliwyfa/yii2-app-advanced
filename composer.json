@@ -20,7 +20,7 @@
 		"yiisoft/yii2-bootstrap": "2.0.10",
 		"yiisoft/yii2-swiftmailer": "2.1.2",
 		"yiisoft/yii2-jui": "2.0.7",
-		"bower-asset/admin-lte": "2.3.11",
+		"bower-asset/admin-lte": "2.4.15",
 		"bower-asset/font-awesome": "4.7.0",
 		"bower-asset/html5shiv": "3.7.3",
 		"bower-asset/jquery": ">=1.9.0 <4.0.0",
@@ -44,7 +44,7 @@
 		"codeception/base": "3.0.0",
 		"codeception/verify": "1.1.0",
 		"phpunit/phpunit": "6.5.14",
-		"symfony/browser-kit": ">=2.7 <=4.2.4"
+		"symfony/browser-kit": "4.3.3"
 	},
 	"config": {
 		"process-timeout": 1800,
