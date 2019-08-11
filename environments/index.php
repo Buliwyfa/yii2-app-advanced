@@ -47,6 +47,9 @@ return [
             'backend/config/main-local.php',
             'frontend/config/main-local.php',
         ],
+        'setJwtKey' => [
+            'common/config/main-local.php',
+        ],
     ],
     'Production' => [
         'path' => 'prod',

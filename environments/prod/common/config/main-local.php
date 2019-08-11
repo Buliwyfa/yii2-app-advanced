@@ -43,7 +43,7 @@ return [
         ],
         'jwt' => [
             'class' => 'common\components\jwt\JWT',
-            'key' => '@@[[CHANGE-THE-KEY-HERE]]@@',
+            'key' => '@CHANGE-THE-JWT-KEY-HERE@',
         ],
     ],
     'bootstrap' => [
