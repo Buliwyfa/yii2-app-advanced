@@ -20,6 +20,12 @@ This is a simple web system made with Yii2 with advanced features. The project h
 
 This project is used in many other projects. It is ready to make a new website.
 
+![](extras/screenshots/ss1.png)
+
+Other screenshots is here:  
+
+[SCREENSHOTS](SCREENSHOTS.md)
+
 ## Commands
 
 If you type "make" in your terminal, you get all options:
