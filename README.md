@@ -1,5 +1,7 @@
 # Yii2 App Advanced
 
+[![Build Status](https://travis-ci.com/prsolucoes/yii2-app-advanced.svg?branch=master)](https://travis-ci.com/prsolucoes/yii2-app-advanced)  
+
 This is a simple web system made with Yii2 with advanced features. The project has:
  
 - Frontend with Boostrap 3
