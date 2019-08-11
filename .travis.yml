@@ -23,6 +23,6 @@ script:
   - sleep 30
   - make create-db-test docker=1
   - make config-env-development docker=1
-  - make composer-install docker=1
+  - make php-composer-install docker=1
   - make migrate-db-test docker=1
   - make test docker=1

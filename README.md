@@ -50,11 +50,11 @@ If you type "make" in your terminal, you get all options:
 - config-env-development
 - config-env-production
 
-- composer-install
-- composer-update
-- composer-outdated
-- composer-show
-- composer-clear-cache
+- php-composer-install
+- php-composer-update
+- php-composer-outdated
+- php-composer-show
+- php-composer-clear-cache
 
 - test
 ```

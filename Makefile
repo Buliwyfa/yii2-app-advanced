@@ -45,11 +45,11 @@ help:
 	@echo "- config-env-development"
 	@echo "- config-env-production"
 	@echo ""
-	@echo "- composer-install"
-	@echo "- composer-update"
-	@echo "- composer-outdated"
-	@echo "- composer-show"
-	@echo "- composer-clear-cache"
+	@echo "- php-composer-install"
+	@echo "- php-composer-update"
+	@echo "- php-composer-outdated"
+	@echo "- php-composer-show"
+	@echo "- php-composer-clear-cache"
 	@echo ""
 	@echo "- test"
 	@echo ""
@@ -111,19 +111,19 @@ create-db-test:
 nginx-reload:
 	$(NGINX_CMD_PREFIX) service nginx reload
 
-composer-install:
+php-composer-install:
 	$(PHP_CMD_PREFIX) composer install
 
-composer-update:
+php-composer-update:
 	$(PHP_CMD_PREFIX) composer update
 
-composer-outdated:
+php-composer-outdated:
 	$(PHP_CMD_PREFIX) composer outdated
 
-composer-show:
+php-composer-show:
 	$(PHP_CMD_PREFIX) composer show -l
 
-composer-clear-cache:
+php-composer-clear-cache:
 	$(PHP_CMD_PREFIX) composer clear-cache
 
 test:
