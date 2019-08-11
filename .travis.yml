@@ -10,6 +10,7 @@ env:
 
 before_install:
   - sudo /etc/init.d/mysql stop
+  - sudo /etc/init.d/memcached stop
   - sudo rm /usr/local/bin/docker-compose
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
   - chmod +x docker-compose
@@ -17,7 +18,9 @@ before_install:
 
 script:
   - make clear
+  - make docker-compose-build
   - make docker-compose-start
+  - sleep 30
   - make create-db-test docker=1
   - make config-env-development docker=1
   - make composer-install docker=1
