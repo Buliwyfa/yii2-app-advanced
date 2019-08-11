@@ -18,7 +18,7 @@ before_install:
 
 script:
   - make clear
-  - make docker-compose-build
+  - make docker-compose-rebuild
   - make docker-compose-start
   - sleep 30
   - make create-db-test docker=1
