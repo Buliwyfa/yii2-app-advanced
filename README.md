@@ -39,6 +39,9 @@ If you type "make" in your terminal, you get all options:
 - migrate-db
 - migrate-db-test
 
+- create-db
+- create-db-test
+
 - docker-compose-start
 - docker-compose-stop
 - docker-compose-start-console

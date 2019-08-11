@@ -1,41 +1,23 @@
 language: php
 
-php:
-  - 7.2
-
 services:
-  - mysql
+  - docker
 
-# faster builds on new travis setup not using sudo
 sudo: false
 
-# cache vendor dirs
-cache:
-  directories:
-    - $HOME/.composer/cache
+env:
+  - DOCKER_COMPOSE_VERSION=1.24.1
 
-install:
-  - travis_retry composer self-update && composer --version
-  - travis_retry composer update --dev --prefer-dist --no-interaction
-  # install php extensions
-  - |
-    if (php --version | grep -i HipHop > /dev/null); then
-      echo "Skipping imagick and gmagick tests on HHVM"
-    else
-      pear config-set preferred_state beta
-      printf "\n" | pecl install imagick
-      # gmagick is not installed on travis currently
-      #printf "\n" | pecl install gmagick
-    fi
-  # setup application:
-  - |
-    ./init --env=Development
-    sed -i s/root/travis/ common/config/main-local.php
-    sed -i "s/'cookieValidationKey' => ''/'cookieValidationKey' => 'testkey'/" frontend/config/main.php
-    sed -i "s/'cookieValidationKey' => ''/'cookieValidationKey' => 'testkey'/" backend/config/main.php
-before_script:
-  - mysql -e 'CREATE DATABASE `yii2-app-advanced-test`;'
-  - make migrate-db-test
+before_install:
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
 
 script:
+  - make clear
+  - make docker-compose-start
+  - make create-db-test
+  - make config-env-development
+  - make composer-install
   - make test

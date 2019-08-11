@@ -2,9 +2,11 @@ ROOT_DIR = $(shell pwd)
 
 PHP_CMD_PREFIX = 
 NGINX_CMD_PREFIX = 
+MYSQL_CMD_PREFIX =
 
 PREFIX_DOCKER_PHP_FPM = docker exec y2aa_php_fpm
 PREFIX_DOCKER_NGINX = docker exec y2aa_nginx
+PREFIX_DOCKER_MYSQL = docker exec y2aa_mysql
 
 USE_DOCKER = 0
 
@@ -13,6 +15,7 @@ USE_DOCKER = 0
 ifeq ($(docker), 1)
 	PHP_CMD_PREFIX = $(PREFIX_DOCKER_PHP_FPM)
 	NGINX_CMD_PREFIX = $(PREFIX_DOCKER_NGINX)
+	MYSQL_CMD_PREFIX = $(PREFIX_DOCKER_MYSQL)
 	USE_DOCKER = 1
 endif
 
@@ -30,6 +33,9 @@ help:
 	@echo ""
 	@echo "- migrate-db"
 	@echo "- migrate-db-test"
+	@echo ""
+	@echo "- create-db"
+	@echo "- create-db-test"
 	@echo ""
 	@echo "- docker-compose-start"
 	@echo "- docker-compose-stop"
@@ -95,6 +101,12 @@ migrate-db-test:
 	$(PHP_CMD_PREFIX) php yii_test migrate --migrationPath=@backend/migrations --interactive=0
 	$(PHP_CMD_PREFIX) php yii_test migrate --migrationPath=@frontend/migrations --interactive=0
 	$(PHP_CMD_PREFIX) php yii_test migrate --migrationPath=@ws/migrations --interactive=0
+
+create-db:
+	$(MYSQL_CMD_PREFIX) mysql -u root -proot -e 'CREATE DATABASE `yii2-app-advanced`;'
+
+create-db-test:
+	$(MYSQL_CMD_PREFIX) mysql -u root -proot -e 'CREATE DATABASE `yii2-app-advanced-test`;'
 
 nginx-reload:
 	$(NGINX_CMD_PREFIX) service nginx reload
