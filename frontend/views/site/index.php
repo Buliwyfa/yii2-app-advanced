@@ -4,7 +4,7 @@
 
 use yii\helpers\Html;
 
-$this->title = Yii::$app->name;
+$this->title = \Yii::t('frontend', 'Site.Index.Title');
 ?>
 
 <div class="site-index" style="text-align: center;">

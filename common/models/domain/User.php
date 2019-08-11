@@ -293,6 +293,7 @@ class User extends ActiveRecord implements IdentityInterface
      * Generates password hash from password and sets it to the model
      *
      * @param string $password
+     * @throws \yii\base\Exception
      */
     public function setPassword($password)
     {
@@ -423,6 +424,7 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * Return related permissions
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getGroups()
     {
@@ -433,6 +435,7 @@ class User extends ActiveRecord implements IdentityInterface
      * Check if user has access to permission
      * @param $permission
      * @return bool
+     * @throws \yii\db\Exception
      */
     public function hasPermission($permission)
     {

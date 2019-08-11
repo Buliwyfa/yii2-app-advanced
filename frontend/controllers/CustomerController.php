@@ -10,12 +10,11 @@ use Yii;
 use yii\base\InvalidArgumentException;
 use yii\filters\AccessControl;
 use yii\web\BadRequestHttpException;
-use yii\web\Controller;
 
 /**
  * Customer controller
  */
-class CustomerController extends Controller
+class CustomerController extends BaseController
 {
 
     /**

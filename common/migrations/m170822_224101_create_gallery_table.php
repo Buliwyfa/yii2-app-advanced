@@ -15,16 +15,16 @@ class m170822_224101_create_gallery_table extends Migration
 
         $this->createTable('{{%gallery}}', [
             'id' => $this->bigPrimaryKey(20),
+            'language_id' => $this->bigInteger(20)->null(),
             'title' => $this->string(255)->notNull(),
             'tag' => $this->string(255)->notNull(),
-            'language_id' => $this->bigInteger(20)->null(),
             'status' => "ENUM('active', 'inactive')",
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->null(),
         ], $tableOptions);
 
-        $this->createIndex('tag', '{{%gallery}}', 'tag');
         $this->createIndex('language_id', '{{%gallery}}', 'language_id');
+        $this->createIndex('tag', '{{%gallery}}', 'tag');
         $this->createIndex('status', '{{%gallery}}', 'status');
     }
 

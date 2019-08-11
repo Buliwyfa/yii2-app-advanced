@@ -19,7 +19,7 @@ return [
             'identityClass' => 'common\models\domain\Customer',
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
-            'loginUrl' => ['site/login'],
+            'loginUrl' => ['çustomer/login'],
             'as afterLogin' => common\behaviors\LoginTimestampBehavior::class
         ],
         'session' => [
@@ -62,6 +62,9 @@ return [
                     'defaults' => ['tag' => 'terms-of-use', 'language' => 'auto'],
                 ],
             ],
+        ],
+        'assetManager' => [
+            'appendTimestamp' => true
         ],
         'i18n' => [
             'translations' => [

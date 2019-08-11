@@ -12,7 +12,7 @@ class BackendAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/site.css?r=23-11-2017-12-00-00',
+        'css/site.css',
     ];
     public $js = [
         'js/app.js',

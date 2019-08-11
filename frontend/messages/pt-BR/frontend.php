@@ -1,12 +1,13 @@
 <?php
 
 return [
-    'Login.Title' => 'Login',
-    'Signup.Title' => 'Cadastro',
+    'Site.Index.Title' => 'Y2AA',
+    'Customer.Login.Title' => 'Login',
+    'Customer.Signup.Title' => 'Cadastro',
+    'Customer.RequestPasswordReset.Title' => 'Trocar senha',
+    'Customer.ResetPassword.Title' => 'Nova senha',
     'Contact.Index.Title' => 'Contato',
     'Contact.Success.Title' => 'Contato',
-    'RequestPasswordReset.Title' => 'Trocar senha',
-    'ResetPassword.Title' => 'Nova senha',
     'Gallery.List.Title' => 'Lista de galerias',
 
     'Login.TitleHint' => 'Se você já é cadastrado, por favor, informe os dados abaixo para efetuar login:',

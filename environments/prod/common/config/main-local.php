@@ -10,20 +10,15 @@ return [
             'charset' => 'utf8',
             'enableSchemaCache' => YII_ENV_PROD,
         ],
-        'backendMailer' => [
-            'class' => 'yii\swiftmailer\Mailer',
-            'viewPath' => '@backend/mail',
-            'useFileTransport' => true,
-        ],
-        'frontendMailer' => [
-            'class' => 'yii\swiftmailer\Mailer',
-            'viewPath' => '@frontend/mail',
-            'useFileTransport' => true,
-        ],
-        'consoleMailer' => [
+        'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             'viewPath' => '@common/mail',
-            'useFileTransport' => true,
+            'useFileTransport' => false,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'mailcatcher',
+                'port' => '1025',
+            ],
         ],
         'customerProfileFileStorage' => [
             'class' => '\trntv\filekit\Storage',

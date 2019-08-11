@@ -4,8 +4,6 @@
 
 /* @var $content string */
 
-use common\models\domain\Event;
-use common\models\domain\EventAnswer;
 use common\widgets\Alert;
 use frontend\assets\FrontendAsset;
 use yii\helpers\Html;

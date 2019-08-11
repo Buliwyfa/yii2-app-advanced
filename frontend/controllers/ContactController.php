@@ -3,21 +3,13 @@
 namespace frontend\controllers;
 
 use frontend\models\form\ContactForm;
-use frontend\models\form\LoginForm;
-use frontend\models\form\PasswordResetRequestForm;
-use frontend\models\form\ResetPasswordForm;
-use frontend\models\form\SignupForm;
 use Yii;
-use yii\base\InvalidParamException;
 use yii\filters\AccessControl;
-use yii\filters\VerbFilter;
-use yii\web\BadRequestHttpException;
-use yii\web\Controller;
 
 /**
  * Contact controller
  */
-class ContactController extends Controller
+class ContactController extends BaseController
 {
 
     /**

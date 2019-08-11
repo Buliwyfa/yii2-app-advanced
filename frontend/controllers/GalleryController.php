@@ -54,11 +54,8 @@ class GalleryController extends BaseController
                 $query->andWhere('(language_id = :preferred_language_id OR language_id = 0 OR language_id IS NULL)', ['preferred_language_id' => $language->id]);
                 $query->addOrderBy('language_id DESC');
             }
-
-            $canSearch = true;
         } else {
             $query->andWhere(['language_id' => $galleryLanguage]);
-            $canSearch = true;
         }
 
         if (!$canSearch) {

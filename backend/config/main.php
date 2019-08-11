@@ -45,6 +45,9 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false
         ],
+        'assetManager' => [
+            'appendTimestamp' => true
+        ],
         'i18n' => [
             'translations' => [
                 'backend*' => [

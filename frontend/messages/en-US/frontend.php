@@ -1,12 +1,13 @@
 <?php
 
 return [
-    'Login.Title' => 'Login',
-    'Signup.Title' => 'Signup',
+    'Site.Index.Title' => 'Y2AA',
+    'Customer.Login.Title' => 'Login',
+    'Customer.Signup.Title' => 'Signup',
+    'Customer.RequestPasswordReset.Title' => 'Reset password',
+    'Customer.ResetPassword.Title' => 'New password',
     'Contact.Index.Title' => 'Contact',
     'Contact.Success.Title' => 'Contact',
-    'RequestPasswordReset.Title' => 'Reset password',
-    'ResetPassword.Title' => 'New password',
     'Gallery.List.Title' => 'Gallery list',
 
     'Login.TitleHint' => 'If you have already been registered, please fill out the following fields to login:',

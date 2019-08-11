@@ -139,6 +139,7 @@ class Customer extends ActiveRecord implements IdentityInterface
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE]],
             [['language_id'], 'integer'],
+            ['languageId', 'required'],
             [['created_at', 'updated_at'], 'integer'],
             [['avatar_path', 'avatar_base_url'], 'string', 'max' => 255],
             ['avatar', 'safe'],
