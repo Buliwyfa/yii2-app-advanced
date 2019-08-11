@@ -78,7 +78,7 @@ $panelHeadingTemplate = '
     {summary}
 </div>
 <h3 class="panel-title">
-    {heading}
+    {title}
 </h3>
 <div class="clearfix"></div>
 ';
