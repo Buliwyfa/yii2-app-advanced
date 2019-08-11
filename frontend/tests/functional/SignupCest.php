@@ -47,11 +47,13 @@ class SignupCest
             'SignupForm[password]' => 'tester_password',
         ]);
 
-        $I->seeRecord('common\models\domain\User', [
+        $I->seeRecord('common\models\User', [
             'username' => 'tester',
             'email' => 'tester.email@example.com',
+            'status' => \common\models\User::STATUS_INACTIVE
         ]);
 
-        $I->see('Logout (tester)', 'form button[type=submit]');
+        $I->seeEmailIsSent();
+        $I->see('Thank you for registration. Please check your inbox for verification email.');
     }
 }

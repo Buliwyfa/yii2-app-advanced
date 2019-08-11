@@ -25,8 +25,11 @@ If you type "make" in your terminal, you get all options:
 ```
 - help
 - clear
-- migrate-db
 - nginx-reload
+- requirements
+
+- migrate-db
+- migrate-db-test
 
 - docker-compose-start
 - docker-compose-stop
@@ -41,6 +44,8 @@ If you type "make" in your terminal, you get all options:
 - composer-outdated
 - composer-show
 - composer-clear-cache
+
+- test
 ```
 
 If you want execute the commands with Docker support, add the parameter "docker=1" at the end of command. Ex:  

@@ -25,8 +25,11 @@ help:
 	@echo ""
 	@echo "- help"
 	@echo "- clear"
-	@echo "- migrate-db"
 	@echo "- nginx-reload"
+	@echo "- requirements"
+	@echo ""
+	@echo "- migrate-db"
+	@echo "- migrate-db-test"
 	@echo ""
 	@echo "- docker-compose-start"
 	@echo "- docker-compose-stop"
@@ -41,6 +44,8 @@ help:
 	@echo "- composer-outdated"
 	@echo "- composer-show"
 	@echo "- composer-clear-cache"
+	@echo ""
+	@echo "- test"
 	@echo ""
 
 clear:
@@ -85,6 +90,12 @@ migrate-db:
 	$(PHP_CMD_PREFIX) php yii migrate --migrationPath=@frontend/migrations --interactive=0
 	$(PHP_CMD_PREFIX) php yii migrate --migrationPath=@ws/migrations --interactive=0
 
+migrate-db-test:
+	$(PHP_CMD_PREFIX) php yii_test migrate --migrationPath=@common/migrations --interactive=0
+	$(PHP_CMD_PREFIX) php yii_test migrate --migrationPath=@backend/migrations --interactive=0
+	$(PHP_CMD_PREFIX) php yii_test migrate --migrationPath=@frontend/migrations --interactive=0
+	$(PHP_CMD_PREFIX) php yii_test migrate --migrationPath=@ws/migrations --interactive=0
+
 nginx-reload:
 	$(NGINX_CMD_PREFIX) service nginx reload
 
@@ -102,3 +113,10 @@ composer-show:
 
 composer-clear-cache:
 	$(PHP_CMD_PREFIX) composer clear-cache
+
+test:
+	$(PHP_CMD_PREFIX) composer validate
+	$(PHP_CMD_PREFIX) vendor/bin/codecept run
+
+requirements:
+	$(PHP_CMD_PREFIX) php requirements.php
