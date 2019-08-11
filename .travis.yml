@@ -17,8 +17,8 @@ before_install:
 script:
   - make clear
   - make docker-compose-start
-  - make create-db-test
-  - make config-env-development
-  - make composer-install
-  - make migrate-db-test
-  - make test
+  - make create-db-test docker=1
+  - make config-env-development docker=1
+  - make composer-install docker=1
+  - make migrate-db-test docker=1
+  - make test docker=1
