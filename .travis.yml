@@ -20,4 +20,5 @@ script:
   - make create-db-test
   - make config-env-development
   - make composer-install
+  - make migrate-db-test
   - make test
