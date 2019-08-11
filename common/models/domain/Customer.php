@@ -6,8 +6,10 @@ use common\models\query\CustomerQuery;
 use Lcobucci\JWT\Signer\Hmac\Sha512;
 use trntv\filekit\behaviors\UploadBehavior;
 use Yii;
+use yii\base\Exception;
 use yii\behaviors\AttributeBehavior;
 use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\helpers\Url;
 use yii\web\IdentityInterface;
@@ -50,7 +52,7 @@ class Customer extends ActiveRecord implements IdentityInterface
     /**
      * @var
      */
-    public $repeatPassword;
+    public $repeat_password;
 
     /**
      * @var
@@ -104,9 +106,9 @@ class Customer extends ActiveRecord implements IdentityInterface
     public function scenarios()
     {
         $scenarios = parent::scenarios();
-        $scenarios['create'] = ['first_name', 'last_name', 'email', 'password', 'gender', 'status', 'repeatPassword', 'language_id'];
-        $scenarios['update'] = ['first_name', 'last_name', 'email', 'password', 'gender', 'status', 'repeatPassword', 'language_id'];
-        $scenarios['update-profile'] = ['first_name', 'last_name', 'email', 'password', 'gender', 'repeatPassword', 'avatar'];
+        $scenarios['create'] = ['first_name', 'last_name', 'email', 'password', 'gender', 'status', 'repeat_password', 'language_id'];
+        $scenarios['update'] = ['first_name', 'last_name', 'email', 'password', 'gender', 'status', 'repeat_password', 'language_id'];
+        $scenarios['update-profile'] = ['first_name', 'last_name', 'email', 'password', 'gender', 'repeat_password', 'avatar'];
         $scenarios['check'] = ['id', 'first_name', 'last_name', 'email', 'gender', 'avatar', 'language_id', 'created_at'];
         return $scenarios;
     }
@@ -119,9 +121,9 @@ class Customer extends ActiveRecord implements IdentityInterface
         return [
             [['first_name', 'last_name'], 'string', 'max' => 50],
             [['password_hash', 'password_reset_token'], 'string', 'max' => 255],
-            [['password', 'repeatPassword'], 'string', 'on' => ['create']],
-            [['repeatPassword'], 'compare', 'compareAttribute' => 'password', 'on' => ['create']],
-            [['password', 'repeatPassword'], 'required', 'on' => ['create']],
+            [['password', 'repeat_password'], 'string', 'on' => ['create']],
+            [['repeat_password'], 'compare', 'compareAttribute' => 'password', 'on' => ['create']],
+            [['password', 'repeat_password'], 'required', 'on' => ['create']],
             [['password_reset_token'], 'unique'],
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'required'],
@@ -139,7 +141,7 @@ class Customer extends ActiveRecord implements IdentityInterface
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE]],
             [['language_id'], 'integer'],
-            ['languageId', 'required'],
+            ['language_id', 'required'],
             [['created_at', 'updated_at'], 'integer'],
             [['avatar_path', 'avatar_base_url'], 'string', 'max' => 255],
             ['avatar', 'safe'],
@@ -274,7 +276,7 @@ class Customer extends ActiveRecord implements IdentityInterface
      * Generates password hash from password and sets it to the model
      *
      * @param string $password
-     * @throws \yii\base\Exception
+     * @throws Exception
      */
     public function setPassword($password)
     {
@@ -283,7 +285,7 @@ class Customer extends ActiveRecord implements IdentityInterface
 
     /**
      * Generates "remember me" authentication key
-     * @throws \yii\base\Exception
+     * @throws Exception
      */
     public function generateAuthKey()
     {
@@ -292,7 +294,7 @@ class Customer extends ActiveRecord implements IdentityInterface
 
     /**
      * Generates new password reset token
-     * @throws \yii\base\Exception
+     * @throws Exception
      */
     public function generatePasswordResetToken()
     {
@@ -361,7 +363,7 @@ class Customer extends ActiveRecord implements IdentityInterface
 
     /**
      * Return related language
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getLanguage()
     {

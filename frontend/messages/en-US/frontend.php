@@ -10,11 +10,11 @@ return [
     'Contact.Success.Title' => 'Contact',
     'Gallery.List.Title' => 'Gallery list',
 
-    'Login.TitleHint' => 'If you have already been registered, please fill out the following fields to login:',
-    'Signup.TitleHint' => 'Please fill out the following fields to signup:',
+    'Customer.Login.TitleHint' => 'If you have already been registered, please fill out the following fields to login:',
+    'Customer.Signup.TitleHint' => 'Please fill out the following fields to signup:',
+    'Customer.RequestPasswordReset.TitleHint' => 'Please fill out your email. A link to reset password will be sent there.',
+    'Customer.ResetPassword.TitleHint' => 'Please choose your new password:',
     'Contact.Index.TitleHint' => 'If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.',
-    'RequestPasswordReset.TitleHint' => 'Please fill out your email. A link to reset password will be sent there.',
-    'ResetPassword.TitleHint' => 'Please choose your new password:',
 
     'LoginForm.NotRegisteredHint' => 'To register at the website, please click the button below and follow the instructions:',
     'LoginForm.ButtonConfirm' => 'Login',

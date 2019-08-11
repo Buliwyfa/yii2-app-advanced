@@ -7,14 +7,14 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = Yii::t('frontend', 'RequestPasswordReset.Title');
+$this->title = Yii::t('frontend', 'Customer.RequestPasswordReset.Title');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="customer-request-password-reset">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Yii::t('frontend', 'RequestPasswordReset.TitleHint') ?>
+        <?= Yii::t('frontend', 'Customer.RequestPasswordReset.TitleHint') ?>
     </p>
 
     <div class="row">

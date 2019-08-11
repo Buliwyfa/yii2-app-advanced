@@ -1,21 +1,22 @@
 <?php
 
-namespace common\tests\unit\models;
+namespace frontend\tests\unit\models;
 
+use common\tests\UnitTester;
+use frontend\fixtures\CustomerFixture;
+use frontend\models\form\LoginForm;
 use Yii;
-use common\models\LoginForm;
-use common\fixtures\UserFixture;
 
 /**
  * Login form test
  */
 class LoginFormTest extends \Codeception\Test\Unit
 {
+
     /**
-     * @var \common\tests\UnitTester
+     * @var UnitTester
      */
     protected $tester;
-
 
     /**
      * @return array
@@ -23,17 +24,22 @@ class LoginFormTest extends \Codeception\Test\Unit
     public function _fixtures()
     {
         return [
-            'user' => [
-                'class' => UserFixture::className(),
-                'dataFile' => codecept_data_dir() . 'user.php'
+            'customer' => [
+                'class' => CustomerFixture::class,
+                'dataFile' => codecept_data_dir() . 'customer.php'
             ]
         ];
+    }
+
+    public function _before()
+    {
+        Yii::$app->language = 'en';
     }
 
     public function testLoginNoUser()
     {
         $model = new LoginForm([
-            'username' => 'not_existing_username',
+            'email' => 'not_existing_email',
             'password' => 'not_existing_password',
         ]);
 
@@ -44,8 +50,8 @@ class LoginFormTest extends \Codeception\Test\Unit
     public function testLoginWrongPassword()
     {
         $model = new LoginForm([
-            'username' => 'bayer.hudson',
-            'password' => 'wrong_password',
+            'email' => 'paulo@prsolucoes.com',
+            'password' => 'wrong-password',
         ]);
 
         expect('model should not login user', $model->login())->false();
@@ -56,8 +62,8 @@ class LoginFormTest extends \Codeception\Test\Unit
     public function testLoginCorrect()
     {
         $model = new LoginForm([
-            'username' => 'bayer.hudson',
-            'password' => 'password_0',
+            'email' => 'paulo@prsolucoes.com',
+            'password' => 'customer@password',
         ]);
 
         expect('model should login user', $model->login())->true();

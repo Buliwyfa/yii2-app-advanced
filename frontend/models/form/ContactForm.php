@@ -24,7 +24,7 @@ class ContactForm extends Model
     {
         return [
             [['name', 'email', 'subject'], 'safe'],
-            [['body'], 'required'],
+            [['name', 'body', 'email'], 'required'],
             ['email', 'email'],
             ['verifyCode', 'captcha'],
         ];

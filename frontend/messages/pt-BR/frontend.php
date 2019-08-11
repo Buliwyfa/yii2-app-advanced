@@ -10,11 +10,11 @@ return [
     'Contact.Success.Title' => 'Contato',
     'Gallery.List.Title' => 'Lista de galerias',
 
-    'Login.TitleHint' => 'Se você já é cadastrado, por favor, informe os dados abaixo para efetuar login:',
-    'Signup.TitleHint' => 'Por favor, informe os dados solicitados para realizar seu cadastro:',
+    'Customer.Login.TitleHint' => 'Se você já é cadastrado, por favor, informe os dados abaixo para efetuar login:',
+    'Customer.Signup.TitleHint' => 'Por favor, informe os dados solicitados para realizar seu cadastro:',
+    'Customer.RequestPasswordReset.TitleHint' => 'Por favor, informe seu email. Um link será enviado para o processo de troca de senha.',
+    'Customer.ResetPassword.TitleHint' => 'Por favor, informe a sua nova senha:',
     'Contact.Index.TitleHint' => 'Se você tiver algum problema, sugestão ou perguntas, por favor, nos informe através do formulário abaixo. Obrigado.',
-    'RequestPasswordReset.TitleHint' => 'Por favor, informe seu email. Um link será enviado para o processo de troca de senha.',
-    'ResetPassword.TitleHint' => 'Por favor, informe a sua nova senha:',
 
     'LoginForm.NotRegisteredHint' => 'Para se cadastrar no site, por favor, clique no botão abaixo e siga as instruções:',
     'LoginForm.ButtonConfirm' => 'Login',

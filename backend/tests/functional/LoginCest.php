@@ -2,43 +2,50 @@
 
 namespace backend\tests\functional;
 
+use backend\fixtures\UserFixture;
 use backend\tests\FunctionalTester;
-use common\fixtures\UserFixture;
+use Yii;
 
 /**
  * Class LoginCest
  */
 class LoginCest
 {
+
     /**
      * Load fixtures before db transaction begin
      * Called in _before()
-     * @see \Codeception\Module\Yii2::_before()
-     * @see \Codeception\Module\Yii2::loadFixtures()
      * @return array
+     * @see \Codeception\Module\Yii2::loadFixtures()
+     * @see \Codeception\Module\Yii2::_before()
      */
     public function _fixtures()
     {
         return [
             'user' => [
-                'class' => UserFixture::className(),
-                'dataFile' => codecept_data_dir() . 'login_data.php'
+                'class' => UserFixture::class,
+                'dataFile' => codecept_data_dir() . 'login.php'
             ]
         ];
     }
-    
+
+    public function _before(FunctionalTester $I)
+    {
+        Yii::$app->language = 'en';
+    }
+
     /**
      * @param FunctionalTester $I
      */
     public function loginUser(FunctionalTester $I)
     {
-        $I->amOnPage('/site/login');
-        $I->fillField('Username', 'erau');
-        $I->fillField('Password', 'password_0');
-        $I->click('login-button');
+        $I->amOnPage('/admin');
 
-        $I->see('Logout (erau)', 'form button[type=submit]');
-        $I->dontSeeLink('Login');
-        $I->dontSeeLink('Signup');
+        $I->fillField(['name' => 'LoginForm[username]'], 'webmaster');
+        $I->fillField(['name' => 'LoginForm[password]'], 'webmaster@password');
+        $I->click('#login-form button[type=submit]');
+
+        $I->see('Logout');
     }
+
 }

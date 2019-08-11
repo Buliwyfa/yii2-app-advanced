@@ -1,15 +1,19 @@
 <?php
+
 namespace frontend\tests\functional;
 
+use Codeception\Scenario;
 use frontend\tests\FunctionalTester;
+use Yii;
 
-/* @var $scenario \Codeception\Scenario */
-
+/* @var $scenario Scenario */
 class ContactCest
 {
+
     public function _before(FunctionalTester $I)
     {
-        $I->amOnPage(['site/contact']);
+        Yii::$app->language = 'en';
+        $I->amOnPage('contact');
     }
 
     public function checkContact(FunctionalTester $I)
@@ -23,8 +27,7 @@ class ContactCest
         $I->see('Contact', 'h1');
         $I->seeValidationError('Name cannot be blank');
         $I->seeValidationError('Email cannot be blank');
-        $I->seeValidationError('Subject cannot be blank');
-        $I->seeValidationError('Body cannot be blank');
+        $I->seeValidationError('Message cannot be blank');
         $I->seeValidationError('The verification code is incorrect');
     }
 
@@ -54,6 +57,7 @@ class ContactCest
             'ContactForm[verifyCode]' => 'testme',
         ]);
         $I->seeEmailIsSent();
-        $I->see('Thank you for contacting us. We will respond to you as soon as possible.');
+        $I->see('You message was sent with success.');
     }
+
 }
