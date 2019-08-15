@@ -1,5 +1,5 @@
 <?php
-return [
+$config = [
     'components' => [
         'db' => [
             'class' => '\yii\db\Connection',
@@ -50,6 +50,11 @@ return [
     ],
     'bootstrap' => [
         'log',
-        'debug',
     ],
 ];
+
+if (!YII_ENV_TEST) {
+    $config['bootstrap'][] = 'debug';
+}
+
+return $config;
