@@ -41,20 +41,6 @@ $config = [
             'key' => '@JWT-KEY@',
         ],
     ],
-    'modules' => [
-        'debug' => [
-            'class' => 'yii\debug\Module',
-            // uncomment and adjust the following to add your IP if you are not connecting from localhost.
-            'allowedIPs' => ['*'],
-        ],
-    ],
-    'bootstrap' => [
-        'log',
-    ],
 ];
-
-if (!YII_ENV_TEST) {
-    $config['bootstrap'][] = 'debug';
-}
 
 return $config;

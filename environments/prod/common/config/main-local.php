@@ -38,10 +38,7 @@ return [
         ],
         'jwt' => [
             'class' => 'common\components\jwt\JWT',
-            'key' => '@CHANGE-THE-JWT-KEY-HERE@',
+            'key' => '@JWT-KEY@',
         ],
-    ],
-    'bootstrap' => [
-        'log',
     ],
 ];
