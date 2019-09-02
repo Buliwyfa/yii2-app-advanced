@@ -4,26 +4,26 @@
 $.AdminLTESidebarTweak = {};
 
 $.AdminLTESidebarTweak.options = {
-	enableRemember: true,
-	noTransitionAfterReload: true
+    enableRemember: true,
+    noTransitionAfterReload: true
 };
 
 $(function () {
-	'use strict';
+    'use strict';
 
-	$('body').on('collapsed.pushMenu', function () {
-		$.ajax({
-			type: 'GET',
-			url: backendBaseURL + '/site/set-sidebar-menu-state',
-			data: {'state': 'closed'}
-		});
-	});
+    $('body').on('collapsed.pushMenu', function () {
+        $.ajax({
+            type: 'GET',
+            url: backendBaseURL + '/site/set-sidebar-menu-state',
+            data: {'state': 'closed'}
+        });
+    });
 
-	$('body').on("expanded.pushMenu", function () {
-		$.ajax({
-			type: 'GET',
-			url: backendBaseURL + '/site/set-sidebar-menu-state',
-			data: {'state': 'opened'}
-		});
-	});
+    $('body').on('expanded.pushMenu', function () {
+        $.ajax({
+            type: 'GET',
+            url: backendBaseURL + '/site/set-sidebar-menu-state',
+            data: {'state': 'opened'}
+        });
+    });
 });

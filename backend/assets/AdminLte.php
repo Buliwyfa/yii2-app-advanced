@@ -8,7 +8,7 @@ class AdminLte extends AssetBundle
 {
     public $sourcePath = '@bower/admin-lte/dist';
     public $js = [
-        'js/app.min.js'
+        'js/adminlte.min.js',
     ];
     public $css = [
         'css/AdminLTE.min.css',
@@ -18,6 +18,8 @@ class AdminLte extends AssetBundle
         'yii\web\JqueryAsset',
         'yii\bootstrap\BootstrapPluginAsset',
         'backend\assets\FontAwesome',
-        'backend\assets\JquerySlimScroll'
+        'backend\assets\JquerySlimScroll',
+        'backend\assets\Html5shiv',
+        'backend\assets\Respond',
     ];
 }

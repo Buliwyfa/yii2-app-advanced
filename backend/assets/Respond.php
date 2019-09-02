@@ -4,11 +4,11 @@ namespace backend\assets;
 
 use yii\web\AssetBundle;
 
-class Html5shiv extends AssetBundle
+class Respond extends AssetBundle
 {
-    public $sourcePath = '@bower/html5shiv';
+    public $sourcePath = '@bower/respond';
     public $js = [
-        'dist/html5shiv.min.js'
+        'dest/respond.min.js'
     ];
 
     public $jsOptions = [

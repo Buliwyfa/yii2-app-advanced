@@ -9,7 +9,7 @@ use yii\helpers\Html;
 <nav class="navbar navbar-static-top" role="navigation">
 
 	<!-- Sidebar toggle button-->
-	<a id="sidebar-toggle-button" href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+	<a id="sidebar-toggle-button" href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
 		<span class="sr-only"><?= Yii::t('backend', 'SideBarMenu.ToggleButton') ?></span>
 		<span class="icon-bar"></span>
 		<span class="icon-bar"></span>
