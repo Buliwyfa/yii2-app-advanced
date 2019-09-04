@@ -35,6 +35,26 @@ class Group extends ActiveRecord
 
     /**
      * @inheritdoc
+     * @return GroupQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new GroupQuery(get_called_class());
+    }
+
+    /**
+     * @return array
+     */
+    public static function getStatusList()
+    {
+        return [
+            self::STATUS_ACTIVE => Yii::t('common', 'Status.Active'),
+            self::STATUS_INACTIVE => Yii::t('common', 'Status.Inactive'),
+        ];
+    }
+
+    /**
+     * @inheritdoc
      */
     public function behaviors()
     {
@@ -80,26 +100,6 @@ class Group extends ActiveRecord
             'id' => Yii::t('common', 'Model.Id'),
             'created_at' => Yii::t('common', 'Model.CreatedAt'),
             'updated_at' => Yii::t('common', 'Model.UpdatedAt'),
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     * @return GroupQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new GroupQuery(get_called_class());
-    }
-
-    /**
-     * @return array
-     */
-    public static function getStatusList()
-    {
-        return [
-            self::STATUS_ACTIVE => Yii::t('common', 'Status.Active'),
-            self::STATUS_INACTIVE => Yii::t('common', 'Status.Inactive'),
         ];
     }
 

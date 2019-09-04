@@ -16,34 +16,34 @@ use yii\widgets\DetailView;
         <?= Html::a(Yii::t('backend', 'Button.Delete', ['modelClass' => $areaTitle]), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-			    'confirm' => Yii::t('backend', 'Message.DeleteConfirm'),
-			    'method' => 'post',
+                'confirm' => Yii::t('backend', 'Message.DeleteConfirm'),
+                'method' => 'post',
             ],
         ]) ?>
         <?= Html::a(Yii::t('backend', 'Button.Back', ['modelClass' => $areaTitle]), ['index'], ['class' => 'btn btn-primary']); ?>
     </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-	        'attributes' => [
-                'id',
-                'description',
-                'action',
-                [
-                    'attribute' => 'status',
-                    'value' => function ($model, $widget) {
-                        $list = Permission::getStatusList();
+<?= DetailView::widget([
+    'model' => $model,
+    'attributes' => [
+        'id',
+        'description',
+        'action',
+        [
+            'attribute' => 'status',
+            'value' => function ($model, $widget) {
+                $list = Permission::getStatusList();
 
-                        if (isset($list[$model->status])) {
-                            return $list[$model->status];
-                        }
+                if (isset($list[$model->status])) {
+                    return $list[$model->status];
+                }
 
-                        return null;
-                    }
-                ],
-                'created_at:datetime',
-                'updated_at:datetime',
-            ],
-    ]) ?>
+                return null;
+            }
+        ],
+        'created_at:datetime',
+        'updated_at:datetime',
+    ],
+]) ?>
 
 <?= $this->endContent() ?>

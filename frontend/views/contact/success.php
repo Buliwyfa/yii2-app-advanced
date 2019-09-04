@@ -2,12 +2,10 @@
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
+
 /* @var $model \frontend\models\form\ContactForm */
 
 use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
-use yii\captcha\Captcha;
-use yii\helpers\Url;
 
 $this->title = Yii::t('frontend', 'Contact.Success.Title');
 $this->params['breadcrumbs'][] = $this->title;
@@ -17,8 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p style="text-align: center;">
         <?= Html::img('@web/images/ico-success.png', ['style' => 'width: 128px;']) ?>
-        <br />
-        <br />
+        <br/>
+        <br/>
         <?= Yii::t('frontend', 'Contact.Success.Message') ?>
     </p>
 

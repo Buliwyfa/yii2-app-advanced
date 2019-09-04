@@ -5,8 +5,6 @@ use common\models\domain\Company;
 use common\models\domain\User;
 use kartik\export\ExportMenu;
 use kartik\grid\GridView;
-use yii\bootstrap\Html;
-use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider \yii\data\ActiveDataProvider */

@@ -29,25 +29,34 @@ class Language extends ActiveRecord
         return '{{%language}}';
     }
 
-	/**
-	 * @inheritdoc
-	 */
-	public function behaviors()
-	{
-	    return [
-	        TimestampBehavior::class,
-	    ];
-	}
+    /**
+     * @inheritdoc
+     * @return LanguageQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new LanguageQuery(get_called_class());
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::class,
+        ];
+    }
 
     /**
      * @inheritdoc
      */
     public function scenarios()
     {
-		$scenarios = parent::scenarios();
-		$scenarios['create'] = ['name', 'native_name', 'code_iso_639_1', 'code_iso_language', 'created_at'];
-		$scenarios['update'] = ['name', 'native_name', 'code_iso_639_1', 'code_iso_language', 'updated_at'];
-		return $scenarios;
+        $scenarios = parent::scenarios();
+        $scenarios['create'] = ['name', 'native_name', 'code_iso_639_1', 'code_iso_language', 'created_at'];
+        $scenarios['update'] = ['name', 'native_name', 'code_iso_639_1', 'code_iso_language', 'updated_at'];
+        return $scenarios;
     }
 
     /**
@@ -77,15 +86,6 @@ class Language extends ActiveRecord
             'created_at' => Yii::t('common', 'Model.CreatedAt'),
             'updated_at' => Yii::t('common', 'Model.UpdatedAt'),
         ];
-    }
-
-    /**
-     * @inheritdoc
-     * @return LanguageQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new LanguageQuery(get_called_class());
     }
 
 }

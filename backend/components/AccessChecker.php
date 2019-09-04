@@ -2,7 +2,6 @@
 
 namespace backend\components;
 
-use common\models\domain\User;
 use Yii;
 use yii\rbac\CheckAccessInterface;
 

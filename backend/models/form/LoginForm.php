@@ -43,6 +43,20 @@ class LoginForm extends Model
     }
 
     /**
+     * Finds user by [[username]]
+     *
+     * @return User|null
+     */
+    protected function getUser()
+    {
+        if ($this->_user === null) {
+            $this->_user = User::findByUsername($this->username);
+        }
+
+        return $this->_user;
+    }
+
+    /**
      * Logs in a user using the provided username and password.
      *
      * @return bool whether the user is logged in successfully
@@ -66,20 +80,6 @@ class LoginForm extends Model
             'password' => Yii::t('backend', 'LoginForm.Password'),
             'rememberMe' => Yii::t('backend', 'LoginForm.RememberMe'),
         ];
-    }
-
-    /**
-     * Finds user by [[username]]
-     *
-     * @return User|null
-     */
-    protected function getUser()
-    {
-        if ($this->_user === null) {
-            $this->_user = User::findByUsername($this->username);
-        }
-
-        return $this->_user;
     }
 
 }

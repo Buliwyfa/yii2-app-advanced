@@ -44,6 +44,36 @@ class Gallery extends ActiveRecord
 
     /**
      * @inheritdoc
+     * @return GalleryQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new GalleryQuery(get_called_class());
+    }
+
+    /**
+     * @return array
+     */
+    public static function getStatusList()
+    {
+        return [
+            self::STATUS_ACTIVE => Yii::t('common', 'Status.Active'),
+            self::STATUS_INACTIVE => Yii::t('common', 'Status.Inactive'),
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public static function getTagList()
+    {
+        return [
+            self::TAG_FRONTEND => Yii::t('common', 'Gallery.Tag.Frontend'),
+        ];
+    }
+
+    /**
+     * @inheritdoc
      */
     public function behaviors()
     {
@@ -109,42 +139,12 @@ class Gallery extends ActiveRecord
     }
 
     /**
-     * @inheritdoc
-     * @return GalleryQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new GalleryQuery(get_called_class());
-    }
-
-    /**
      * Return related language
      * @return \yii\db\ActiveQuery
      */
     public function getLanguage()
     {
         return $this->hasOne(Language::class, ['id' => 'language_id']);
-    }
-
-    /**
-     * @return array
-     */
-    public static function getStatusList()
-    {
-        return [
-            self::STATUS_ACTIVE => Yii::t('common', 'Status.Active'),
-            self::STATUS_INACTIVE => Yii::t('common', 'Status.Inactive'),
-        ];
-    }
-
-    /**
-     * @return array
-     */
-    public static function getTagList()
-    {
-        return [
-            self::TAG_FRONTEND => Yii::t('common', 'Gallery.Tag.Frontend'),
-        ];
     }
 
     /**

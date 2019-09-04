@@ -5,7 +5,6 @@ namespace frontend\controllers;
 use common\helpers\LanguageHelper;
 use common\models\domain\Language;
 use Yii;
-use yii\web\Cookie;
 
 /**
  * Language controller

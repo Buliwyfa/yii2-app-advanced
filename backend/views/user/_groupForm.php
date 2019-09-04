@@ -1,6 +1,5 @@
 <?php
 
-use common\models\domain\Permission;
 use yii\bootstrap\Html;
 
 /* @var $this yii\web\View */

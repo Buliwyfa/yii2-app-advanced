@@ -36,15 +36,15 @@ $this->params['breadcrumbs'][] = $this->title;
     ]);
     ?>
 
-	<hr/>
+    <hr/>
 
     <?= $form->field($model, 'password')->passwordInput(['maxlength' => 30]) ?>
 
     <?= $form->field($model, 'repeat_password')->passwordInput(['maxlength' => 30]) ?>
 
-	<div class="box-footer">
+    <div class="box-footer">
         <?= Html::submitButton(Yii::t('backend', 'Profile.Index.ConfirmButton'), ['class' => 'btn btn-success']) ?>
-	</div>
+    </div>
 
     <?php ActiveForm::end(); ?>
 

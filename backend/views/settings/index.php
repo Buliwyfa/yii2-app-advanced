@@ -13,21 +13,21 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php $this->beginContent('@backend/views/_partial/shared/areaContainer.php'); ?>
 
-		<div class="settings-update-permissions-container">
+    <div class="settings-update-permissions-container">
 
-			<h3><?= Yii::t('backend', 'Settings.Area.UpdatePermissions.Title') ?></h3>
+        <h3><?= Yii::t('backend', 'Settings.Area.UpdatePermissions.Title') ?></h3>
 
-			<p><?= Yii::t('backend', 'Settings.Area.UpdatePermissions.Message') ?></p>
+        <p><?= Yii::t('backend', 'Settings.Area.UpdatePermissions.Message') ?></p>
 
-	        <?= Html::a(Yii::t('backend', 'Settings.Area.UpdatePermissions.Button', ['modelClass' => $areaTitle]), ['settings/update-permissions'], [
-	            'class' => 'btn btn-danger',
-	            'data' => [
-	                'confirm' => Yii::t('backend', 'Message.Confirm'),
-	                'method' => 'post',
-	            ],
-	        ]) ?>
+        <?= Html::a(Yii::t('backend', 'Settings.Area.UpdatePermissions.Button', ['modelClass' => $areaTitle]), ['settings/update-permissions'], [
+            'class' => 'btn btn-danger',
+            'data' => [
+                'confirm' => Yii::t('backend', 'Message.Confirm'),
+                'method' => 'post',
+            ],
+        ]) ?>
 
-		</div>
+    </div>
 
     <?php $this->endContent(); ?>
 

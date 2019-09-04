@@ -14,44 +14,44 @@ $bundle = BackendAsset::register($this);
 <?php $this->beginContent('@backend/views/layouts/base.php'); ?>
 <div class="wrapper">
 
-	<!-- Header logo -->
-	<header class="main-header">
-		<a href="<?= Yii::$app->urlManager->createAbsoluteUrl('/') ?>" class="logo">
+    <!-- Header logo -->
+    <header class="main-header">
+        <a href="<?= Yii::$app->urlManager->createAbsoluteUrl('/') ?>" class="logo">
 	        <span class="logo-mini">
 		        <img src="<?= Yii::getAlias('@web/images/sidemar-mini-logo.png') ?>"/>
 	        </span>
-			<span class="logo-lg">
+            <span class="logo-lg">
 		        <?= Yii::$app->name ?>
 	        </span>
-		</a>
+        </a>
 
-		<!-- Header - Nav bar -->
+        <!-- Header - Nav bar -->
         <?= $this->render('../_partial/header') ?>
-	</header>
+    </header>
 
-	<!-- Left side column - Side menu -->
+    <!-- Left side column - Side menu -->
     <?= $this->render('../_partial/sideMenu') ?>
 
-	<!-- Right side column - Content -->
-	<div class="content-wrapper">
+    <!-- Right side column - Content -->
+    <div class="content-wrapper">
 
-		<!-- Header content  -->
-		<section class="content-header">
-			<h1>
+        <!-- Header content  -->
+        <section class="content-header">
+            <h1>
                 <?= $this->title ?>
                 <?php if (isset($this->params['subtitle'])): ?>
-					<small><?= $this->params['subtitle'] ?></small>
+                    <small><?= $this->params['subtitle'] ?></small>
                 <?php endif; ?>
-			</h1>
+            </h1>
 
             <?= Breadcrumbs::widget([
                 'tag' => 'ol',
                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
             ]) ?>
-		</section>
+        </section>
 
-		<!-- Main content -->
-		<section class="content">
+        <!-- Main content -->
+        <section class="content">
             <?php if (Yii::$app->session->hasFlash('flash')): ?>
                 <?= Alert::widget([
                     'body' => ArrayHelper::getValue(Yii::$app->session->getFlash('flash'), 'body'),
@@ -59,9 +59,9 @@ $bundle = BackendAsset::register($this);
                 ]) ?>
             <?php endif; ?>
             <?= $content ?>
-		</section>
+        </section>
 
-	</div>
+    </div>
 </div>
 
 <?php $this->endContent(); ?>

@@ -1,8 +1,8 @@
 <?php
 return [
     'components' => [
-        'db'=>[
-            'class'=>'\yii\db\Connection',
+        'db' => [
+            'class' => '\yii\db\Connection',
             'dsn' => 'mysql:host=mysql;dbname=yii2-app-advanced',
             'username' => 'root',
             'password' => 'root',

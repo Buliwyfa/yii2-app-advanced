@@ -95,6 +95,84 @@ class CRUDController extends BaseController
         return $this->render('@backend/views/_partial/crud/index', $this->renderParams);
     }
 
+    /**
+     * Get the model for index action
+     * @return ActiveRecord
+     */
+    protected function getModelForIndex()
+    {
+        $model = new $this->modelForSearch;
+        return $model;
+    }
+
+    /**
+     * Get custom area title
+     * @throws Exception
+     */
+    protected function getAreaTitle()
+    {
+        throw new Exception('You need set it on your own class.');
+    }
+
+    /**
+     * Setup data provider with sort data
+     * @param $dataProvider
+     */
+    protected function setupSearchSortData(&$dataProvider)
+    {
+        $dataProvider->sort = [
+            'defaultOrder' => $this->getSearchDefaultSort()
+        ];
+    }
+
+    /**
+     * Get the default search sort data
+     * @return array
+     */
+    protected function getSearchDefaultSort()
+    {
+        return ['created_at' => SORT_DESC];
+    }
+
+    /**
+     * Add new data to render params
+     * @param $key
+     * @param $value
+     */
+    protected function addRenderParam($key, $value)
+    {
+        if ($this->renderParams == null) {
+            $this->renderParams = [];
+        }
+
+        $this->renderParams[$key] = $value;
+    }
+
+    /**
+     * Get custom CSS class for the view containers
+     * @throws Exception
+     */
+    protected function getContainerClass()
+    {
+        throw new Exception('You need set it on your own class.');
+    }
+
+    /**
+     * Get custom view path for child controller
+     * @throws Exception
+     */
+    protected function getControllerViewPath()
+    {
+        throw new Exception('You need set it on your own class.');
+    }
+
+    /**
+     * Execute before call render on index action
+     */
+    protected function beforeRenderOnIndex()
+    {
+    }
+
     public function actionView()
     {
         // init
@@ -117,6 +195,42 @@ class CRUDController extends BaseController
         $this->beforeRenderOnView();
 
         return $this->render('@backend/views/_partial/crud/view', $this->renderParams);
+    }
+
+    /**
+     * Get the model for view action
+     * @return ActiveRecord
+     */
+    protected function getModelForView()
+    {
+        if (($model = call_user_func((string)$this->modelForView . '::findOne', Yii::$app->request->get('id'))) !== null) {
+            return $model;
+        } else {
+            $this->onItemNotFound();
+        }
+
+        return null;
+    }
+
+    /**
+     * Executed when item was not found / invalid
+     */
+    protected function onItemNotFound()
+    {
+        Yii::$app->session->setFlash('flash', [
+            'options' => ['class' => 'alert-danger'],
+            'body' => Yii::t('backend', 'Message.ItemNotFound')
+        ]);
+
+        Yii::$app->getResponse()->redirect('index');
+        Yii::$app->end();
+    }
+
+    /**
+     * Execute before call render on view action
+     */
+    protected function beforeRenderOnView()
+    {
     }
 
     public function actionCreate()
@@ -166,134 +280,6 @@ class CRUDController extends BaseController
         return $this->render('@backend/views/_partial/crud/create', $this->renderParams);
     }
 
-    public function actionUpdate()
-    {
-        // init
-        $model = $this->getModelForUpdate();
-        $model->setScenario('update');
-        $areaTitle = $this->getAreaTitle();
-
-        // process
-        if (Yii::$app->request->isPost) {
-            if ($this->beforeLoadDataOnUpdate($model)) {
-                if ($model->load(Yii::$app->request->post())) {
-                    if ($this->afterLoadDataOnUpdate($model)) {
-                        if ($model->validate()) {
-                            if ($this->afterValidateOnUpdate($model)) {
-                                if ($model->save(false)) {
-                                    if ($this->afterSaveOnUpdate($model)) {
-                                        $this->redirectOnUpdate($model);
-                                        return false;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        } else {
-            $this->afterModelLoadedOnUpdated($model);
-        }
-
-        // default params
-        $this->addRenderParam('title', Yii::t('backend', 'Common.Area.Update.Title', ['areaTitle' => $areaTitle]));
-        $this->addRenderParam('areaTitle', $areaTitle);
-        $this->addRenderParam('breadcrumbs', [
-            ['label' => Yii::t('backend', 'Common.Area.Index.Breadcrumb.Title', ['areaTitle' => $areaTitle]), 'url' => Url::to('index')],
-            Yii::t('backend', 'Common.Area.Update.Breadcrumb.Title', ['areaTitle' => $areaTitle]),
-        ]);
-        $this->addRenderParam('containerClass', $this->getContainerClass());
-        $this->addRenderParam('viewPath', $this->getControllerViewPath());
-        $this->addRenderParam('model', $model);
-        $this->addRenderParam('showForm', true);
-
-        // render
-        $this->beforeRenderOnUpdate();
-
-        return $this->render('@backend/views/_partial/crud/update', $this->renderParams);
-    }
-
-    public function actionDelete()
-    {
-        // init
-        $model = $this->getModelForDelete();
-        $model->setScenario('delete');
-
-        if ($model) {
-            if ($this->beforeDeleteModelOnDelete($model)) {
-                if ($model->delete()) {
-                    if ($this->afterDeleteModelOnDelete($model)) {
-                        Yii::$app->session->setFlash('flash', [
-                            'options' => ['class' => 'alert-success'],
-                            'body' => Yii::t('backend', 'Message.ItemDeleted')
-                        ]);
-                    }
-                }
-            }
-        }
-
-        return Yii::$app->getResponse()->redirect('index');
-    }
-
-    /**
-     * Add new data to render params
-     * @param $key
-     * @param $value
-     */
-    protected function addRenderParam($key, $value)
-    {
-        if ($this->renderParams == null) {
-            $this->renderParams = [];
-        }
-
-        $this->renderParams[$key] = $value;
-    }
-
-    /**
-     * Get the model for index action
-     * @return ActiveRecord
-     */
-    protected function getModelForIndex()
-    {
-        $model = new $this->modelForSearch;
-        return $model;
-    }
-
-    /**
-     * Get the model for view action
-     * @return ActiveRecord
-     */
-    protected function getModelForView()
-    {
-        if (($model = call_user_func((string)$this->modelForView . '::findOne', Yii::$app->request->get('id'))) !== null) {
-            return $model;
-        } else {
-            $this->onItemNotFound();
-        }
-
-        return null;
-    }
-
-    /**
-     * Get the default search sort data
-     * @return array
-     */
-    protected function getSearchDefaultSort()
-    {
-        return ['created_at' => SORT_DESC];
-    }
-
-    /**
-     * Setup data provider with sort data
-     * @param $dataProvider
-     */
-    protected function setupSearchSortData(&$dataProvider)
-    {
-        $dataProvider->sort = [
-            'defaultOrder' => $this->getSearchDefaultSort()
-        ];
-    }
-
     /**
      * Get the model for create action
      * @return ActiveRecord
@@ -302,36 +288,6 @@ class CRUDController extends BaseController
     {
         $model = new $this->modelForCreate;
         return $model;
-    }
-
-    /**
-     * Get the model for update action
-     * @return ActiveRecord
-     */
-    protected function getModelForUpdate()
-    {
-        if (($model = call_user_func((string)$this->modelForView . '::findOne', Yii::$app->request->get('id'))) !== null) {
-            return $model;
-        } else {
-            $this->onItemNotFound();
-        }
-
-        return null;
-    }
-
-    /**
-     * Get the model for delete action
-     * @return ActiveRecord
-     */
-    protected function getModelForDelete()
-    {
-        if (($model = call_user_func((string)$this->modelForDelete . '::findOne', Yii::$app->request->get('id'))) !== null) {
-            return $model;
-        } else {
-            $this->onItemNotFound();
-        }
-
-        return null;
     }
 
     /**
@@ -389,25 +345,80 @@ class CRUDController extends BaseController
     }
 
     /**
-     * Executed to redirect the user to other action from update action
-     * @param $model
-     */
-    protected function redirectOnUpdate(&$model)
-    {
-        Yii::$app->session->setFlash('flash', [
-            'options' => ['class' => 'alert-success'],
-            'body' => Yii::t('backend', 'Message.ItemUpdated')
-        ]);
-
-        Yii::$app->getResponse()->redirect('index');
-    }
-
-    /**
      * Executed after new instance of model was created to be showed on view
      * @param $model
      */
     protected function afterModelNewInstanceOnCreate(&$model)
     {
+    }
+
+    /**
+     * Execute before call render on create action
+     */
+    protected function beforeRenderOnCreate()
+    {
+    }
+
+    public function actionUpdate()
+    {
+        // init
+        $model = $this->getModelForUpdate();
+        $model->setScenario('update');
+        $areaTitle = $this->getAreaTitle();
+
+        // process
+        if (Yii::$app->request->isPost) {
+            if ($this->beforeLoadDataOnUpdate($model)) {
+                if ($model->load(Yii::$app->request->post())) {
+                    if ($this->afterLoadDataOnUpdate($model)) {
+                        if ($model->validate()) {
+                            if ($this->afterValidateOnUpdate($model)) {
+                                if ($model->save(false)) {
+                                    if ($this->afterSaveOnUpdate($model)) {
+                                        $this->redirectOnUpdate($model);
+                                        return false;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            $this->afterModelLoadedOnUpdated($model);
+        }
+
+        // default params
+        $this->addRenderParam('title', Yii::t('backend', 'Common.Area.Update.Title', ['areaTitle' => $areaTitle]));
+        $this->addRenderParam('areaTitle', $areaTitle);
+        $this->addRenderParam('breadcrumbs', [
+            ['label' => Yii::t('backend', 'Common.Area.Index.Breadcrumb.Title', ['areaTitle' => $areaTitle]), 'url' => Url::to('index')],
+            Yii::t('backend', 'Common.Area.Update.Breadcrumb.Title', ['areaTitle' => $areaTitle]),
+        ]);
+        $this->addRenderParam('containerClass', $this->getContainerClass());
+        $this->addRenderParam('viewPath', $this->getControllerViewPath());
+        $this->addRenderParam('model', $model);
+        $this->addRenderParam('showForm', true);
+
+        // render
+        $this->beforeRenderOnUpdate();
+
+        return $this->render('@backend/views/_partial/crud/update', $this->renderParams);
+    }
+
+    /**
+     * Get the model for update action
+     * @return ActiveRecord
+     */
+    protected function getModelForUpdate()
+    {
+        if (($model = call_user_func((string)$this->modelForView . '::findOne', Yii::$app->request->get('id'))) !== null) {
+            return $model;
+        } else {
+            $this->onItemNotFound();
+        }
+
+        return null;
     }
 
     /**
@@ -451,58 +462,24 @@ class CRUDController extends BaseController
     }
 
     /**
+     * Executed to redirect the user to other action from update action
+     * @param $model
+     */
+    protected function redirectOnUpdate(&$model)
+    {
+        Yii::$app->session->setFlash('flash', [
+            'options' => ['class' => 'alert-success'],
+            'body' => Yii::t('backend', 'Message.ItemUpdated')
+        ]);
+
+        Yii::$app->getResponse()->redirect('index');
+    }
+
+    /**
      * Executed after model loaded to be showed on view
      * @param $model
      */
     protected function afterModelLoadedOnUpdated(&$model)
-    {
-    }
-
-    /**
-     * Get custom CSS class for the view containers
-     * @throws Exception
-     */
-    protected function getContainerClass()
-    {
-        throw new Exception('You need set it on your own class.');
-    }
-
-    /**
-     * Get custom view path for child controller
-     * @throws Exception
-     */
-    protected function getControllerViewPath()
-    {
-        throw new Exception('You need set it on your own class.');
-    }
-
-    /**
-     * Execute before call render on index action
-     */
-    protected function beforeRenderOnIndex()
-    {
-    }
-
-    /**
-     * Get custom area title
-     * @throws Exception
-     */
-    protected function getAreaTitle()
-    {
-        throw new Exception('You need set it on your own class.');
-    }
-
-    /**
-     * Execute before call render on view action
-     */
-    protected function beforeRenderOnView()
-    {
-    }
-
-    /**
-     * Execute before call render on create action
-     */
-    protected function beforeRenderOnCreate()
     {
     }
 
@@ -513,18 +490,41 @@ class CRUDController extends BaseController
     {
     }
 
-    /**
-     * Executed when item was not found / invalid
-     */
-    protected function onItemNotFound()
+    public function actionDelete()
     {
-        Yii::$app->session->setFlash('flash', [
-            'options' => ['class' => 'alert-danger'],
-            'body' => Yii::t('backend', 'Message.ItemNotFound')
-        ]);
+        // init
+        $model = $this->getModelForDelete();
+        $model->setScenario('delete');
 
-        Yii::$app->getResponse()->redirect('index');
-        Yii::$app->end();
+        if ($model) {
+            if ($this->beforeDeleteModelOnDelete($model)) {
+                if ($model->delete()) {
+                    if ($this->afterDeleteModelOnDelete($model)) {
+                        Yii::$app->session->setFlash('flash', [
+                            'options' => ['class' => 'alert-success'],
+                            'body' => Yii::t('backend', 'Message.ItemDeleted')
+                        ]);
+                    }
+                }
+            }
+        }
+
+        return Yii::$app->getResponse()->redirect('index');
+    }
+
+    /**
+     * Get the model for delete action
+     * @return ActiveRecord
+     */
+    protected function getModelForDelete()
+    {
+        if (($model = call_user_func((string)$this->modelForDelete . '::findOne', Yii::$app->request->get('id'))) !== null) {
+            return $model;
+        } else {
+            $this->onItemNotFound();
+        }
+
+        return null;
     }
 
     /**

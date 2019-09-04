@@ -10,7 +10,6 @@ class Respond extends AssetBundle
     public $js = [
         'dest/respond.min.js'
     ];
-
     public $jsOptions = [
         'condition' => 'lt IE 9'
     ];

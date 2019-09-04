@@ -8,7 +8,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="content-index">
 
-	<h1><?= $content->title ?></h1>
+    <h1><?= $content->title ?></h1>
 
     <?= $content->content ?>
 

@@ -37,25 +37,57 @@ class Content extends ActiveRecord
         return '{{%content}}';
     }
 
-	/**
-	 * @inheritdoc
-	 */
-	public function behaviors()
-	{
-	    return [
-	        TimestampBehavior::class,
-	    ];
-	}
+    /**
+     * @return array
+     */
+    public static function getStatusList()
+    {
+        return [
+            self::STATUS_ACTIVE => Yii::t('common', 'Status.Active'),
+            self::STATUS_INACTIVE => Yii::t('common', 'Status.Inactive'),
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     * @return ContentQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new ContentQuery(get_called_class());
+    }
+
+    /**
+     * @return array
+     */
+    public static function getTagList()
+    {
+        return [
+            self::TAG_ABOUT_US => Yii::t('common', 'Content.Tag.AboutUs'),
+            self::TAG_TERMS_OF_USE => Yii::t('common', 'Content.Tag.TermsOfUse'),
+            self::TAG_PRIVACY_POLICY => Yii::t('common', 'Content.Tag.PrivacyPolicy'),
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::class,
+        ];
+    }
 
     /**
      * @inheritdoc
      */
     public function scenarios()
     {
-		$scenarios = parent::scenarios();
-		$scenarios['create'] = ['title', 'tag', 'content', 'language_id', 'status', 'created_at'];
-		$scenarios['update'] = ['title', 'tag', 'content', 'language_id', 'status', 'updated_at'];
-		return $scenarios;
+        $scenarios = parent::scenarios();
+        $scenarios['create'] = ['title', 'tag', 'content', 'language_id', 'status', 'created_at'];
+        $scenarios['update'] = ['title', 'tag', 'content', 'language_id', 'status', 'updated_at'];
+        return $scenarios;
     }
 
     /**
@@ -90,44 +122,12 @@ class Content extends ActiveRecord
     }
 
     /**
-     * @return array
-     */
-    public static function getStatusList()
-    {
-        return [
-            self::STATUS_ACTIVE => Yii::t('common', 'Status.Active'),
-            self::STATUS_INACTIVE => Yii::t('common', 'Status.Inactive'),
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     * @return ContentQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new ContentQuery(get_called_class());
-    }
-
-    /**
      * Return related language
      * @return \yii\db\ActiveQuery
      */
     public function getLanguage()
     {
         return $this->hasOne(Language::class, ['id' => 'language_id']);
-    }
-
-    /**
-     * @return array
-     */
-    public static function getTagList()
-    {
-        return [
-            self::TAG_ABOUT_US => Yii::t('common', 'Content.Tag.AboutUs'),
-            self::TAG_TERMS_OF_USE => Yii::t('common', 'Content.Tag.TermsOfUse'),
-            self::TAG_PRIVACY_POLICY => Yii::t('common', 'Content.Tag.PrivacyPolicy'),
-        ];
     }
 
 }

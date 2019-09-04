@@ -32,19 +32,19 @@ class LoginCest
         $I->amOnRoute('customer/login');
     }
 
+    public function checkEmpty(FunctionalTester $I)
+    {
+        $I->submitForm('#login-form', $this->formParams('', ''));
+        $I->seeValidationError('Email cannot be blank.');
+        $I->seeValidationError('Password cannot be blank.');
+    }
+
     protected function formParams($login, $password)
     {
         return [
             'LoginForm[email]' => $login,
             'LoginForm[password]' => $password,
         ];
-    }
-
-    public function checkEmpty(FunctionalTester $I)
-    {
-        $I->submitForm('#login-form', $this->formParams('', ''));
-        $I->seeValidationError('Email cannot be blank.');
-        $I->seeValidationError('Password cannot be blank.');
     }
 
     public function checkWrongPassword(FunctionalTester $I)

@@ -70,6 +70,100 @@ class Customer extends ActiveRecord implements IdentityInterface
     /**
      * @inheritdoc
      */
+    public static function findIdentity($id)
+    {
+        return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        $id = (int)$token->getClaim('id', 0);
+        return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
+    }
+
+    /**
+     * Finds user by email
+     *
+     * @param string $email
+     * @return static|null
+     */
+    public static function findByEmail($email)
+    {
+        return static::findOne(['email' => $email, 'status' => self::STATUS_ACTIVE]);
+    }
+
+    /**
+     * Finds user by password reset token
+     *
+     * @param string $token password reset token
+     * @return static|null
+     */
+    public static function findByPasswordResetToken($token)
+    {
+        if (!static::isPasswordResetTokenValid($token)) {
+            return null;
+        }
+
+        return static::findOne([
+            'password_reset_token' => $token,
+            'status' => self::STATUS_ACTIVE,
+        ]);
+    }
+
+    /**
+     * Finds out if password reset token is valid
+     *
+     * @param string $token password reset token
+     * @return bool
+     */
+    public static function isPasswordResetTokenValid($token)
+    {
+        if (empty($token)) {
+            return false;
+        }
+
+        $timestamp = (int)substr($token, strrpos($token, '_') + 1);
+        $expire = Yii::$app->params['customer.passwordResetTokenExpire'];
+        return $timestamp + $expire >= time();
+    }
+
+    /**
+     * @return array
+     */
+    public static function getStatusList()
+    {
+        return [
+            self::STATUS_ACTIVE => Yii::t('common', 'Status.Active'),
+            self::STATUS_INACTIVE => Yii::t('common', 'Status.Inactive'),
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public static function getGenderList()
+    {
+        return [
+            self::GENDER_MALE => Yii::t('common', 'Gender.Male'),
+            self::GENDER_FEMALE => Yii::t('common', 'Gender.Female'),
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     * @return CustomerQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new CustomerQuery(get_called_class());
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function behaviors()
     {
         return [
@@ -177,69 +271,6 @@ class Customer extends ActiveRecord implements IdentityInterface
     /**
      * @inheritdoc
      */
-    public static function findIdentity($id)
-    {
-        return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public static function findIdentityByAccessToken($token, $type = null)
-    {
-        $id = (int)$token->getClaim('id', 0);
-        return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
-    }
-
-    /**
-     * Finds user by email
-     *
-     * @param string $email
-     * @return static|null
-     */
-    public static function findByEmail($email)
-    {
-        return static::findOne(['email' => $email, 'status' => self::STATUS_ACTIVE]);
-    }
-
-    /**
-     * Finds user by password reset token
-     *
-     * @param string $token password reset token
-     * @return static|null
-     */
-    public static function findByPasswordResetToken($token)
-    {
-        if (!static::isPasswordResetTokenValid($token)) {
-            return null;
-        }
-
-        return static::findOne([
-            'password_reset_token' => $token,
-            'status' => self::STATUS_ACTIVE,
-        ]);
-    }
-
-    /**
-     * Finds out if password reset token is valid
-     *
-     * @param string $token password reset token
-     * @return bool
-     */
-    public static function isPasswordResetTokenValid($token)
-    {
-        if (empty($token)) {
-            return false;
-        }
-
-        $timestamp = (int)substr($token, strrpos($token, '_') + 1);
-        $expire = Yii::$app->params['customer.passwordResetTokenExpire'];
-        return $timestamp + $expire >= time();
-    }
-
-    /**
-     * @inheritdoc
-     */
     public function getId()
     {
         return $this->getPrimaryKey();
@@ -340,28 +371,6 @@ class Customer extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * @return array
-     */
-    public static function getStatusList()
-    {
-        return [
-            self::STATUS_ACTIVE => Yii::t('common', 'Status.Active'),
-            self::STATUS_INACTIVE => Yii::t('common', 'Status.Inactive'),
-        ];
-    }
-
-    /**
-     * @return array
-     */
-    public static function getGenderList()
-    {
-        return [
-            self::GENDER_MALE => Yii::t('common', 'Gender.Male'),
-            self::GENDER_FEMALE => Yii::t('common', 'Gender.Female'),
-        ];
-    }
-
-    /**
      * Return related language
      * @return ActiveQuery
      */
@@ -380,15 +389,6 @@ class Customer extends ActiveRecord implements IdentityInterface
         return $this->avatar_path
             ? Url::to(($this->avatar_base_url . '/' . $this->avatar_path), $scheme)
             : $default;
-    }
-
-    /**
-     * @inheritdoc
-     * @return CustomerQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new CustomerQuery(get_called_class());
     }
 
     /**

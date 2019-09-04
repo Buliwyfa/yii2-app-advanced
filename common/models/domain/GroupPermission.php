@@ -23,6 +23,14 @@ class GroupPermission extends ActiveRecord
         return '{{%group_permission}}';
     }
 
+    /**
+     * @inheritdoc
+     * @return GroupPermissionQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new GroupPermissionQuery(get_called_class());
+    }
 
     /**
      * @inheritdoc
@@ -43,15 +51,6 @@ class GroupPermission extends ActiveRecord
             'group_id' => Yii::t('common', 'Model.UserId'),
             'permission_id' => Yii::t('common', 'Model.PermissionId'),
         ];
-    }
-
-    /**
-     * @inheritdoc
-     * @return GroupPermissionQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new GroupPermissionQuery(get_called_class());
     }
 
 }

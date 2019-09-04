@@ -12,6 +12,7 @@
 /* @var $showGridViewFilter boolean */
 /* @var $searchModel \yii\db\ActiveRecord */
 /* @var $filterModel \yii\db\ActiveRecord */
+
 /* @var $dataProvider \yii\data\ActiveDataProvider */
 
 use yii\bootstrap\Html;
@@ -26,29 +27,29 @@ foreach ($breadcrumbs as $breadcrumb) {
 <div class="<?= $containerClass ?>-index">
     <?php $this->beginContent('@backend/views/_partial/shared/areaContainer.php'); ?>
 
+    <?php
+    // show search filter form
+    if ($showFilterForm) {
+        echo $this->render($viewPath . '/_filters', ['model' => $searchModel]);
+    }
+    ?>
+
+    <p>
         <?php
-        // show search filter form
-        if ($showFilterForm) {
-            echo $this->render($viewPath . '/_filters', ['model' => $searchModel]);
+        // show create button
+        if ($showCreateButton) {
+            echo Html::a((isset($buttonCreateLabel) ? $buttonCreateLabel : Yii::t('backend', 'Button.Create', ['modelClass' => $areaTitle])), ['create'], ['class' => 'btn btn-success']);
         }
         ?>
+    </p>
 
-		<p>
-            <?php
-            // show create button
-            if ($showCreateButton) {
-                echo Html::a((isset($buttonCreateLabel) ? $buttonCreateLabel : Yii::t('backend', 'Button.Create', ['modelClass' => $areaTitle])), ['create'], ['class' => 'btn btn-success']);
-            }
-            ?>
-		</p>
+    <?php
+    // show grid view
+    if ($showGridView) {
+        echo $this->render($viewPath . '/_grid', ['dataProvider' => $dataProvider, 'filterModel' => $filterModel, 'showGridViewFilter' => $showGridViewFilter]);
+    };
+    ?>
 
-        <?php
-        // show grid view
-        if ($showGridView) {
-            echo $this->render($viewPath . '/_grid', ['dataProvider' => $dataProvider, 'filterModel' => $filterModel, 'showGridViewFilter' => $showGridViewFilter]);
-        };
-        ?>
-
-	<?php $this->endContent(); ?>
+    <?php $this->endContent(); ?>
 </div>
 

@@ -12,8 +12,8 @@ $this->title = \Yii::t('frontend', 'Site.Index.Title');
         <?= Yii::$app->name ?>
     </h1>
 
-    <br />
-    <br />
+    <br/>
+    <br/>
 
     <?= Html::img('@web/images/logo.png', ['class' => 'img-responsive', 'style' => 'max-width: 200px; margin: 0 auto;']) ?>
 </div>
