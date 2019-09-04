@@ -6,8 +6,10 @@ use common\models\query\CustomerQuery;
 use Lcobucci\JWT\Signer\Hmac\Sha512;
 use trntv\filekit\behaviors\UploadBehavior;
 use Yii;
+use yii\base\Exception;
 use yii\behaviors\AttributeBehavior;
 use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\helpers\Url;
 use yii\web\IdentityInterface;
@@ -50,7 +52,7 @@ class Customer extends ActiveRecord implements IdentityInterface
     /**
      * @var
      */
-    public $repeatPassword;
+    public $repeat_password;
 
     /**
      * @var
@@ -63,112 +65,6 @@ class Customer extends ActiveRecord implements IdentityInterface
     public static function tableName()
     {
         return '{{%customer}}';
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            TimestampBehavior::class,
-            'auth_key' => [
-                'class' => AttributeBehavior::class,
-                'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => 'auth_key'
-                ],
-                'value' => Yii::$app->getSecurity()->generateRandomString()
-            ],
-            'password_reset_token' => [
-                'class' => AttributeBehavior::class,
-                'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => 'password_reset_token'
-                ],
-                'value' => function () {
-                    return Yii::$app->getSecurity()->generateRandomString(40);
-                }
-            ],
-            [
-                'class' => UploadBehavior::class,
-                'attribute' => 'avatar',
-                'pathAttribute' => 'avatar_path',
-                'baseUrlAttribute' => 'avatar_base_url',
-                'filesStorage' => 'customerProfileFileStorage',
-            ]
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function scenarios()
-    {
-        $scenarios = parent::scenarios();
-        $scenarios['create'] = ['first_name', 'last_name', 'email', 'password', 'gender', 'status', 'repeatPassword', 'language_id'];
-        $scenarios['update'] = ['first_name', 'last_name', 'email', 'password', 'gender', 'status', 'repeatPassword', 'language_id'];
-        $scenarios['update-profile'] = ['first_name', 'last_name', 'email', 'password', 'gender', 'repeatPassword', 'avatar'];
-        $scenarios['check'] = ['id', 'first_name', 'last_name', 'email', 'gender', 'avatar', 'language_id', 'created_at'];
-        return $scenarios;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
-        return [
-            [['first_name', 'last_name'], 'string', 'max' => 50],
-            [['password_hash', 'password_reset_token'], 'string', 'max' => 255],
-            [['password', 'repeatPassword'], 'string', 'on' => ['create']],
-            [['repeatPassword'], 'compare', 'compareAttribute' => 'password', 'on' => ['create']],
-            [['password', 'repeatPassword'], 'required', 'on' => ['create']],
-            [['password_reset_token'], 'unique'],
-            ['email', 'filter', 'filter' => 'trim'],
-            ['email', 'required'],
-            ['email', 'string', 'min' => 3, 'max' => 255],
-            ['email', 'email'],
-            ['email', 'unique',
-                'targetClass' => '\common\models\domain\Customer',
-                'message' => Yii::t('common', 'Customer.EmailTaken'),
-                'filter' => function ($query) {
-                    $query->andWhere(['not', ['id' => $this->id]]);
-                }
-            ],
-            ['gender', 'default', 'value' => null],
-            ['gender', 'in', 'range' => [Customer::GENDER_MALE, Customer::GENDER_FEMALE]],
-            ['status', 'default', 'value' => self::STATUS_ACTIVE],
-            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE]],
-            [['language_id'], 'integer'],
-            [['created_at', 'updated_at'], 'integer'],
-            [['avatar_path', 'avatar_base_url'], 'string', 'max' => 255],
-            ['avatar', 'safe'],
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
-            'first_name' => Yii::t('common', 'Model.FirstName'),
-            'last_name' => Yii::t('common', 'Model.LastName'),
-            'email' => Yii::t('common', 'Model.Email'),
-            'auth_key' => Yii::t('common', 'Model.AuthKey'),
-            'password_hash' => Yii::t('common', 'Model.PasswordHash'),
-            'password_reset_token' => Yii::t('common', 'Model.PasswordResetToken'),
-            'gender' => Yii::t('common', 'Model.Gender'),
-            'status' => Yii::t('common', 'Model.Status'),
-            'language_id' => Yii::t('common', 'Model.LanguageId'),
-            'logged_at' => Yii::t('common', 'Model.LoggedAt'),
-            'avatar' => Yii::t('common', 'Model.Avatar'),
-            'avatar_path' => Yii::t('common', 'Model.Avatar'),
-            'avatar_url' => Yii::t('common', 'Model.Avatar'),
-
-            'id' => Yii::t('common', 'Model.Id'),
-            'created_at' => Yii::t('common', 'Model.CreatedAt'),
-            'updated_at' => Yii::t('common', 'Model.UpdatedAt'),
-        ];
     }
 
     /**
@@ -235,6 +131,144 @@ class Customer extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * @return array
+     */
+    public static function getStatusList()
+    {
+        return [
+            self::STATUS_ACTIVE => Yii::t('common', 'Status.Active'),
+            self::STATUS_INACTIVE => Yii::t('common', 'Status.Inactive'),
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public static function getGenderList()
+    {
+        return [
+            self::GENDER_MALE => Yii::t('common', 'Gender.Male'),
+            self::GENDER_FEMALE => Yii::t('common', 'Gender.Female'),
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     * @return CustomerQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new CustomerQuery(get_called_class());
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::class,
+            'auth_key' => [
+                'class' => AttributeBehavior::class,
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'auth_key'
+                ],
+                'value' => Yii::$app->getSecurity()->generateRandomString()
+            ],
+            'password_reset_token' => [
+                'class' => AttributeBehavior::class,
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'password_reset_token'
+                ],
+                'value' => function () {
+                    return Yii::$app->getSecurity()->generateRandomString(40);
+                }
+            ],
+            [
+                'class' => UploadBehavior::class,
+                'attribute' => 'avatar',
+                'pathAttribute' => 'avatar_path',
+                'baseUrlAttribute' => 'avatar_base_url',
+                'filesStorage' => 'customerProfileFileStorage',
+            ]
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios['create'] = ['first_name', 'last_name', 'email', 'password', 'gender', 'status', 'repeat_password', 'language_id'];
+        $scenarios['update'] = ['first_name', 'last_name', 'email', 'password', 'gender', 'status', 'repeat_password', 'language_id'];
+        $scenarios['update-profile'] = ['first_name', 'last_name', 'email', 'password', 'gender', 'repeat_password', 'avatar'];
+        $scenarios['check'] = ['id', 'first_name', 'last_name', 'email', 'gender', 'avatar', 'language_id', 'created_at'];
+        return $scenarios;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['first_name', 'last_name'], 'string', 'max' => 50],
+            [['password_hash', 'password_reset_token'], 'string', 'max' => 255],
+            [['password', 'repeat_password'], 'string', 'on' => ['create']],
+            [['repeat_password'], 'compare', 'compareAttribute' => 'password', 'on' => ['create']],
+            [['password', 'repeat_password'], 'required', 'on' => ['create']],
+            [['password_reset_token'], 'unique'],
+            ['email', 'filter', 'filter' => 'trim'],
+            ['email', 'required'],
+            ['email', 'string', 'min' => 3, 'max' => 255],
+            ['email', 'email'],
+            ['email', 'unique',
+                'targetClass' => '\common\models\domain\Customer',
+                'message' => Yii::t('common', 'Customer.EmailTaken'),
+                'filter' => function ($query) {
+                    $query->andWhere(['not', ['id' => $this->id]]);
+                }
+            ],
+            ['gender', 'default', 'value' => null],
+            ['gender', 'in', 'range' => [Customer::GENDER_MALE, Customer::GENDER_FEMALE]],
+            ['status', 'default', 'value' => self::STATUS_ACTIVE],
+            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE]],
+            [['language_id'], 'integer'],
+            ['language_id', 'required'],
+            [['created_at', 'updated_at'], 'integer'],
+            [['avatar_path', 'avatar_base_url'], 'string', 'max' => 255],
+            ['avatar', 'safe'],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'first_name' => Yii::t('common', 'Model.FirstName'),
+            'last_name' => Yii::t('common', 'Model.LastName'),
+            'email' => Yii::t('common', 'Model.Email'),
+            'auth_key' => Yii::t('common', 'Model.AuthKey'),
+            'password_hash' => Yii::t('common', 'Model.PasswordHash'),
+            'password_reset_token' => Yii::t('common', 'Model.PasswordResetToken'),
+            'gender' => Yii::t('common', 'Model.Gender'),
+            'status' => Yii::t('common', 'Model.Status'),
+            'language_id' => Yii::t('common', 'Model.LanguageId'),
+            'logged_at' => Yii::t('common', 'Model.LoggedAt'),
+            'avatar' => Yii::t('common', 'Model.Avatar'),
+            'avatar_path' => Yii::t('common', 'Model.Avatar'),
+            'avatar_url' => Yii::t('common', 'Model.Avatar'),
+
+            'id' => Yii::t('common', 'Model.Id'),
+            'created_at' => Yii::t('common', 'Model.CreatedAt'),
+            'updated_at' => Yii::t('common', 'Model.UpdatedAt'),
+        ];
+    }
+
+    /**
      * @inheritdoc
      */
     public function getId()
@@ -273,7 +307,7 @@ class Customer extends ActiveRecord implements IdentityInterface
      * Generates password hash from password and sets it to the model
      *
      * @param string $password
-     * @throws \yii\base\Exception
+     * @throws Exception
      */
     public function setPassword($password)
     {
@@ -282,7 +316,7 @@ class Customer extends ActiveRecord implements IdentityInterface
 
     /**
      * Generates "remember me" authentication key
-     * @throws \yii\base\Exception
+     * @throws Exception
      */
     public function generateAuthKey()
     {
@@ -291,7 +325,7 @@ class Customer extends ActiveRecord implements IdentityInterface
 
     /**
      * Generates new password reset token
-     * @throws \yii\base\Exception
+     * @throws Exception
      */
     public function generatePasswordResetToken()
     {
@@ -337,30 +371,8 @@ class Customer extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * @return array
-     */
-    public static function getStatusList()
-    {
-        return [
-            self::STATUS_ACTIVE => Yii::t('common', 'Status.Active'),
-            self::STATUS_INACTIVE => Yii::t('common', 'Status.Inactive'),
-        ];
-    }
-
-    /**
-     * @return array
-     */
-    public static function getGenderList()
-    {
-        return [
-            self::GENDER_MALE => Yii::t('common', 'Gender.Male'),
-            self::GENDER_FEMALE => Yii::t('common', 'Gender.Female'),
-        ];
-    }
-
-    /**
      * Return related language
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getLanguage()
     {
@@ -377,15 +389,6 @@ class Customer extends ActiveRecord implements IdentityInterface
         return $this->avatar_path
             ? Url::to(($this->avatar_base_url . '/' . $this->avatar_path), $scheme)
             : $default;
-    }
-
-    /**
-     * @inheritdoc
-     * @return CustomerQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new CustomerQuery(get_called_class());
     }
 
     /**

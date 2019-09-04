@@ -1,5 +1,7 @@
 # Yii2 App Advanced
 
+[![Build Status](https://travis-ci.com/prsolucoes/yii2-app-advanced.svg?branch=master)](https://travis-ci.com/prsolucoes/yii2-app-advanced)  
+
 This is a simple web system made with Yii2 with advanced features. The project has:
  
 - Frontend with Boostrap 3
@@ -18,6 +20,12 @@ This is a simple web system made with Yii2 with advanced features. The project h
 
 This project is used in many other projects. It is ready to make a new website.
 
+![](extras/screenshots/ss1.png)
+
+Other screenshots is here:  
+
+[SCREENSHOTS](SCREENSHOTS.md)
+
 ## Commands
 
 If you type "make" in your terminal, you get all options:
@@ -25,12 +33,30 @@ If you type "make" in your terminal, you get all options:
 ```
 - help
 - clear
+- nginx-reload
+- requirements
+
+- migrate-db
+- migrate-db-test
+
+- create-db
+- create-db-test
+
 - docker-compose-start
 - docker-compose-stop
+- docker-compose-start-console
+- docker-compose-rebuild
+
 - config-env-development
 - config-env-production
-- migrate-db
-- nginx-reload
+
+- php-composer-install
+- php-composer-update
+- php-composer-outdated
+- php-composer-show
+- php-composer-clear-cache
+
+- test
 ```
 
 If you want execute the commands with Docker support, add the parameter "docker=1" at the end of command. Ex:  

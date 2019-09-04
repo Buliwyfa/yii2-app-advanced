@@ -26,13 +26,22 @@ class UserGroup extends ActiveRecord
 
     /**
      * @inheritdoc
+     * @return UserGroupQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new UserGroupQuery(get_called_class());
+    }
+
+    /**
+     * @inheritdoc
      */
     public function scenarios()
     {
-		$scenarios = parent::scenarios();
-		$scenarios['create'] = ['user_id', 'group_id'];
-		$scenarios['update'] = ['user_id', 'group_id'];
-		return $scenarios;
+        $scenarios = parent::scenarios();
+        $scenarios['create'] = ['user_id', 'group_id'];
+        $scenarios['update'] = ['user_id', 'group_id'];
+        return $scenarios;
     }
 
     /**
@@ -54,15 +63,6 @@ class UserGroup extends ActiveRecord
             'user_id' => Yii::t('common', 'Model.UserId'),
             'group_id' => Yii::t('common', 'Model.GroupId'),
         ];
-    }
-
-    /**
-     * @inheritdoc
-     * @return UserGroupQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new UserGroupQuery(get_called_class());
     }
 
 }

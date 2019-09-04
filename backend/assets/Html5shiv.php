@@ -10,8 +10,7 @@ class Html5shiv extends AssetBundle
     public $js = [
         'dist/html5shiv.min.js'
     ];
-
     public $jsOptions = [
-        'condition'=>'lt IE 9'
+        'condition' => 'lt IE 9'
     ];
 }

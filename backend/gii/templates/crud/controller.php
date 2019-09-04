@@ -33,30 +33,30 @@ namespace <?php echo StringHelper::dirname(ltrim($generator->controllerClass, '\
 use Yii;
 
 /**
- * <?php echo $controllerClass ?> implements the CRUD actions for <?php echo $modelClass ?> model.
- */
+* <?php echo $controllerClass ?> implements the CRUD actions for <?php echo $modelClass ?> model.
+*/
 class <?php echo $controllerClass ?> extends <?php echo 'CRUDController' . "\n" ?>
 {
 
-	protected $modelForSearch = '\common\models\search\<?php echo $searchModelClass ?>';
-	protected $modelForView = '\common\models\domain\<?php echo $modelClass ?>';
-	protected $modelForCreate = '\common\models\domain\<?php echo $modelClass ?>';
-	protected $modelForUpdate = '\common\models\domain\<?php echo $modelClass ?>';
-	protected $modelForDelete = '\common\models\domain\<?php echo $modelClass ?>';
+protected $modelForSearch = '\common\models\search\<?php echo $searchModelClass ?>';
+protected $modelForView = '\common\models\domain\<?php echo $modelClass ?>';
+protected $modelForCreate = '\common\models\domain\<?php echo $modelClass ?>';
+protected $modelForUpdate = '\common\models\domain\<?php echo $modelClass ?>';
+protected $modelForDelete = '\common\models\domain\<?php echo $modelClass ?>';
 
-	protected function getContainerClass()
-	{
-		return '<?php echo Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>';
-	}
+protected function getContainerClass()
+{
+return '<?php echo Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>';
+}
 
-	protected function getControllerViewPath()
-	{
-		return '@backend/views/<?php echo Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>';
-	}
+protected function getControllerViewPath()
+{
+return '@backend/views/<?php echo Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>';
+}
 
-	protected function getAreaTitle()
-	{
-		return Yii::t('backend', '<?php echo $modelClass ?>.Area.Title');
-	}
+protected function getAreaTitle()
+{
+return Yii::t('backend', '<?php echo $modelClass ?>.Area.Title');
+}
 
 }

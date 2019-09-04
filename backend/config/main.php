@@ -45,6 +45,9 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false
         ],
+        'assetManager' => [
+            'appendTimestamp' => true
+        ],
         'i18n' => [
             'translations' => [
                 'backend*' => [
@@ -61,12 +64,12 @@ return [
         ]
     ],
     'defaultRoute' => 'site/login',
-    'params' => $params,
     'bootstrap' => [
         'log',
         [
             'class' => 'backend\components\LanguageSelector',
             'supportedLanguages' => $params['supportedLanguages'],
         ],
-    ]
+    ],
+    'params' => $params,
 ];

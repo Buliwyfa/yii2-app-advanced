@@ -19,7 +19,7 @@ return [
             'identityClass' => 'common\models\domain\Customer',
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
-            'loginUrl' => ['site/login'],
+            'loginUrl' => ['çustomer/login'],
             'as afterLogin' => common\behaviors\LoginTimestampBehavior::class
         ],
         'session' => [
@@ -63,6 +63,9 @@ return [
                 ],
             ],
         ],
+        'assetManager' => [
+            'appendTimestamp' => true
+        ],
         'i18n' => [
             'translations' => [
                 'frontend*' => [
@@ -73,11 +76,12 @@ return [
             ],
         ],
     ],
-    'params' => $params,
     'bootstrap' => [
+        'log',
         [
             'class' => 'backend\components\LanguageSelector',
             'supportedLanguages' => $params['supportedLanguages'],
         ],
-    ]
+    ],
+    'params' => $params,
 ];

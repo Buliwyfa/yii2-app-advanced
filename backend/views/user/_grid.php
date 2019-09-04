@@ -2,8 +2,8 @@
 
 use common\components\grid\EnumColumn;
 use common\models\domain\User;
-use yii\bootstrap\Html;
 use kartik\grid\GridView;
+use yii\bootstrap\Html;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider \yii\data\ActiveDataProvider */

@@ -16,7 +16,6 @@ class UserSearch extends User
             ['username', 'string', 'min' => 1, 'max' => 255],
             ['email', 'string', 'min' => 1, 'max' => 255],
             ['email', 'email'],
-            ['gender', 'in', 'range' => [User::GENDER_MALE, User::GENDER_FEMALE]],
             ['status', 'in', 'range' => [User::STATUS_ACTIVE, User::STATUS_INACTIVE]],
             ['avatar_path', 'safe'],
         ];

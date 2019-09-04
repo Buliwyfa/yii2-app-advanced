@@ -8,32 +8,33 @@ use yii\helpers\Url;
 
 ?>
 <aside class="main-sidebar">
-	<section class="sidebar">
-		<!-- Sidebar user panel -->
-		<div class="user-panel">
-			<div class="pull-left image">
-				<img src="<?= Yii::$app->user->getIdentity()->getAvatar(Yii::getAlias('@web/images/profile-default.png')) ?>" class="img-circle"/>
-			</div>
-			<div class="pull-left info">
-				<p>
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="<?= Yii::$app->user->getIdentity()->getAvatar(Yii::getAlias('@web/images/profile-default.png')) ?>"
+                     class="img-circle"/>
+            </div>
+            <div class="pull-left info">
+                <p>
                     <?= Yii::t('backend', 'SideBarMenu.UserPanel.Welcome', ['username' => Yii::$app->user->identity->getPublicIdentity()]) ?>
-				</p>
+                </p>
 
                 <?php if (Yii::$app->user->can('profile.index')) { ?>
-					<a href="<?= Url::to(['/profile/index']) ?>">
-						<i class="fa fa-circle text-success"></i>
+                    <a href="<?= Url::to(['/profile/index']) ?>">
+                        <i class="fa fa-circle text-success"></i>
                         <?= Yii::$app->formatter->asDatetime(time()) ?>
-					</a>
+                    </a>
                 <?php } else { ?>
-					<a href="#" onclick='return false;'>
-						<i class="fa fa-circle text-success"></i>
+                    <a href="#" onclick='return false;'>
+                        <i class="fa fa-circle text-success"></i>
                         <?= Yii::$app->formatter->asDatetime(time()) ?>
-					</a>
+                    </a>
                 <?php } ?>
-			</div>
-		</div>
+            </div>
+        </div>
 
-		<!-- Sidebar menu -->
+        <!-- Sidebar menu -->
         <?php
         $menuItems = [];
 
@@ -180,12 +181,12 @@ use yii\helpers\Url;
         //////////////////////////////////////////////////////////////////////
 
         echo Menu::widget([
-            'options' => ['class' => 'sidebar-menu'],
+            'options' => ['class' => 'sidebar-menu', 'data-widget' => 'tree'],
             'linkTemplate' => '<a href="{url}">{icon}<span>{label}</span>{right-icon}{badge}</a>',
             'submenuTemplate' => "\n<ul class=\"treeview-menu\">\n{items}\n</ul>\n",
             'activateParents' => true,
             'items' => $menuItems,
         ]);
         ?>
-	</section>
+    </section>
 </aside>

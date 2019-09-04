@@ -37,10 +37,10 @@ class JWT extends Component
     public $key;
 
     /**
-     * @see [[Lcobucci\JWT\Builder::__construct()]]
      * @param Encoder|null $encoder
      * @param ClaimFactory|null $claimFactory
      * @return Builder
+     * @see [[Lcobucci\JWT\Builder::__construct()]]
      */
     public function getBuilder(Encoder $encoder = null, ClaimFactory $claimFactory = null)
     {
@@ -48,10 +48,10 @@ class JWT extends Component
     }
 
     /**
-     * @see [[Lcobucci\JWT\Parser::__construct()]]
      * @param Decoder|null $decoder
      * @param ClaimFactory|null $claimFactory
      * @return Parser
+     * @see [[Lcobucci\JWT\Parser::__construct()]]
      */
     public function getParser(Decoder $decoder = null, ClaimFactory $claimFactory = null)
     {
@@ -59,9 +59,9 @@ class JWT extends Component
     }
 
     /**
-     * @see [[Lcobucci\JWT\ValidationData::__construct()]]
      * @param null $currentTime
      * @return ValidationData
+     * @see [[Lcobucci\JWT\ValidationData::__construct()]]
      */
     public function getValidationData($currentTime = null)
     {

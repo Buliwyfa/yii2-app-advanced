@@ -9,7 +9,8 @@ use yii\console\Controller;
 class PermissionsController extends Controller
 {
 
-    public function actionGenerate() {
+    public function actionGenerate()
+    {
         Logger::d('Generating...');
         PermissionUtil::updatePermissions();
         Logger::s('Permissions generated');

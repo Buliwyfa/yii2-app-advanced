@@ -2,16 +2,19 @@
 
 namespace frontend\tests\functional;
 
+use common\models\domain\Customer;
 use frontend\tests\FunctionalTester;
+use Yii;
 
 class SignupCest
 {
-    protected $formId = '#form-signup';
 
+    protected $formId = '#form-signup';
 
     public function _before(FunctionalTester $I)
     {
-        $I->amOnRoute('site/signup');
+        Yii::$app->language = 'en';
+        $I->amOnRoute('customer/signup');
     }
 
     public function signupWithEmptyFields(FunctionalTester $I)
@@ -19,7 +22,7 @@ class SignupCest
         $I->see('Signup', 'h1');
         $I->see('Please fill out the following fields to signup:');
         $I->submitForm($this->formId, []);
-        $I->seeValidationError('Username cannot be blank.');
+        $I->seeValidationError('Language cannot be blank.');
         $I->seeValidationError('Email cannot be blank.');
         $I->seeValidationError('Password cannot be blank.');
 
@@ -29,10 +32,10 @@ class SignupCest
     {
         $I->submitForm(
             $this->formId, [
-            'SignupForm[username]'  => 'tester',
-            'SignupForm[email]'     => 'ttttt',
-            'SignupForm[password]'  => 'tester_password',
-        ]
+                'SignupForm[language_id]' => '1',
+                'SignupForm[email]' => 'xxx',
+                'SignupForm[password]' => 'xxx',
+            ]
         );
         $I->dontSee('Username cannot be blank.', '.help-block');
         $I->dontSee('Password cannot be blank.', '.help-block');
@@ -42,16 +45,15 @@ class SignupCest
     public function signupSuccessfully(FunctionalTester $I)
     {
         $I->submitForm($this->formId, [
-            'SignupForm[username]' => 'tester',
-            'SignupForm[email]' => 'tester.email@example.com',
-            'SignupForm[password]' => 'tester_password',
+            'SignupForm[languageId]' => '1',
+            'SignupForm[email]' => 'new-customer-1@test.com',
+            'SignupForm[password]' => '123mudar',
         ]);
 
-        $I->seeRecord('common\models\domain\User', [
-            'username' => 'tester',
-            'email' => 'tester.email@example.com',
+        $I->seeRecord('common\models\domain\Customer', [
+            'email' => 'new-customer-1@test.com',
+            'status' => Customer::STATUS_ACTIVE
         ]);
-
-        $I->see('Logout (tester)', 'form button[type=submit]');
     }
+
 }

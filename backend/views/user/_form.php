@@ -17,20 +17,20 @@ use yii\helpers\Html;
 
 <?php $form = ActiveForm::begin(); ?>
 
-	<div class="nav-tabs-custom">
+    <div class="nav-tabs-custom">
 
         <?= $form->errorSummary($model); ?>
 
-		<ul class="nav nav-tabs">
-			<li class="active">
-				<a href="#tab_1" data-toggle="tab"><?= Yii::t('backend', 'User.Area.TabData') ?></a>
-			</li>
-			<li>
-				<a href="#tab_2" data-toggle="tab"><?= Yii::t('backend', 'User.Area.TabGroups') ?></a>
-			</li>
-		</ul>
-		<div class="tab-content">
-			<div class="tab-pane active" id="tab_1">
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="#tab_1" data-toggle="tab"><?= Yii::t('backend', 'User.Area.TabData') ?></a>
+            </li>
+            <li>
+                <a href="#tab_2" data-toggle="tab"><?= Yii::t('backend', 'User.Area.TabGroups') ?></a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="tab_1">
                 <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
 
                 <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
@@ -43,14 +43,14 @@ use yii\helpers\Html;
 
                 <?= $form->field($model, 'root')->dropDownList(SimpleArrayHelper::map(User::getRootList()), ['prompt' => '']) ?>
 
-				<hr/>
+                <hr/>
 
                 <?= $form->field($model, 'password')->passwordInput(['maxlength' => true, 'value' => '']) ?>
 
                 <?= $form->field($model, 'repeat_password')->passwordInput(['maxlength' => true, 'value' => '']) ?>
-			</div>
+            </div>
 
-			<div class="tab-pane" id="tab_2">
+            <div class="tab-pane" id="tab_2">
                 <?php
                 $groups = Group::find()->orderByName()->all();
 
@@ -60,17 +60,17 @@ use yii\helpers\Html;
                     }
                 }
                 ?>
-			</div>
-		</div>
+            </div>
+        </div>
 
-		<div class="box-footer">
+        <div class="box-footer">
             <?= Html::submitButton($model->isNewRecord
                 ? Yii::t('backend', 'Button.Create', ['modelClass' => $areaTitle])
                 : Yii::t('backend', 'Button.Update', ['modelClass' => $areaTitle]), ['class' => 'btn btn-success']) ?>
 
             <?= Html::a(Yii::t('backend', 'Button.Back', ['modelClass' => $areaTitle]),
                 ['index'], ['class' => 'btn btn-primary']); ?>
-		</div>
-	</div>
+        </div>
+    </div>
 
 <?php ActiveForm::end(); ?>

@@ -18,23 +18,25 @@ use yii\bootstrap\ActiveForm;
 <div class="search-filters">
 
     <?php echo "<?php " ?>$form = ActiveForm::begin([
-        'action' => ['index'],
-        'method' => 'get',
+    'action' => ['index'],
+    'method' => 'get',
     ]); ?>
 
-<?php
-$count = 0;
-foreach ($generator->getColumnNames() as $attribute) {
-    if (++$count < 6) {
-        echo "    <?php echo " . $generator->generateActiveSearchField($attribute) . " ?>\n\n";
-    } else {
-        echo "    <?php echo " . $generator->generateActiveSearchField($attribute) . " ?>\n\n";
+    <?php
+    $count = 0;
+    foreach ($generator->getColumnNames() as $attribute) {
+        if (++$count < 6) {
+            echo "    <?php echo " . $generator->generateActiveSearchField($attribute) . " ?>\n\n";
+        } else {
+            echo "    <?php echo " . $generator->generateActiveSearchField($attribute) . " ?>\n\n";
+        }
     }
-}
-?>
+    ?>
     <div class="form-group">
-        <?php echo "<?php echo " ?>Html::submitButton(Yii::t('backend', 'Button.Search'), ['class' => 'btn btn-primary']) ?>
-        <?php echo "<?php echo " ?>Html::resetButton(Yii::t('backend', 'Button.Reset'), ['class' => 'btn btn-default']) ?>
+        <?php echo "<?php echo " ?>Html::submitButton(Yii::t('backend', 'Button.Search'), ['class' => 'btn
+        btn-primary']) ?>
+        <?php echo "<?php echo " ?>Html::resetButton(Yii::t('backend', 'Button.Reset'), ['class' => 'btn btn-default'])
+        ?>
     </div>
 
     <?php echo "<?php " ?>ActiveForm::end(); ?>

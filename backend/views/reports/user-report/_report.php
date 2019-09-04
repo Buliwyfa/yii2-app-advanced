@@ -5,8 +5,6 @@ use common\models\domain\Company;
 use common\models\domain\User;
 use kartik\export\ExportMenu;
 use kartik\grid\GridView;
-use yii\bootstrap\Html;
-use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider \yii\data\ActiveDataProvider */
@@ -78,7 +76,7 @@ $panelHeadingTemplate = '
     {summary}
 </div>
 <h3 class="panel-title">
-    {heading}
+    {title}
 </h3>
 <div class="clearfix"></div>
 ';

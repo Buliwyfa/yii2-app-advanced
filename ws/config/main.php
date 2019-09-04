@@ -65,12 +65,13 @@ return [
             'baseUrl' => '/',
         ],
     ],
-    'params' => $params,
     'bootstrap' => [
+        'log',
         [
             'class' => 'backend\components\LanguageSelector',
             'supportedLanguages' => $params['supportedLanguages'],
             'createCookie' => false,
         ],
-    ]
+    ],
+    'params' => $params,
 ];

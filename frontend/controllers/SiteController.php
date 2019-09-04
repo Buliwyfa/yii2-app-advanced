@@ -3,12 +3,11 @@
 namespace frontend\controllers;
 
 use yii\filters\AccessControl;
-use yii\web\Controller;
 
 /**
  * Site controller
  */
-class SiteController extends Controller
+class SiteController extends BaseController
 {
 
     /**

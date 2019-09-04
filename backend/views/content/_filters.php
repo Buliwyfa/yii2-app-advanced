@@ -3,9 +3,9 @@
 use common\helpers\SimpleArrayHelper;
 use common\models\domain\Content;
 use common\models\domain\Language;
+use yii\bootstrap\ActiveForm;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\search\ContentSearch */

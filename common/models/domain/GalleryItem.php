@@ -34,6 +34,15 @@ class GalleryItem extends ActiveRecord
 
     /**
      * @inheritdoc
+     * @return GalleryItemQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new GalleryItemQuery(get_called_class());
+    }
+
+    /**
+     * @inheritdoc
      */
     public function behaviors()
     {
@@ -86,15 +95,6 @@ class GalleryItem extends ActiveRecord
             'created_at' => Yii::t('common', 'Model.CreatedAt'),
             'updated_at' => Yii::t('common', 'Model.UpdatedAt'),
         ];
-    }
-
-    /**
-     * @inheritdoc
-     * @return GalleryItemQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new GalleryItemQuery(get_called_class());
     }
 
     /**

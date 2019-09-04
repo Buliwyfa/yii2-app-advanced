@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m170101_120003_create_user_table extends Migration
+class m170101_120007_create_customer_table extends Migration
 {
 
     public function safeUp()
@@ -13,17 +13,17 @@ class m170101_120003_create_user_table extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
 
-        $this->createTable('{{%user}}', [
+        $this->createTable('{{%customer}}', [
             'id' => $this->bigPrimaryKey(20),
-            'username' => $this->string(50)->notNull()->unique(),
+            'language_id' => $this->bigInteger(20)->null(),
+            'first_name' => $this->string(50)->null(),
+            'last_name' => $this->string(50)->null(),
+            'email' => $this->string(255)->notNull()->unique(),
             'auth_key' => $this->string(32)->notNull(),
             'password_hash' => $this->string(255)->notNull(),
             'password_reset_token' => $this->string(255)->unique(),
-            'email' => $this->string(255)->notNull()->unique(),
             'status' => "ENUM('active', 'inactive')",
-            'root' => "ENUM('yes', 'no')",
             'gender' => "ENUM('male', 'female')",
-            'language_id' => $this->bigInteger(20)->null(),
             'avatar_path' => $this->string(255),
             'avatar_base_url' => $this->string(255),
             'logged_at' => $this->integer()->null(),
@@ -31,13 +31,13 @@ class m170101_120003_create_user_table extends Migration
             'updated_at' => $this->integer()->null(),
         ], $tableOptions);
 
-        $this->createIndex('language_id', '{{%user}}', 'language_id');
-        $this->createIndex('status', '{{%user}}', 'status');
+        $this->createIndex('language_id', '{{%customer}}', 'language_id');
+        $this->createIndex('status', '{{%customer}}', 'status');
     }
 
     public function safeDown()
     {
-        $this->dropTable('{{%user}}');
+        $this->dropTable('{{%customer}}');
     }
 
 }

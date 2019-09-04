@@ -41,22 +41,21 @@ class GalleryController extends BaseController
         }
 
         if (empty($galleryLanguage)) {
-            $query->andWhere('(language_id = 0 OR language_id IS NULL)');
-        } else {
-            if ($galleryLanguage == 'auto') {
-                $preferredLanguage = LanguageHelper::getPreferredLanguage(Yii::$app->params['supportedLanguages']);
+            $galleryLanguage = 'auto';
+        }
 
-                if (empty($preferredLanguage)) {
-                    $query->andWhere('(language_id = 0 OR language_id IS NULL)');
-                } else {
-                    $language = Language::find()->codeISO($preferredLanguage)->one();
-                    $query->andWhere('(language_id = :preferred_language_id OR language_id = 0 OR language_id IS NULL)', ['preferred_language_id' => $language->id]);
-                    $query->addOrderBy('language_id DESC');
-                }
+        if ($galleryLanguage == 'auto') {
+            $preferredLanguage = LanguageHelper::getPreferredLanguage(Yii::$app->params['supportedLanguages']);
+
+            if (empty($preferredLanguage)) {
+                $query->andWhere('(language_id = 0 OR language_id IS NULL)');
             } else {
-                $query->andWhere(['language_id' => $galleryLanguage]);
-                $canSearch = true;
+                $language = Language::find()->codeISO($preferredLanguage)->one();
+                $query->andWhere('(language_id = :preferred_language_id OR language_id = 0 OR language_id IS NULL)', ['preferred_language_id' => $language->id]);
+                $query->addOrderBy('language_id DESC');
             }
+        } else {
+            $query->andWhere(['language_id' => $galleryLanguage]);
         }
 
         if (!$canSearch) {
@@ -100,21 +99,21 @@ class GalleryController extends BaseController
         }
 
         if (empty($galleryLanguage)) {
-            $query->andWhere('(language_id = 0 OR language_id IS NULL)');
-        } else {
-            if ($galleryLanguage == 'auto') {
-                $preferredLanguage = LanguageHelper::getPreferredLanguage(Yii::$app->params['supportedLanguages']);
+            $galleryLanguage = 'auto';
+        }
 
-                if (empty($preferredLanguage)) {
-                    $query->andWhere('(language_id = 0 OR language_id IS NULL)');
-                } else {
-                    $language = Language::find()->codeISO($preferredLanguage)->one();
-                    $query->andWhere('(language_id = :preferred_language_id OR language_id = 0 OR language_id IS NULL)', ['preferred_language_id' => $language->id]);
-                    $query->addOrderBy('language_id DESC');
-                }
+        if ($galleryLanguage == 'auto') {
+            $preferredLanguage = LanguageHelper::getPreferredLanguage(Yii::$app->params['supportedLanguages']);
+
+            if (empty($preferredLanguage)) {
+                $query->andWhere('(language_id = 0 OR language_id IS NULL)');
             } else {
-                $query->andWhere(['language_id' => $galleryLanguage]);
+                $language = Language::find()->codeISO($preferredLanguage)->one();
+                $query->andWhere('(language_id = :preferred_language_id OR language_id = 0 OR language_id IS NULL)', ['preferred_language_id' => $language->id]);
+                $query->addOrderBy('language_id DESC');
             }
+        } else {
+            $query->andWhere(['language_id' => $galleryLanguage]);
         }
 
         $query->andWhere(['status' => Content::STATUS_ACTIVE]);

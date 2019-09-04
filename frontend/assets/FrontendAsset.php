@@ -14,11 +14,11 @@ class FrontendAsset extends AssetBundle
     public $baseUrl = '@web';
 
     public $css = [
-        'css/site.css?r=2018-04-13-00-00-00',
+        'css/site.css',
     ];
 
     public $js = [
-        'js/app.js?r=2018-04-13-00-00-00',
+        'js/app.js',
     ];
 
     public $depends = [

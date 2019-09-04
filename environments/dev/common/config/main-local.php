@@ -1,5 +1,5 @@
 <?php
-return [
+$config = [
     'components' => [
         'db' => [
             'class' => '\yii\db\Connection',
@@ -13,7 +13,12 @@ return [
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             'viewPath' => '@common/mail',
-            'useFileTransport' => true,
+            'useFileTransport' => false,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'mailcatcher',
+                'port' => '1025',
+            ],
         ],
         'customerProfileFileStorage' => [
             'class' => '\trntv\filekit\Storage',
@@ -33,18 +38,9 @@ return [
         ],
         'jwt' => [
             'class' => 'common\components\jwt\JWT',
-            'key' => '@@[[CHANGE-THE-KEY-HERE]]@@',
+            'key' => '@JWT-KEY@',
         ],
-    ],
-    'modules' => [
-        'debug' => [
-            'class' => 'yii\debug\Module',
-            // uncomment and adjust the following to add your IP if you are not connecting from localhost.
-            'allowedIPs' => ['*'],
-        ],
-    ],
-    'bootstrap' => [
-        'log',
-        'debug',
     ],
 ];
+
+return $config;

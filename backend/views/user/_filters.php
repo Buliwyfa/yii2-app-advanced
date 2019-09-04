@@ -25,10 +25,10 @@ use yii\helpers\Html;
 
     <?= $form->field($model, 'language_id')->dropDownList(ArrayHelper::map(Language::find()->all(), 'id', 'name')) ?>
 
-	<div class="form-group">
+    <div class="form-group">
         <?= Html::submitButton(Yii::t('backend', 'Button.Search'), ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton(Yii::t('backend', 'Button.Reset'), ['class' => 'btn btn-default']) ?>
-	</div>
+    </div>
 
     <?php ActiveForm::end(); ?>
 

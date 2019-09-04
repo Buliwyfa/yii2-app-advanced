@@ -40,14 +40,6 @@ class Response
     }
 
     /**
-     * @param $value
-     */
-    public function setSuccess($value)
-    {
-        $this->success = $value;
-    }
-
-    /**
      * @return boolean
      */
     public function getSuccess()
@@ -61,6 +53,14 @@ class Response
     public function isSuccess()
     {
         return ($this->success === true);
+    }
+
+    /**
+     * @param $value
+     */
+    public function setSuccess($value)
+    {
+        $this->success = $value;
     }
 
     /**
@@ -80,19 +80,19 @@ class Response
     }
 
     /**
-     * @param array $value
-     */
-    public function setData($value)
-    {
-        $this->data = $value;
-    }
-
-    /**
      * @return array mixed
      */
     public function getData()
     {
         return $this->data;
+    }
+
+    /**
+     * @param array $value
+     */
+    public function setData($value)
+    {
+        $this->data = $value;
     }
 
     /**

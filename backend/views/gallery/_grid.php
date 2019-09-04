@@ -13,11 +13,11 @@ use yii\helpers\Html;
 /* @var $filterModel \yii\db\ActiveRecord */
 
 echo GridView::widget([
-	'options' => [
-		'class' => 'grid-view table-responsive'
-	],
-	'dataProvider' => $dataProvider,
-	'filterModel' => ($showGridViewFilter ? $filterModel : null),
+    'options' => [
+        'class' => 'grid-view table-responsive'
+    ],
+    'dataProvider' => $dataProvider,
+    'filterModel' => ($showGridViewFilter ? $filterModel : null),
     'columns' => [
         ['class' => 'yii\grid\SerialColumn'],
         'id',
@@ -39,27 +39,27 @@ echo GridView::widget([
         ],
         'created_at:datetime',
         [
-	        'class' => 'yii\grid\ActionColumn',
-	        'template' => '<div class="action-column">{view}</div>',
-	    ],
-		[
+            'class' => 'yii\grid\ActionColumn',
+            'template' => '<div class="action-column">{view}</div>',
+        ],
+        [
             'class' => 'yii\grid\ActionColumn',
             'template' => '<div class="action-column">{update}</div>',
         ],
-		[
-			'class' => 'yii\grid\ActionColumn',
-			'template' => '<div class="action-column">{delete}</div>',
-			'buttons' => [
-	            'delete' => function ($url, $model) {
-	                return Html::a('<span class="glyphicon glyphicon-trash"></span>', ['delete', 'id' => $model->id], [
-	                    'class' => '',
-	                    'data' => [
-	                        'confirm' => Yii::t('backend', 'Message.DeleteConfirm'),
-	                        'method' => 'post',
-	                    ],
-	                ]);
-	            }
-			]
-		]
-	],
+        [
+            'class' => 'yii\grid\ActionColumn',
+            'template' => '<div class="action-column">{delete}</div>',
+            'buttons' => [
+                'delete' => function ($url, $model) {
+                    return Html::a('<span class="glyphicon glyphicon-trash"></span>', ['delete', 'id' => $model->id], [
+                        'class' => '',
+                        'data' => [
+                            'confirm' => Yii::t('backend', 'Message.DeleteConfirm'),
+                            'method' => 'post',
+                        ],
+                    ]);
+                }
+            ]
+        ]
+    ],
 ]);

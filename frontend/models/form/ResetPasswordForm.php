@@ -3,6 +3,7 @@
 namespace frontend\models\form;
 
 use common\models\domain\Customer;
+use yii\base\Exception;
 use yii\base\InvalidArgumentException;
 use yii\base\Model;
 
@@ -18,9 +19,9 @@ class ResetPasswordForm extends Model
     public $password;
 
     /**
-     * @var \common\models\domain\Customer
+     * @var Customer
      */
-    private $_user;
+    private $_customer;
 
 
     /**
@@ -28,7 +29,7 @@ class ResetPasswordForm extends Model
      *
      * @param string $token
      * @param array $config name-value pairs that will be used to initialize the object properties
-     * @throws \yii\base\InvalidArgumentException if token is empty or not valid
+     * @throws InvalidArgumentException if token is empty or not valid
      */
     public function __construct($token, $config = [])
     {
@@ -36,9 +37,9 @@ class ResetPasswordForm extends Model
             throw new InvalidArgumentException('Password reset token cannot be blank.');
         }
 
-        $this->_user = Customer::findByPasswordResetToken($token);
+        $this->_customer = Customer::findByPasswordResetToken($token);
 
-        if (!$this->_user) {
+        if (!$this->_customer) {
             throw new InvalidArgumentException('Wrong password reset token.');
         }
 
@@ -60,14 +61,14 @@ class ResetPasswordForm extends Model
      * Resets password.
      *
      * @return bool if password was reset.
-     * @throws \yii\base\Exception
+     * @throws Exception
      */
     public function resetPassword()
     {
-        $user = $this->_user;
-        $user->setPassword($this->password);
-        $user->removePasswordResetToken();
+        $customer = $this->_customer;
+        $customer->setPassword($this->password);
+        $customer->removePasswordResetToken();
 
-        return $user->save(false);
+        return $customer->save(false);
     }
 }

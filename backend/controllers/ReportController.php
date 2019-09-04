@@ -68,20 +68,6 @@ class ReportController extends BaseController
     }
 
     /**
-     * Add new data to render params
-     * @param $key
-     * @param $value
-     */
-    protected function addRenderParam($key, $value)
-    {
-        if ($this->renderParams == null) {
-            $this->renderParams = [];
-        }
-
-        $this->renderParams[$key] = $value;
-    }
-
-    /**
      * Get the model for index action
      * @return ActiveRecord
      */
@@ -89,6 +75,37 @@ class ReportController extends BaseController
     {
         $model = new $this->model;
         return $model;
+    }
+
+    /**
+     * Get the data provider
+     * @param $model
+     * @return mixed
+     * @see ActiveDataProvider, SqlDataProvider, ArrayDataProvider
+     */
+    protected function createDataProvider(&$model)
+    {
+        return $model->search(Yii::$app->request->queryParams);
+    }
+
+    /**
+     * Get custom area title
+     * @throws Exception
+     */
+    protected function getAreaTitle()
+    {
+        throw new Exception('You need set it on your own class.');
+    }
+
+    /**
+     * Setup data provider with sort data
+     * @param $dataProvider
+     */
+    protected function setupSearchSortData(&$dataProvider)
+    {
+        $dataProvider->sort = [
+            'defaultOrder' => $this->getSearchDefaultSort()
+        ];
     }
 
     /**
@@ -101,14 +118,17 @@ class ReportController extends BaseController
     }
 
     /**
-     * Setup data provider with sort data
-     * @param $dataProvider
+     * Add new data to render params
+     * @param $key
+     * @param $value
      */
-    protected function setupSearchSortData(&$dataProvider)
+    protected function addRenderParam($key, $value)
     {
-        $dataProvider->sort = [
-            'defaultOrder' => $this->getSearchDefaultSort()
-        ];
+        if ($this->renderParams == null) {
+            $this->renderParams = [];
+        }
+
+        $this->renderParams[$key] = $value;
     }
 
     /**
@@ -134,26 +154,6 @@ class ReportController extends BaseController
      */
     protected function beforeRenderOnIndex()
     {
-    }
-
-    /**
-     * Get custom area title
-     * @throws Exception
-     */
-    protected function getAreaTitle()
-    {
-        throw new Exception('You need set it on your own class.');
-    }
-
-    /**
-     * Get the data provider
-     * @see ActiveDataProvider, SqlDataProvider, ArrayDataProvider
-     * @param $model
-     * @return mixed
-     */
-    protected function createDataProvider(&$model)
-    {
-        return $model->search(Yii::$app->request->queryParams);
     }
 
 }

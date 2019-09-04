@@ -9,7 +9,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 
 NavBar::begin([
-    'brandLabel' => Yii::$app->name,
+    'brandLabel' => Yii::t('frontend', 'Site.Index.Title'),
     'brandUrl' => Yii::$app->homeUrl,
     'options' => [
         'class' => 'navbar-inverse navbar-fixed-top',

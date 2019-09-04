@@ -1,8 +1,8 @@
 <?php
 return [
     'components' => [
-        'db'=>[
-            'class'=>'\yii\db\Connection',
+        'db' => [
+            'class' => '\yii\db\Connection',
             'dsn' => 'mysql:host=mysql;dbname=yii2-app-advanced',
             'username' => 'root',
             'password' => 'root',
@@ -10,20 +10,15 @@ return [
             'charset' => 'utf8',
             'enableSchemaCache' => YII_ENV_PROD,
         ],
-        'backendMailer' => [
-            'class' => 'yii\swiftmailer\Mailer',
-            'viewPath' => '@backend/mail',
-            'useFileTransport' => true,
-        ],
-        'frontendMailer' => [
-            'class' => 'yii\swiftmailer\Mailer',
-            'viewPath' => '@frontend/mail',
-            'useFileTransport' => true,
-        ],
-        'consoleMailer' => [
+        'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             'viewPath' => '@common/mail',
-            'useFileTransport' => true,
+            'useFileTransport' => false,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'mailcatcher',
+                'port' => '1025',
+            ],
         ],
         'customerProfileFileStorage' => [
             'class' => '\trntv\filekit\Storage',
@@ -43,10 +38,7 @@ return [
         ],
         'jwt' => [
             'class' => 'common\components\jwt\JWT',
-            'key' => '@@[[CHANGE-THE-KEY-HERE]]@@',
+            'key' => '@JWT-KEY@',
         ],
-    ],
-    'bootstrap' => [
-        'log',
     ],
 ];
