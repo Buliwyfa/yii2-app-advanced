@@ -103,10 +103,10 @@ migrate-db-test:
 	$(PHP_CMD_PREFIX) php yii_test migrate --migrationPath=@ws/migrations --interactive=0
 
 create-db:
-	$(MYSQL_CMD_PREFIX) mysql -u root -proot -e 'CREATE DATABASE `yii2-app-advanced`;'
+	$(MYSQL_CMD_PREFIX) mysql -u root -proot -e 'CREATE DATABASE `yii2-app-advanced` DEFAULT CHARACTER SET = `utf8`;'
 
 create-db-test:
-	$(MYSQL_CMD_PREFIX) mysql -u root -proot -e 'CREATE DATABASE `yii2-app-advanced-test`;'
+	$(MYSQL_CMD_PREFIX) mysql -u root -proot -e 'CREATE DATABASE `yii2-app-advanced-test` DEFAULT CHARACTER SET = `utf8`;'
 
 nginx-reload:
 	$(NGINX_CMD_PREFIX) service nginx reload
