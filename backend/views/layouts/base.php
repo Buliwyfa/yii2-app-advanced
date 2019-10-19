@@ -30,7 +30,7 @@ $this->params['body-class'] = array_key_exists('body-class', $this->params) ? $t
             var backendBaseURL = '<?= Yii::$app->request->baseUrl ?>';
         </script>
 
-        !-- Google Font -->
+        <!-- Google Font -->
         <link rel="stylesheet"
               href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     </head>

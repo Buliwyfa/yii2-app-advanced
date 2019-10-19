@@ -16,7 +16,7 @@
 	"minimum-stability": "stable",
 	"require": {
 		"php": ">=7.0.0",
-		"yiisoft/yii2": "2.0.27",
+		"yiisoft/yii2": "2.0.28",
 		"yiisoft/yii2-bootstrap": "2.0.10",
 		"yiisoft/yii2-swiftmailer": "2.1.2",
 		"yiisoft/yii2-jui": "2.0.7",
@@ -28,7 +28,7 @@
 		"bower-asset/js-cookie": "2.2.1",
 		"bower-asset/lightbox2": "2.11.1",
 		"bower-asset/respond": "1.4.2",
-		"kartik-v/yii2-grid": "3.3.2",
+		"kartik-v/yii2-grid": "3.3.4",
 		"kartik-v/yii2-export": "1.4.0",
 		"yii2-starter-kit/yii2-file-kit": "2.0.1",
 		"intervention/image": "2.5.0",
@@ -40,12 +40,12 @@
 	},
 	"require-dev": {
 		"yiisoft/yii2-debug": "2.1.9",
-		"yiisoft/yii2-gii": "2.1.1",
+		"yiisoft/yii2-gii": "2.1.2",
 		"yiisoft/yii2-faker": "2.0.4",
 		"codeception/base": "3.0.0",
 		"codeception/verify": "1.1.0",
 		"phpunit/phpunit": "6.5.14",
-		"symfony/browser-kit": "4.3.3"
+		"symfony/browser-kit": "4.3.5"
 	},
 	"config": {
 		"process-timeout": 1800,
