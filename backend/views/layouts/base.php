@@ -24,7 +24,10 @@ $this->params['body-class'] = array_key_exists('body-class', $this->params) ? $t
         <?php $this->head() ?>
 
         <link rel="shortcut icon" type="image/ico" href="/favicon.ico"/>
-        <link rel="icon" type="image/png" href="/favicon.png" sizes="1024x1024"/>
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
 
         <script type="text/javascript">
             var backendBaseURL = '<?= Yii::$app->request->baseUrl ?>';

@@ -1,12 +1,13 @@
 <?php
 
-/* @var $this \yii\web\View */
+/* @var $this View */
 
 use common\models\domain\Language;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\web\View;
 
 NavBar::begin([
     'brandLabel' => Yii::t('frontend', 'Site.Index.Title'),

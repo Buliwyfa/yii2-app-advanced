@@ -3,9 +3,10 @@
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
 
-/* @var $model \frontend\models\form\SignupForm */
+/* @var $model SignupForm */
 
 use common\models\domain\Language;
+use frontend\models\form\SignupForm;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;

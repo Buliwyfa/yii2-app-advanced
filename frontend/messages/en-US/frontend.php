@@ -2,6 +2,10 @@
 
 return [
     'Site.Index.Title' => 'Y2AA',
+
+    'Site.Footer.Left' => '&copy; Y2AA ' . date('Y'),
+    'Site.Footer.Right' => 'Paulo Coutinho - PRS',
+
     'Customer.Login.Title' => 'Login',
     'Customer.Signup.Title' => 'Signup',
     'Customer.RequestPasswordReset.Title' => 'Reset password',

@@ -3,8 +3,9 @@
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
 
-/* @var $model \frontend\models\form\ContactForm */
+/* @var $model ContactForm */
 
+use frontend\models\form\ContactForm;
 use yii\helpers\Html;
 
 $this->title = Yii::t('frontend', 'Contact.Success.Title');
