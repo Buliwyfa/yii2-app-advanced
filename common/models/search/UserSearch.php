@@ -13,7 +13,7 @@ class UserSearch extends User
     {
         return [
             [['id'], 'integer'],
-            ['username', 'string', 'min' => 1, 'max' => 255],
+            ['name', 'string', 'min' => 1, 'max' => 255],
             ['email', 'string', 'min' => 1, 'max' => 255],
             ['email', 'email'],
             ['status', 'in', 'range' => [User::STATUS_ACTIVE, User::STATUS_INACTIVE]],
@@ -50,7 +50,7 @@ class UserSearch extends User
             'status' => $this->status,
         ]);
 
-        $query->andFilterWhere(['like', 'username', $this->username]);
+        $query->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }

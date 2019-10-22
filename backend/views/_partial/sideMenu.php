@@ -17,7 +17,7 @@ use yii\helpers\Url;
             </div>
             <div class="pull-left info">
                 <p>
-                    <?= Yii::t('backend', 'SideBarMenu.UserPanel.Welcome', ['username' => Yii::$app->user->identity->getPublicIdentity()]) ?>
+                    <?= Yii::t('backend', 'SideBarMenu.UserPanel.Welcome', ['name' => Yii::$app->user->identity->getPublicIdentity()]) ?>
                 </p>
 
                 <?php if (Yii::$app->user->can('profile.index')) { ?>

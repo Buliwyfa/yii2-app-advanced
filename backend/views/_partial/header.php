@@ -23,7 +23,7 @@ use yii\helpers\Html;
                     <img src="<?= Yii::$app->user->getIdentity()->getAvatar(Yii::getAlias('@web/images/profile-default.png')) ?>"
                          class="user-image">
                     <span>
-						<?= Yii::$app->user->identity->username ?>
+						<?= Yii::$app->user->identity->name ?>
 						<i class="caret"></i>
 					</span>
                 </a>
@@ -34,7 +34,7 @@ use yii\helpers\Html;
                         <img src="<?= Yii::$app->user->getIdentity()->getAvatar(Yii::getAlias('@web/images/profile-default.png')) ?>"
                              class="img-circle"/>
                         <p>
-                            <?= Yii::$app->user->identity->username ?>
+                            <?= Yii::$app->user->identity->email ?>
                             <small>
                                 <?= Yii::t('backend', 'SideBarMenu.UserPanel.MemberSince', Yii::$app->user->identity->created_at) ?>
                             </small>

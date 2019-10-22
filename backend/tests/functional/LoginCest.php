@@ -41,8 +41,8 @@ class LoginCest
     {
         $I->amOnPage('/admin');
 
-        $I->fillField(['name' => 'LoginForm[username]'], 'webmaster');
-        $I->fillField(['name' => 'LoginForm[password]'], 'webmaster@password');
+        $I->fillField(['name' => 'LoginForm[email]'], 'paulo@prsolucoes.com');
+        $I->fillField(['name' => 'LoginForm[password]'], 'user@password');
         $I->click('#login-form button[type=submit]');
 
         $I->see('Logout');

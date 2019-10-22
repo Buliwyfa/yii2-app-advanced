@@ -19,7 +19,7 @@ use yii\helpers\Html;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'username') ?>
+    <?= $form->field($model, 'name') ?>
 
     <?= $form->field($model, 'email') ?>
 

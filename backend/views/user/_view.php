@@ -39,7 +39,7 @@ use yii\widgets\DetailView;
                 'model' => $model,
                 'attributes' => [
                     'id',
-                    'username',
+                    'name',
                     'email:email',
                     [
                         'attribute' => 'gender',

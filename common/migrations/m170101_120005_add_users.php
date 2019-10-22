@@ -10,11 +10,11 @@ class m170101_120005_add_users extends Migration
     {
         $this->insert('{{%user}}', [
             'id' => 1,
-            'username' => 'webmaster',
-            'password_hash' => Yii::$app->getSecurity()->generatePasswordHash('webmaster@password'),
+            'name' => 'Administrator',
+            'email' => 'paulo@prsolucoes.com',
+            'password_hash' => Yii::$app->getSecurity()->generatePasswordHash('user@password'),
             'auth_key' => Yii::$app->getSecurity()->generateRandomString(),
             'password_reset_token' => Yii::$app->getSecurity()->generatePasswordHash('user-reset-token'),
-            'email' => 'paulo@prsolucoes.com',
             'language_id' => 1,
             'status' => User::STATUS_ACTIVE,
             'root' => User::ROOT_YES,
@@ -26,7 +26,7 @@ class m170101_120005_add_users extends Migration
 
     public function safeDown()
     {
-        $this->delete('{{%user}}', ['username' => 'webmaster']);
+        $this->delete('{{%user}}', ['email' => 'paulo@prsolucoes.com']);
     }
 
 }

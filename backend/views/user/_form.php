@@ -31,7 +31,7 @@ use yii\helpers\Html;
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="tab_1">
-                <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
                 <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 

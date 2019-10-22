@@ -20,13 +20,13 @@ echo GridView::widget([
         ['class' => 'yii\grid\SerialColumn'],
         'id',
         [
-            'attribute' => 'username',
+            'attribute' => 'name',
             'format' => 'raw',
             'value' => function ($model, $widget) {
                 return '
                 <span class="user-avatar-mini light-blue">
                     <img src="' . $model->getAvatar(Yii::getAlias('@web/images/profile-default.png')) . '" class="img-circle"/>
-                    ' . $model->username . '
+                    ' . $model->name . '
                 </span>
                 ';
             }

@@ -22,7 +22,7 @@ $this->params['body-class'] = 'login-page';
         <div class="login-box-body">
             <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
             <div class="body">
-                <?= $form->field($model, 'username') ?>
+                <?= $form->field($model, 'email') ?>
                 <?= $form->field($model, 'password')->passwordInput() ?>
                 <?= $form->field($model, 'rememberMe')->checkbox(['class' => 'simple']) ?>
             </div>

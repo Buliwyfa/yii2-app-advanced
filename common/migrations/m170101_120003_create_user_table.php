@@ -16,11 +16,11 @@ class m170101_120003_create_user_table extends Migration
         $this->createTable('{{%user}}', [
             'id' => $this->bigPrimaryKey(20),
             'language_id' => $this->bigInteger(20)->null(),
-            'username' => $this->string(50)->notNull()->unique(),
+            'name' => $this->string(255)->notNull(),
+            'email' => $this->string(255)->notNull()->unique(),
             'auth_key' => $this->string(32)->notNull(),
             'password_hash' => $this->string(255)->notNull(),
             'password_reset_token' => $this->string(255)->unique(),
-            'email' => $this->string(255)->notNull()->unique(),
             'status' => "ENUM('active', 'inactive')",
             'root' => "ENUM('yes', 'no')",
             'gender' => "ENUM('male', 'female')",

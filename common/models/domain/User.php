@@ -15,11 +15,11 @@ use yii\web\IdentityInterface;
  * This is the model class for table "{{%user}}".
  *
  * @property integer $id
- * @property string $username
+ * @property string $name
+ * @property string $email
  * @property string $auth_key
  * @property string $password_hash
  * @property string $password_reset_token
- * @property string $email
  * @property string $status
  * @property string $root
  * @property string $gender
@@ -91,14 +91,14 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Finds user by username
+     * Finds user by e-mail
      *
-     * @param string $username
+     * @param string email
      * @return static|null
      */
-    public static function findByUsername($username)
+    public static function findByEmail($email)
     {
-        return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
+        return static::findOne(['email' => $email, 'status' => self::STATUS_ACTIVE]);
     }
 
     /**
@@ -205,9 +205,9 @@ class User extends ActiveRecord implements IdentityInterface
     public function scenarios()
     {
         $scenarios = parent::scenarios();
-        $scenarios['create'] = ['username', 'email', 'password', 'gender', 'status', 'root', 'repeat_password', 'language_id', '_groups'];
-        $scenarios['update'] = ['username', 'email', 'password', 'gender', 'status', 'root', 'repeat_password', 'language_id', '_groups'];
-        $scenarios['update-profile'] = ['username', 'email', 'password', 'gender', 'repeat_password', 'avatar'];
+        $scenarios['create'] = ['name', 'email', 'password', 'gender', 'status', 'root', 'repeat_password', 'language_id', '_groups'];
+        $scenarios['update'] = ['name', 'email', 'password', 'gender', 'status', 'root', 'repeat_password', 'language_id', '_groups'];
+        $scenarios['update-profile'] = ['name', 'email', 'password', 'gender', 'repeat_password', 'avatar'];
         return $scenarios;
     }
 
@@ -217,19 +217,8 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            ['username', 'filter', 'filter' => 'trim'],
-            ['username', 'filter', 'filter' => '\yii\helpers\Html::encode'],
-            ['username', 'required'],
-            ['username', 'string', 'min' => 3, 'max' => 50],
-            ['username', 'unique',
-                'targetClass' => '\common\models\domain\User',
-                'message' => Yii::t('common', 'User.UsernameTaken'),
-                'filter' =>
-                    function ($query) {
-                        $query->andWhere(['not', ['id' => $this->id]]);
-                    }
-            ],
-            [['password_hash', 'password_reset_token'], 'string', 'max' => 255],
+            ['name', 'required'],
+            [['name', 'password_hash', 'password_reset_token'], 'string', 'max' => 255],
             [['password', 'repeat_Password'], 'string', 'on' => ['create']],
             [['repeat_password'], 'compare', 'compareAttribute' => 'password', 'on' => ['create']],
             [['password', 'repeat_password'], 'required', 'on' => ['create']],
@@ -265,7 +254,7 @@ class User extends ActiveRecord implements IdentityInterface
     public function attributeLabels()
     {
         return [
-            'username' => Yii::t('common', 'Model.Username'),
+            'name' => Yii::t('common', 'Model.Name'),
             'auth_key' => Yii::t('common', 'Model.AuthKey'),
             'password_hash' => Yii::t('common', 'Model.PasswordHash'),
             'password_reset_token' => Yii::t('common', 'Model.PasswordResetToken'),
@@ -362,8 +351,8 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function getPublicIdentity()
     {
-        if ($this->username) {
-            return $this->username;
+        if ($this->name) {
+            return $this->name;
         }
 
         return $this->email;

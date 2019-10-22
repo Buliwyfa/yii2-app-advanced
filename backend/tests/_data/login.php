@@ -1,11 +1,11 @@
 <?php
 return [
     [
-        'username' => 'webmaster',
-        'auth_key' => '2G62gPD4AlEcnMxWDhTPNPT40JWjis7H',
-        'password_hash' => '$2y$13$j9k93H1RU/jpQVzFpUxH0.Nt0GJ4Qdjaqh8NDl1QlSg2zbFcfcHyC', // webmaster@password
-        'password_reset_token' => Yii::$app->security->generateRandomString() . '_' . time(),
+        'name' => 'Administrator',
         'email' => 'paulo@prsolucoes.com',
+        'auth_key' => '2G62gPD4AlEcnMxWDhTPNPT40JWjis7H',
+        'password_hash' => '$2y$13$NxkjVJOLFLM3gKAI7F7lzeAqzDl8Cz/RBa1.FdglsMPdakxA98BJS', // user@password
+        'password_reset_token' => Yii::$app->security->generateRandomString() . '_' . time(),
         'status' => 'active',
         'root' => 'yes',
         'gender' => 'male',

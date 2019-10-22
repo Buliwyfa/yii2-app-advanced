@@ -16,7 +16,7 @@ use kartik\grid\GridView;
 
 $columns = [
     'id',
-    'username',
+    'name',
     'email',
     [
         'class' => EnumColumn::class,

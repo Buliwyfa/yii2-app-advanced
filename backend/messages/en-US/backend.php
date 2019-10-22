@@ -1,13 +1,13 @@
 <?php
 
 return [
-    'LoginForm.Username' => 'Username',
+    'LoginForm.Email' => 'E-mail',
     'LoginForm.Password' => 'Password',
     'LoginForm.RememberMe' => 'Remember me',
     'LoginForm.ButtonLogin' => 'Login',
-    'LoginForm.ErrorIncorrectUsernamePassword' => 'Username or password is invalid.',
+    'LoginForm.ErrorIncorrectEmailPassword' => 'E-mail or password is invalid.',
 
-    'SideBarMenu.UserPanel.Welcome' => 'Welcome, {username}',
+    'SideBarMenu.UserPanel.Welcome' => 'Welcome, {name}',
     'SideBarMenu.UserPanel.MemberSince' => 'Member since {0, date, short}',
     'SideBarMenu.ToggleButton' => 'Toggle navigation',
 
