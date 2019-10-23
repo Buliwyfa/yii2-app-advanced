@@ -1,3 +1,4 @@
+// Language class
 var Language = new function () {
 
 	this.change = function (id) {
@@ -12,3 +13,17 @@ var Language = new function () {
 	}
 
 };
+
+// PWA - Only register a service worker if it's supported
+if ('serviceWorker' in navigator) {
+	console.log('PWA supported!');
+
+	window.addEventListener('load', () => {
+		navigator.serviceWorker.register('/service-worker.js')
+			.then((reg) => {
+				console.log('Service worker registered.', reg);
+			});
+	});
+} else {
+	console.log('PWA not supported!');
+}
